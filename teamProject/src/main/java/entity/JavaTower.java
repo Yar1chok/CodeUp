@@ -3,8 +3,8 @@ package entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "level_1")
-public class Level1 {
+@Table(name = "java_tower")
+public class JavaTower {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ques")
@@ -21,4 +21,6 @@ public class Level1 {
     @Column(name = "wrong_answer_3")
     public String wrongAnswer3;
 
+    @Column(name = "level")
+    public String level;
 }

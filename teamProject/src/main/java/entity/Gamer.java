@@ -15,6 +15,6 @@ public class Gamer {
 
     @Column(name = "password")
     public String password;
-    @Column(name = "cur_lvl")
-    public Integer curLvl;
+    @Column(name = "cur_lvl_java")
+    public Integer curLvlJava;
 }
