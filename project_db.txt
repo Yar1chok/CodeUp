@@ -16,4 +16,4 @@ CREATE TABLE gamer (
 );	
 pg_dump -U postgres project > project_dump.sql
 docker cp team_project:mydatabase_dump.sql ./mydatabase_dump.sql
-
+psql -U postgres -d project < project_dump.sql

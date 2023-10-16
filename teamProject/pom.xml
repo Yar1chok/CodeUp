@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>GymCoders</groupId>
   <artifactId>teamProject</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <properties>
     <project.java.version>20</project.java.version>
     <maven.compiler.source>20</maven.compiler.source>
@@ -74,6 +74,20 @@
       <artifactId>postgresql</artifactId>
       <version>42.6.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>3.1.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>2.2</version>
+    </dependency>
+
+
   </dependencies>
   <build>
     <finalName>teamProject</finalName>
