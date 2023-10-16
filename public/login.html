@@ -8,48 +8,45 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-        <link href="../css/registration.css" rel="stylesheet">
-        <title>Регистрация</title>
+        <link href="../css/login.css" rel="stylesheet">
+        <title>Авторизация</title>
     </head>
     <body>
         <header>
             <a id="title" href="index.html"><span>CodeUp</span></a>
-            <div class="navigation">
-                <div class="sign_up"><span>У вас уже есть аккаунт?</span></div>
-                <div class="sign_in"><a href="login.html"><span>Вход</span></a></div>
-            </div>
         </header>
         <main>
-            <div class="registration">
+            <div class="login">
                 <div class="greeting block">
                     <p class="code_block">
-                        Добро пожаловать в сеть CodeUp!<br>
-                        Введите свои данные для создания профиля
+                        Введите свои данные для авторизации
                     </p>
                 </div>
                 <div class="input block">
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" placeholder="Введите email">
-                        </input>
-                    </div>
-                    <div class="field">
-                        <p>Username</p>
-                        <input class="input_field" placeholder="Введите имя вашего аватара">
+                        <input class="input_field" placeholder="Введите свой email">
                         </input>
                     </div>
                     <div class="field">
                         <p>Password</p>
-                        <input class="input_field" placeholder="Придумайте пароль">
+                        <input class="input_field" placeholder="Введите пароль">
                         </input>
                     </div>
+                    <a id="forg_pass" href="#">Забыли пароль?</a>
                     <div>
-                        <div class="create">
-                            <div class="create_account">
-                                <a href="">Создать аккаунт</a>
+                        <div class="log">
+                            <div class="log_in_acc">
+                                <a href="">Войти</a>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="registration block">
+                    <p>
+                        До сих пор не аккаунта?
+                    </p>
+                    <a href="registration.html"><span>Зарегистрируйтесь</span></a>
                 </div>
             </div>
         </main>
