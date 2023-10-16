@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import java.util.Objects;
 
 @Configuration
-@ComponentScan(basePackages = "springClasses")
+@ComponentScan(basePackages = "repository")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("repository")
 public class SpringConfig {

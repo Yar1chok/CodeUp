@@ -28,41 +28,42 @@ CREATE TABLE public.gamer (
     id_user integer NOT NULL,
     login character varying(25) NOT NULL,
     password character varying(25) NOT NULL,
-    cur_lvl integer NOT NULL
+    cur_lvl_java integer NOT NULL
 );
 
 
 ALTER TABLE public.gamer OWNER TO postgres;
 
 --
--- Name: level_1; Type: TABLE; Schema: public; Owner: postgres
+-- Name: java_tower; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.level_1 (
+CREATE TABLE public.java_tower (
     id_ques integer NOT NULL,
     text_ques character varying(600) NOT NULL,
     right_answer character varying(300) NOT NULL,
     wrong_answer_1 character varying(300) NOT NULL,
     wrong_answer_2 character varying(300) NOT NULL,
-    wrong_answer_3 character varying(300) NOT NULL
+    wrong_answer_3 character varying(300) NOT NULL,
+    level integer NOT NULL
 );
 
 
-ALTER TABLE public.level_1 OWNER TO postgres;
+ALTER TABLE public.java_tower OWNER TO postgres;
 
 --
 -- Data for Name: gamer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.gamer (id_user, login, password, cur_lvl) FROM stdin;
+COPY public.gamer (id_user, login, password, cur_lvl_java) FROM stdin;
 \.
 
 
 --
--- Data for Name: level_1; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: java_tower; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.level_1 (id_ques, text_ques, right_answer, wrong_answer_1, wrong_answer_2, wrong_answer_3) FROM stdin;
+COPY public.java_tower (id_ques, text_ques, right_answer, wrong_answer_1, wrong_answer_2, wrong_answer_3, level) FROM stdin;
 \.
 
 
@@ -83,10 +84,10 @@ ALTER TABLE ONLY public.gamer
 
 
 --
--- Name: level_1 level_1_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: java_tower level_1_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.level_1
+ALTER TABLE ONLY public.java_tower
     ADD CONSTRAINT level_1_pkey PRIMARY KEY (id_ques);
 
 
