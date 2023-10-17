@@ -60,7 +60,7 @@ body {
 
 header {
     height: 80px;
-    width: calc(100%-240px);
+    width: calc(100% - 240px);
     padding: 0px 120px;
     border-bottom: 1px #ED1389 solid;
     position: relative;
@@ -308,7 +308,7 @@ footer {
     font-size: 16px;
     margin-top: 175px;
     height: 55px;
-    width: calc(100%-240px);
+    width: calc(100% - 240px);
     padding: 0px 500px;
     border-top: 1px #ED1389 solid;
     position: relative;

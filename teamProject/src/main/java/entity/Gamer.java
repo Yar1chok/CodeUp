@@ -10,9 +10,11 @@ public class Gamer {
     @Column(name = "id_user")
     public Long idUser;
 
-    @Column(name = "login")
-    public String login;
+    @Column(name = "email")
+    public String email;
 
+    @Column(name = "user_name")
+    public String userName;
     @Column(name = "password")
     public String password;
     @Column(name = "cur_lvl_java")
@@ -22,12 +24,12 @@ public class Gamer {
 
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -46,9 +48,10 @@ public class Gamer {
         this.curLvlJava = curLvlJava;
     }
 
-    public Gamer(String login, String password) {
-        this.login = login;
+    public Gamer(String email, String password, String userName) {
+        this.email = email;
         this.password = password;
         this.curLvlJava = 1;
+        this.userName = userName;
     }
 }

@@ -8,15 +8,15 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-        <link href="../css/index.css" rel="stylesheet">
+        <link href="../static/css/index.css" rel="stylesheet" th:href="@{/css/index.css}">
         <title>CodeUp</title>
     </head>
     <body>
         <header>
-            <a id="title" href="index.html"><span>CodeUp</span></a>
+            <a id="title" href="/"><span>CodeUp</span></a>
             <div class="navigation">
-                <div class="sign_up"><a href="registration.html"><span>Регистрация</span></a></div>
-                <div class="sign_in"><a href="login.html"><span>Вход</span></a></div>
+                <div class="sign_up"><a href="/registration"><span>Регистрация</span></a></div>
+                <div class="sign_in"><a href="/login"><span>Вход</span></a></div>
             </div>
         </header>
         <main>
@@ -66,7 +66,7 @@
                         <div class="description">
                             <div class="description_underblock">
                                 <p class="text_font">Ярослав Смолянинов<br>4 июня 2003</p>   
-                                <img src="../images/1.png">                           
+                                <img src="../../webapp/images/1.png" th:src="@{/images/1.png}">
                             </div>
                             <p class="github_link code_comment">https://github.com/Yar1chok</p>
                         </div>
@@ -76,7 +76,7 @@
                         <div class="description">
                             <div class="description_underblock">
                                 <p class="text_font">Данил Устинов<br>23 августа 2003</p>   
-                                <img src="../images/2.png">                           
+                                <img src="../../webapp/images/2.png" th:src="@{/images/2.png}">
                             </div>
                             <p class="github_link code_comment">https://github.com/Novtin</p>
                         </div>
@@ -86,7 +86,7 @@
                         <div class="description">
                             <div class="description_underblock">
                                 <p class="text_font">Игорь Ковалев<br>4 ноября 2003</p>   
-                                <img src="../images/3.png">                           
+                                <img src="../../webapp/images/3.png" th:src="@{/images/3.png}">
                             </div>
                             <p class="github_link code_comment">https://github.com/Ig0rKovalev</p>
                         </div>

@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 import java.util.Objects;
 
 @Configuration
+@ComponentScan(basePackages = "springClasses")
 @ComponentScan(basePackages = "repository")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("repository")
@@ -31,10 +32,10 @@ public class SpringConfig {
     @Bean
     DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("dataSource.driverClassName")));
-        dataSource.setUrl(env.getProperty("dataSource.url"));
-        dataSource.setUsername(env.getProperty("dataSource.username"));
-        dataSource.setPassword(env.getProperty("dataSource.password"));
+        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("spring.datasource.driver-class-name")));
+        dataSource.setUrl(env.getProperty("spring.datasource.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.password"));
         return dataSource;
     }
     @Bean
