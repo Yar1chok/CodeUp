@@ -35,6 +35,11 @@ public class MainController {
                                 @RequestParam(value = "password", required = false) String password,
                                 @RequestParam(value = "user_name", required = false) String userName,
                                 Model model) {
+        if (email == null || password == null || userName == null){
+            model.addAttribute("errorMessage",
+                    "Заполните все поля");
+            return "registration";
+        }
         List<Gamer> existingUser = gamerRepository.findGamerByEmail(email);
         if (!existingUser.isEmpty()) {
             model.addAttribute("errorMessage",
@@ -56,6 +61,11 @@ public class MainController {
     public String login(@RequestParam(value = "email", required = false) String email,
                                @RequestParam(value = "password", required = false) String password,
                                Model model) {
+        if (email == null || password == null){
+            model.addAttribute("errorMessage",
+                    "Заполните все поля");
+            return "login";
+        }
         List<Gamer> existingUser = gamerRepository.findGamerByEmail(email);
         if (!existingUser.isEmpty() && existingUser.get(0).getEmail().equals(email)
                 && existingUser.get(0).getPassword().equals(password)) {

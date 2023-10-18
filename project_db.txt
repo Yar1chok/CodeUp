@@ -1,5 +1,5 @@
 CREATE TABLE java_tower (
-	id_ques INTEGER PRIMARY KEY,
+	id_ques SERIAL PRIMARY KEY,
 	text_ques VARCHAR(600) NOT NULL,
    	right_answer VARCHAR(300) NOT NULL,
     	wrong_answer_1 VARCHAR(300) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE java_tower (
 );
 
 CREATE TABLE gamer (
- 	id_user INTEGER PRIMARY KEY,
+ 	id_user SERIAL PRIMARY KEY,
 	login VARCHAR(25) NOT NULL UNIQUE,
 	password VARCHAR(25) NOT NULL,
 	cur_lvl_java INTEGER NOT NULL,

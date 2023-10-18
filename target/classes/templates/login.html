@@ -22,26 +22,26 @@
                         Введите свои данные для авторизации
                     </p>
                 </div>
-                <div class="input block">
+                <form method="post" class="input block">
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" placeholder="Введите свой email">
+                        <input class="input_field" name="email" placeholder="Введите свой email">
                         </input>
                     </div>
                     <div class="field">
                         <p>Password</p>
-                        <input class="input_field" placeholder="Введите пароль">
+                        <input class="input_field" name="password" placeholder="Введите пароль">
                         </input>
                     </div>
                     <a id="forg_pass" href="#">Забыли пароль?</a>
                     <div>
                         <div class="log">
                             <div class="log_in_acc">
-                                <a href="">Войти</a>
+                                <button type="submit">Войти</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="registration block">
                     <p>
                         До сих пор не аккаунта?

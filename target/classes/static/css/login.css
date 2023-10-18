@@ -185,6 +185,13 @@ main {
     border-color: #00C400;
 }
 
+button {
+    background: #444444;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 /*    Footer    */
 
 footer {
