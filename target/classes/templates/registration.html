@@ -27,27 +27,34 @@
                         Введите свои данные для создания профиля
                     </p>
                 </div>
-                <form method="post" class="input block">
+                <form method="post" class="input block" action="/registration" th:object="${gamer}">
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" name="email" placeholder="Введите email">
+                        <input class="input_field" name="email" placeholder="Введите email" maxlength="25" minlength="4" required>
                         </input>
+                        <div th:if="${#fields.hasErrors('email')}"
+                             style="color: red">Некорректное значение email</div>
                     </div>
                     <div class="field">
                         <p>Username</p>
-                        <input class="input_field" name="user_name" placeholder="Введите имя вашего аватара">
+                        <input class="input_field" name="user_name" placeholder="Введите имя вашего аватара" maxlength="25" required>
                         </input>
+                        <div th:if="${#fields.hasErrors('user_name')}"
+                             style="color: red">Некорректное значение имени вашего аватара</div>
                     </div>
                     <div class="field">
                         <p>Password</p>
-                        <input class="input_field" name="password" placeholder="Придумайте пароль">
+                        <input class="input_field" name="password" placeholder="Придумайте пароль" maxlength="25" minlength="4" required>
                         </input>
+                        <div th:if="${#fields.hasErrors('password')}"
+                             style="color: red">Некорректное значение имени пароля</div>
                     </div>
+                    <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
                     <div>
                         <div class="create">
-                            <button class="create_account" type="submit">
-                                Создать аккаунт
-                            </button>
+                            <div class="create_account">
+                                <button type="submit">Создать аккаунт</button>
+                            </div>
                         </div>
                     </div>
                 </form>

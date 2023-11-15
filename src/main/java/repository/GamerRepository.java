@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface GamerRepository extends JpaRepository<Gamer, Long> {
-    List<Gamer> findGamerByEmail(String login);
+    Gamer findGamerByEmail(String email);
 }

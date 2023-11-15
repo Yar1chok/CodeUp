@@ -10,11 +10,17 @@ CREATE TABLE java_tower (
 
 CREATE TABLE gamer (
  	id_user SERIAL PRIMARY KEY,
-	login VARCHAR(25) NOT NULL UNIQUE,
+	email VARCHAR(25) NOT NULL UNIQUE,
 	password VARCHAR(25) NOT NULL,
 	cur_lvl_java INTEGER NOT NULL,
-	user_name VARCHAR(25) NOT NULL UNIQUE
-);	
+	user_name VARCHAR(25) NOT NULL
+);
+
+CREATE TABLE role (
+	id SERIAL PRIMARY KEY,
+    role TEXT NOT NULL
+);
+
 pg_dump -U postgres project > project_dump.sql
 docker cp team_project:mydatabase_dump.sql ./mydatabase_dump.sql
 psql -U postgres -d project < project_dump.sql

@@ -296,6 +296,10 @@ main {
     text-decoration: underline;
 }
 
+/*    */
+
+/*    */
+
 
 /*    Footer    */
 
@@ -304,6 +308,7 @@ footer {
     font-size: 16px;
     margin-top: 175px;
     height: 55px;
+    width: calc(100% - 240px);
     padding: 0px 500px;
     border-top: 1px #ED1389 solid;
     position: relative;
@@ -313,7 +318,7 @@ footer {
 }
 
 footer::before {
-    content: '';
+    content: ''; 
     position: absolute;
     top: 0;
     left: 0;

@@ -22,23 +22,24 @@
                         Введите свои данные для авторизации
                     </p>
                 </div>
-                <form method="post" class="input block">
+                <form method="post" class="input block" action="/login" th:object="${gamer}>
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" name="email" placeholder="Введите свой email">
+                        <input class="input_field" name="email" placeholder="Введите свой email" maxlength="25" minlength="4" required>
                         </input>
                     </div>
                     <div class="field">
                         <p>Password</p>
-                        <input class="input_field" name="password" placeholder="Введите пароль">
+                        <input class="input_field" name="password" placeholder="Введите пароль" maxlength="25" minlength="4" required>
                         </input>
                     </div>
+                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
                     <a id="forg_pass" href="#">Забыли пароль?</a>
                     <div>
                         <div class="log">
-                            <button class="log_in_acc" type="submit">
-                                Войти
-                            </button>
+                            <div class="log_in_acc">
+                                <button type="submit">Войти</button>
+                            </div>
                         </div>
                     </div>
                 </form>
