@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-        <link href="../static/css/registration.css" rel="stylesheet" th:href="@{/css/registration.css}">
+        <link href="css/registration.css" type="text/html" th:href="@{../css/registration.css}">
         <title>Регистрация</title>
     </head>
     <body>
@@ -16,7 +16,7 @@
             <a id="title" href="/"><span>CodeUp</span></a>
             <div class="navigation">
                 <div class="sign_up"><span>У вас уже есть аккаунт?</span></div>
-                <div class="sign_in"><a href="/login"><span>Вход</span></a></div>
+                <div class="sign_in"><a href="/customLogin"><span>Вход</span></a></div>
             </div>
         </header>
         <main>
@@ -39,7 +39,7 @@
                         <p>Username</p>
                         <input class="input_field" name="user_name" placeholder="Введите имя вашего аватара" maxlength="25" required>
                         </input>
-                        <div th:if="${#fields.hasErrors('user_name')}"
+                        <div th:if="${#fields.hasErrors('nickname')}"
                              style="color: red">Некорректное значение имени вашего аватара</div>
                     </div>
                     <div class="field">

@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-        <link href="../static/css/login.css" rel="stylesheet" th:href="@{/css/login.css}">
+        <link href="/templates/css/login.css" type="text/html" th:href="@{../css/login.css}">
         <title>Авторизация</title>
     </head>
     <body>
@@ -22,7 +22,7 @@
                         Введите свои данные для авторизации
                     </p>
                 </div>
-                <form method="post" class="input block" action="/login" th:object="${gamer}>
+                <form method="post" class="input block" action="/customLogin" th:object="${gamer}">
                     <div class="field">
                         <p>Email</p>
                         <input class="input_field" name="email" placeholder="Введите свой email" maxlength="25" minlength="4" required>
