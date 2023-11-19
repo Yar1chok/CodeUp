@@ -11,9 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import application.repository.GamerRepository;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class GamerService implements UserDetailsService {
@@ -52,8 +50,10 @@ public class GamerService implements UserDetailsService {
         if (gamerFromDB != null) {
             return false;
         }
-
-        gamer.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        gamer.setCurLvlJava(1);
+        Set<Role> roleSet = new HashSet<>();
+        roleSet.add(new Role(1L, "ROLE_USER"));
+        gamer.setRoles(roleSet);
         gamer.setPassword(passwordEncoder.encode(gamer.getPassword()));
         gamerRepository.save(gamer);
         return true;

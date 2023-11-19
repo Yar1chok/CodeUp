@@ -39,6 +39,9 @@ public class Gamer implements UserDetails {
     public Gamer() {
     }
 
+    public void setNickname(String nickname){
+        this.nickname = nickname;
+    }
     public String getNickname(){
         return nickname;
     }
