@@ -2,9 +2,6 @@ package application.entity;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Set;
-
 @Entity
 @Table(name = "role")
 public class Role implements GrantedAuthority {
@@ -13,17 +10,15 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "role")
-    private String role;
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<Gamer> gamers;
+    @Column(name = "name")
+    private String name;
+
     public Role() {
     }
 
-    public Role(Long id, String role) {
+    public Role(Long id, String name) {
         this.id = id;
-        this.role = role;
+        this.name = name;
     }
 
     public Long getId() {
@@ -34,24 +29,16 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public Set<Gamer> getGamers() {
-        return gamers;
-    }
-
-    public void setGamers(Set<Gamer> gamers) {
-        this.gamers = gamers;
+    public void setName(String role) {
+        this.name = role;
     }
 
     @Override
     public String getAuthority() {
-        return getRole();
+        return getName();
     }
 }

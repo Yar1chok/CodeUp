@@ -1,11 +1,12 @@
 package application.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "gamer")
@@ -18,15 +19,20 @@ public class Gamer implements UserDetails {
     @Column(name = "email", unique = true)
     public String email;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name", nullable = false)
     public String nickname;
     @Column(name = "password")
     public String password;
     @Column(name = "cur_lvl_java", columnDefinition = "INTEGER DEFAULT 1")
     public Integer curLvlJava;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "gamer_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     public Set<Role> getRoles() {
         return roles;
@@ -56,7 +62,11 @@ public class Gamer implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
     }
 
     public String getPassword() {

@@ -2,6 +2,7 @@ package application.service;
 
 import application.entity.Gamer;
 import application.entity.Role;
+import application.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,26 +15,14 @@ import application.repository.GamerRepository;
 import java.util.*;
 
 @Service
-public class GamerService implements UserDetailsService {
+public class GamerService {
 
     @Autowired
     private GamerRepository gamerRepository;
     @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Gamer gamer = gamerRepository.findGamerByEmail(email);
-
-        if (gamer == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return User.builder()
-                .username(gamer.getEmail())
-                .password(gamer.getPassword())
-                .roles("USER")
-                .build();
-    }
 
     public Gamer findUserById(Long id) {
         Optional<Gamer> gamerFromDb = gamerRepository.findById(id);
@@ -52,7 +41,8 @@ public class GamerService implements UserDetailsService {
         }
         gamer.setCurLvlJava(1);
         Set<Role> roleSet = new HashSet<>();
-        roleSet.add(new Role(1L, "ROLE_USER"));
+        Role gamerRole = roleRepository.getRoleById(1L);
+        roleSet.add(gamerRole);
         gamer.setRoles(roleSet);
         gamer.setPassword(passwordEncoder.encode(gamer.getPassword()));
         gamerRepository.save(gamer);
