@@ -11,6 +11,7 @@ import application.service.GamerService;
 
 
 @Controller
+@RequestMapping("/")
 public class InputController {
     @Autowired
     private GamerService gamerService;
@@ -40,23 +41,22 @@ public class InputController {
         return "redirect:/customLogin";
     }
 
-    @GetMapping("/customLogin")
+    @GetMapping("/login")
     public String loginGet(Model model) {
         model.addAttribute("gamer", new Gamer());
-        return "customLogin";
+        return "login";
     }
 
-    @PostMapping("/customLogin")
-    public String loginPost(@ModelAttribute("gamer") @Validated Gamer gamer, BindingResult bindingResult, Model model) {
+    @PostMapping("/login")
+    public String loginPost(@ModelAttribute("gamer") @Validated Gamer gamer, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "customLogin";
+            return "login";
         }
         if (!gamerService.loginGamer(gamer.getEmail(), gamer.getPassword())){
-            model.addAttribute("errorMessage", "Неправильный логин или пароль");
-            return "customLogin";
+            return "login";
         }
 
-        return "redirect:/menu";
+        return "redirect:/CodeUp/menu";
     }
 }

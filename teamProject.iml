@@ -5,7 +5,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" value="7999eb88-27cd-4725-8b55-ed4d08df3e6b" />
+          <factory-entry name="entityManagerFactory" value="5a23fd1e-cfd8-4cb2-adbf-fe01be8d18c4" />
           <factory-entry name="noname-a.xml@0" value="7999eb88-27cd-4725-8b55-ed4d08df3e6b" />
           <factory-entry name="teamProject" value="7999eb88-27cd-4725-8b55-ed4d08df3e6b" />
         </datasource-mapping>

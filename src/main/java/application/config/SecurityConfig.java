@@ -47,28 +47,22 @@ public class SecurityConfig  {
                 auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/resources/**","/static/**", "/images/**",
-                                "/css/**","/customLogin", "/", "/registration").permitAll()
-                        .requestMatchers("/menu").hasAnyRole("USER", "ADMIN")
+                                "/css/**", "/login", "/", "/registration").permitAll()
+                        .requestMatchers("/CodeUp/**").authenticated()
                         .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
                 .formLogin(formLogin ->
                         formLogin
-                                .loginPage("/customLogin")
+                                .loginPage("/login")
                                 .usernameParameter("email")
                                 .passwordParameter("password")
-                                .defaultSuccessUrl("/menu")
-                                .failureUrl("/customLogin?errorMessage=Неверный логин или пароль")
+                                .defaultSuccessUrl("/CodeUp/menu")
+                                .failureUrl("/login?error=true")
                 )
                 .logout(logoutForm ->
                         logoutForm
-                                .logoutSuccessUrl("/")
+                                .logoutSuccessUrl("/login?logout=true")
                 )
-                .httpBasic(http ->
-                        http
-                                .authenticationEntryPoint(
-                                        (request, response, authException) ->
-                                                response
-                                                        .sendRedirect("/")))
                 .build();
     }
 }
