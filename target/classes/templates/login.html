@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="rus">
+    <head>
+        <meta http-equiv="Content-Type" Content="text/html; Charset=UTF-8">
+        <meta content="программирование, обучение программированию, java, джава, игра" name="keywords">
+        <meta content="Обучение программированию в игровом формате" name="description">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+        <link href="/static/css/index.css" rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+        <title>Авторизация</title>
+    </head>
+    <body>
+        <header>
+            <a id="title" href="/"><span>CodeUp</span></a>
+        </header>
+        <main>
+            <div class="login">
+                <div class="greeting block">
+                    <p class="code_block">
+                        Введите свои данные для авторизации
+                    </p>
+                </div>
+                <form method="post" class="input block" action="/login" th:object="${gamer}">
+                    <div class="field">
+                        <p>Email</p>
+                        <input class="input_field" name="email" placeholder="Введите свой email" maxlength="25" minlength="4" required>
+                        </input>
+                    </div>
+                    <div class="field">
+                        <p>Password</p>
+                        <input class="input_field" name="password" type="password" placeholder="Введите пароль" maxlength="25" minlength="4" required>
+                        </input>
+                    </div>
+                    <p th:if="${param.error}" style="color: red;">Неверный логин или пароль</p>
+                    <p th:if="${param.logout}" style="color: green;">Вы успешно вышли из аккаунта</p>
+                    <a id="forg_pass" href="#">Забыли пароль?</a>
+                    <div>
+                        <div class="log">
+                            <div class="log_in_acc">
+                                <button type="submit">Войти</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="registration block">
+                    <p>
+                        До сих пор не аккаунта?
+                    </p>
+                    <a href="/registration"><span>Зарегистрируйтесь</span></a>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <a><span>© ООО GymCoders 2023</span></a>
+            <a><span>Политика обработки данных</span></a>
+        </footer>
+    </body>
+</html>
