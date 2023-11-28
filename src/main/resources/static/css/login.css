@@ -168,28 +168,25 @@ main {
     text-decoration: underline;
 }
 
-.log {
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .log_in_acc {
-    margin: 57px 0px;
-    padding: 6.4px 17px;
-    font-size: 20px;
+    margin: 57px auto;
     position: relative;
     border: 2px solid;
     border-radius: 20px;
+    max-width: 209px;
     border-color: #00C400;
+    background: #444444;
+    padding: 8px 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-button {
-    background: #444444;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.log_in_acc:hover {
+    background: #353535;
+    border-color: #01aa01;
 }
 
 /*    Footer    */

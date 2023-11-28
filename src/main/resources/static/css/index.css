@@ -92,24 +92,27 @@ header::before {
 }
 
 .sign_up, .sign_in {
-    padding: 6.4px 17px;
+    padding: 6px 17px;
     position: relative;
     font-size: 24px;
     font-weight: 500;
     border: 2px solid;
     border-radius: 20px;
+    background: #222222;
 }
 
 .sign_up {
     margin-right: 9px;
     max-width: 178px;
     border-color: #ED1389;
+    cursor: pointer;
 }
 
 .sign_in {
     margin-left: 9px;
     max-width: 94px;
     border-color: #00C400;
+    cursor: pointer;
 }
 
 .sign_up::before, .sign_in::before {
@@ -131,6 +134,16 @@ header::before {
 
 .sign_in::before {
     border-color: #00C400;
+}
+
+.sign_up:hover {
+    border-color: #e71384;
+    background: #353535;
+}
+
+.sign_in:hover {
+    border-color: #01aa01;
+    background: #353535;
 }
 
 /*    */
@@ -178,8 +191,13 @@ main {
     border: 2px #00C400 solid;
     width: 160px;
     height: 50px;
+    cursor: pointer;
 }
 
+.start_button:hover {
+    background: #01aa01;
+    border-color: #01aa01;
+}
 
 .container {
     position: relative;
@@ -296,11 +314,6 @@ main {
     text-decoration: underline;
 }
 
-/*    */
-
-/*    */
-
-
 /*    Footer    */
 
 footer {
@@ -308,7 +321,6 @@ footer {
     font-size: 16px;
     margin-top: 175px;
     height: 55px;
-    width: calc(100% - 240px);
     padding: 0px 500px;
     border-top: 1px #ED1389 solid;
     position: relative;

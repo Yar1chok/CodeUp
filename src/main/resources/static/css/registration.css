@@ -92,17 +92,20 @@ header::before {
 
 .navigation {
     display: flex;
+    align-items: center;
 }
 
 .sign_up {
     display: flex;
     align-items: center;
-    color: #CBCBCB;
+    background-color: #222222;
+    color: #FFFFFF;
     font-size: 24px;
+    cursor: pointer;
 }
 
 .sign_in {
-    padding: 6.4px 17px;
+    padding: 6px 17px;
     position: relative;
     font-size: 24px;
     font-weight: 500;
@@ -110,7 +113,9 @@ header::before {
     border-radius: 20px;
     margin-left: 18px;
     max-width: 94px;
+    background: #222222;
     border-color: #00C400;
+    cursor: pointer;
 }
 
 .sign_in::before {
@@ -127,6 +132,14 @@ header::before {
     border-color: #00C400;
 }
 
+.sign_up:hover {
+    color: #CBCBCB;
+}
+
+.sign_in:hover {
+    border-color: #01aa01;
+    background: #353535;
+}
 /*    */
 
 
@@ -192,30 +205,25 @@ main {
     outline: none;
 }
 
-
-.create {
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .create_account {
-    margin: 57px 0px;
-    padding: 6.4px 17px;
-    font-size: 20px;
+    margin: 57px auto;
     position: relative;
     border: 2px solid;
     border-radius: 20px;
-    max-width: 151px;
+    max-width: 209px;
     border-color: #00C400;
+    background: #444444;
+    padding: 8px 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-button {
-    background: #444444;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.create_account:hover {
+    background: #353535;
+    border-color: #01aa01;
 }
 
 

@@ -36,13 +36,7 @@
                     <p th:if="${param.error}" style="color: red;">Неверный логин или пароль</p>
                     <p th:if="${param.logout}" style="color: green;">Вы успешно вышли из аккаунта</p>
                     <a id="forg_pass" href="#">Забыли пароль?</a>
-                    <div>
-                        <div class="log">
-                            <div class="log_in_acc">
-                                <button type="submit">Войти</button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="log_in_acc" type="submit">Войти</button>
                 </form>
                 <div class="registration block">
                     <p>

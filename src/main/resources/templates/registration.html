@@ -15,8 +15,12 @@
         <header>
             <a id="title" href="/"><span>CodeUp</span></a>
             <div class="navigation">
-                <div class="sign_up"><span>У вас уже есть аккаунт?</span></div>
-                <div class="sign_in"><a href="/login"><span>Вход</span></a></div>
+                <form action="/registration" method="get">
+                    <button type="submit" class="sign_up">У вас уже есть аккаунт?</button>
+                </form>
+                <form action="/login" method="get">
+                    <button type="submit" class="sign_in" >Вход</button>
+                </form>
             </div>
         </header>
         <main>
@@ -50,13 +54,7 @@
                              style="color: red">Некорректное значение имени пароля</div>
                     </div>
                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
-                    <div>
-                        <div class="create">
-                            <div class="create_account">
-                                <button type="submit">Создать аккаунт</button>
-                            </div>
-                        </div>
-                    </div>
+                    <button type="submit" class="create_account">Создать аккаунт</button>
                 </form>
             </div>
         </main>
