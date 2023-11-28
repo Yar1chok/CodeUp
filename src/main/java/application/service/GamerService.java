@@ -24,9 +24,13 @@ public class GamerService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public Gamer findUserById(Long id) {
+    public Gamer findGamerById(Long id) {
         Optional<Gamer> gamerFromDb = gamerRepository.findById(id);
         return gamerFromDb.orElse(new Gamer());
+    }
+
+    public Gamer findGamerByEmail(String email) {
+        return gamerRepository.findGamerByEmail(email);
     }
 
     public List<Gamer> allGamers() {
