@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 
@@ -29,15 +28,16 @@ public class MenuController {
     }
 
     @GetMapping("/profile")
-    public RedirectView profileGet(Principal principal, Model model) {
+    public String profileGet(Principal principal, Model model) {
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
 
         if (gamer != null) {
             model.addAttribute("gamer", gamer);
-            return new RedirectView("/CodeUp/profile/" + gamer.getIdUser(), true);
+            String url = "/CodeUp/profile/" + gamer.getIdUser();
+            return "redirect:/CodeUp/profile/" + gamer.getIdUser();
         } else {
-            return new RedirectView("/CodeUp/menu", true);
+            return "menu";
         }
     }
 
