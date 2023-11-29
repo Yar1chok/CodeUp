@@ -9,19 +9,53 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
         <link  type="text/css" rel="stylesheet" href="/static/css/profile.css" th:href="@{/css/profile.css}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
         <title>CodeUp</title>
     </head>
     <body>
         <header>
             <a id="title" href="/"><span>CodeUp</span></a>
             <div class="avatar_menu">
-                <img alt="../../webapp/images/1.png" class="avatar">
+                <img th:src="@{/images/4.jpg}" class="avatar">
                 <ul class="menu">
-                    <li><a href="#">Просмотреть профиль</a></li>
-                    <li><a href="#">Настройки</a></li>
-                    <li><a href="#">Выход</a></li>
+                    <form method="get" action="/CodeUp/profile">
+                        <li><button type="submit">Мой профиль</button></li>
+                    </form>
+                    <form method="get" action="/">
+                        <li><button type="submit">Настройки</button></li>
+                    </form>
+                    <form method="get" action="/logout">
+                        <li><button type="submit">Выход</button></li>
+                    </form>
                 </ul>
             </div>
         </header>
+        <main>
+            <div class="profile">
+                <div class="top_profile">
+                    <img th:src="@{/images/4.jpg}" class="profile_img">
+                    <span th:text="${gamer.getNickname()}"></span>
+                </div>
+                <div class="bottom_profile">
+                    <div class="profile_line">
+                        <span class="line_tag">Имя:</span>
+                        <span class="line_text" th:text="${gamer.getNickname()}"></span>
+                    </div>
+                    <div class="profile_line">
+                        <span class="line_tag">Возраст:</span>
+                        <span class="line_text" th:text="${gamer.getNickname()}"></span>
+                    </div>
+                    <div class="profile_line">
+                        <span class="line_tag">Местоположение:</span>
+                        <span class="line_text" th:text="${gamer.getNickname()}"></span>
+                    </div>
+                    <div class="profile_line github">
+                        <span class="line_tag">GitHub:</span>
+                        <a class="line_text" th:text="${gamer.getNickname()}" th:href="${gamer.getNickname()}"></a>
+                    </div>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

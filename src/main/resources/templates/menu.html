@@ -1,13 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2>МЕНЮ СКОРО БУДЕТ</h2>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти из аккаунта" class="btn btn-primary"/>
-</form>
-</body>
+<html lang="rus">
+    <head>
+        <meta http-equiv="Content-Type" Content="text/html; Charset=UTF-8">
+        <meta content="программирование, обучение программированию, java, джава, игра" name="keywords">
+        <meta content="Обучение программированию в игровом формате" name="description">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+        <link  type="text/css" rel="stylesheet" href="/static/css/menu.css" th:href="@{/css/menu.css}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=".../static/js/menu.js" th:src="@{/js/menu.js}"></script>
+        <title>CodeUp</title>
+    </head>
+    <body>
+        <header>
+            <a id="title" href="/"><span>CodeUp</span></a>
+            <div class="avatar_menu">
+                <img th:src="@{/images/4.jpg}" class="avatar">
+                <ul class="menu">
+                    <form method="get" action="/CodeUp/profile">
+                        <li><button type="submit">Мой профиль</button></li>
+                    </form>
+                    <form method="get" action="/">
+                        <li><button type="submit">Настройки</button></li>
+                    </form>
+                    <form method="get" action="/logout">
+                        <li><button type="submit">Выход</button></li>
+                    </form>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <div class="selection_frame">
+                <div class="chapter_section">
+                    <button class="chapter">Глава 1. Введение</button>
+                    <button class="chapter">Глава 2. Синтаксис</button>
+                    <button class="chapter">Глава 3. Стркуктура данных</button>
+                    <button class="chapter">Глава 4. Методы, вызовы методов</button>
+                    <button class="chapter">Глава 5. Классы, ООП</button>
+                    <button class="chapter">Глава 6. Исключения</button>
+                    <button class="chapter">Глава 7. Потоки</button>
+                    <button class="chapter">Глава 8. Работа с файлами</button>
+                    <button class="chapter">Глава 9. Графический интерфейс с JavaFX</button>
+                </div>
+                <div class="main_frame">
+                    <div class="chapter_name">
+                        Глава 1. Переменные                
+                    </div>
+                    <div class="description">
+                        Вы познакомитесь с Java
+                    </div>
+                    <button class="start_button">
+                        Начать
+                    </button>
+                </div>
+            </div>
+            <div class="reminder">
+                <p class="code_block">Если вы захотите вновь освежить знания, вы всегда можете вернуться и перепройти главу.</p>
+                <p class="code_block">Вам не обязательно перепроходить всю главу. В любом удобном случае вы можете продолжить изучение с следующей главы.</p>
+            </div>
+        </main>
+    </body>
 </html>
