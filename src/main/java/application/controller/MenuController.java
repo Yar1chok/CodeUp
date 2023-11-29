@@ -34,7 +34,6 @@ public class MenuController {
 
         if (gamer != null) {
             model.addAttribute("gamer", gamer);
-            String url = "/CodeUp/profile/" + gamer.getIdUser();
             return "redirect:/CodeUp/profile/" + gamer.getIdUser();
         } else {
             return "menu";

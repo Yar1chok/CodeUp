@@ -15,7 +15,7 @@
     </head>
     <body>
         <header>
-            <a id="title" href="/"><span>CodeUp</span></a>
+            <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
             <div class="avatar_menu">
                 <img th:src="@{/images/4.jpg}" class="avatar">
                 <ul class="menu">
@@ -34,25 +34,30 @@
         <main>
             <div class="profile">
                 <div class="top_profile">
-                    <img th:src="@{/images/4.jpg}" class="profile_img">
+                    <div th:if="${gamer.getImage() == null}">
+                        <img th:src="@{/images/4.jpg}" alt="Gamer Image" class="profile_img">
+                    </div>
+                    <div th:if="${gamer.getImage() != null}">
+                        <img th:src="'data:image/jpeg;base64,' + ${#strings.arrayEncode(gamer.getImage())}" alt="Gamer Image" class="profile_img">
+                    </div>
                     <span th:text="${gamer.getNickname()}"></span>
                 </div>
                 <div class="bottom_profile">
                     <div class="profile_line">
                         <span class="line_tag">Имя:</span>
-                        <span class="line_text" th:text="${gamer.getNickname()}"></span>
+                        <span class="line_text" th:text="${gamer.getRealName()}"></span>
                     </div>
                     <div class="profile_line">
                         <span class="line_tag">Возраст:</span>
-                        <span class="line_text" th:text="${gamer.getNickname()}"></span>
+                        <span class="line_text" th:text="${gamer.getAge()}"></span>
                     </div>
                     <div class="profile_line">
-                        <span class="line_tag">Местоположение:</span>
-                        <span class="line_text" th:text="${gamer.getNickname()}"></span>
+                        <span class="line_tag">Уровень Java:</span>
+                        <span class="line_text" th:text="${gamer.getCurLvlJava()}"></span>
                     </div>
                     <div class="profile_line github">
                         <span class="line_tag">GitHub:</span>
-                        <a class="line_text" th:text="${gamer.getNickname()}" th:href="${gamer.getNickname()}"></a>
+                        <a class="line_text" th:text="${gamer.getGithub()}" th:href="${gamer.getGithub()}"></a>
                     </div>
                 </div>
             </div>

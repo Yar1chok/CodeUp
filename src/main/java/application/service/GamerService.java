@@ -4,10 +4,6 @@ import application.entity.Gamer;
 import application.entity.Role;
 import application.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import application.repository.GamerRepository;
@@ -48,6 +44,7 @@ public class GamerService {
         Role gamerRole = roleRepository.getRoleById(1L);
         roleSet.add(gamerRole);
         gamer.setRoles(roleSet);
+        gamer.setAge(1);
         gamer.setPassword(passwordEncoder.encode(gamer.getPassword()));
         gamerRepository.save(gamer);
         return true;

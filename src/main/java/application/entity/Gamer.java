@@ -1,6 +1,8 @@
 package application.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,18 +16,56 @@ public class Gamer implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
-    public Long idUser;
+    private Long idUser;
 
     @Column(name = "email", unique = true)
-    public String email;
+    private String email;
 
     @Column(name = "user_name", nullable = false)
-    public String nickname;
+    private String nickname;
     @Column(name = "password")
-    public String password;
+    private String password;
     @Column(name = "cur_lvl_java", columnDefinition = "INTEGER DEFAULT 1")
-    public Integer curLvlJava;
+    private Integer curLvlJava;
 
+    @Column(name = "age", columnDefinition = "INTEGER DEFAULT 1")
+    @Min(1) @Max(140)
+    private Integer age;
+
+
+    @Column(name = "name")
+    private String name;
+
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+
+    @Column(name = "github")
+    private String github;
+
+    public String getRealName() {
+        return name;
+    }
+
+    public void setRealName(String name) {
+        this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Object getImage() {
+        return null;
+    }
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
             name = "gamer_roles",

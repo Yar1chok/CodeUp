@@ -11,9 +11,11 @@ CREATE TABLE java_tower (
 CREATE TABLE gamer (
  	id_user SERIAL PRIMARY KEY,
 	email VARCHAR(25) NOT NULL UNIQUE,
-	password VARCHAR(25) NOT NULL,
+	password VARCHAR(1000) NOT NULL,
 	cur_lvl_java INTEGER NOT NULL,
-	user_name VARCHAR(25) NOT NULL
+	user_name VARCHAR(25) NOT NULL,
+	age INTEGER NOT NULL DEFAULT=1,
+	name VARCHAR(25)
 );
 
 CREATE TABLE role (

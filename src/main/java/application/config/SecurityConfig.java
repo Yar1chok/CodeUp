@@ -56,7 +56,7 @@ public class SecurityConfig  {
                                 .loginPage("/login")
                                 .usernameParameter("email")
                                 .passwordParameter("password")
-                                .defaultSuccessUrl("/CodeUp/menu")
+                                .defaultSuccessUrl("/CodeUp/menu", true)
                                 .failureUrl("/login?error=true")
                 )
                 .logout(logoutForm ->
