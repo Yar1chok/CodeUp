@@ -1,61 +1,35 @@
 <!DOCTYPE html>
-<html lang="rus">
-    <head>
-        <th:block th:replace="head :: head">
-        </th:block>
-        <link type="text/css" rel="stylesheet" href="/static/css/menu.css" th:href="@{/css/menu.css}">
-        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src=".../static/js/menu.js" th:src="@{/js/menu.js}"></script>
-        <title>CodeUp</title>
-    </head>
-    <body>
-        <header>
-            <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
-            <div class="avatar_menu">
-                <img th:src="@{/images/4.jpg}" class="avatar">
-                <ul class="menu">
-                    <form method="get" action="/CodeUp/profile">
-                        <li><button type="submit">Мой профиль</button></li>
-                    </form>
-                    <form method="get" action="/CodeUp/settings">
-                        <li><button type="submit">Настройки</button></li>
-                    </form>
-                    <form method="get" action="/logout">
-                        <li><button type="submit">Выход</button></li>
-                    </form>
-                </ul>
-            </div>
-        </header>
-        <main>
-            <div class="selection_frame">
-                <div class="chapter_section">
-                    <button class="chapter information_form">Глава 1. Введение</button>
-                    <button class="chapter information_form">Глава 2. Синтаксис</button>
-                    <button class="chapter information_form">Глава 3. Стркуктура данных</button>
-                    <button class="chapter information_form">Глава 4. Методы, вызовы методов</button>
-                    <button class="chapter information_form">Глава 5. Классы, ООП</button>
-                    <button class="chapter information_form">Глава 6. Исключения</button>
-                    <button class="chapter information_form">Глава 7. Потоки</button>
-                    <button class="chapter information_form">Глава 8. Работа с файлами</button>
-                    <button class="chapter information_form">Глава 9. Графический интерфейс с JavaFX</button>
-                </div>
-                <div class="main_frame">
-                    <div class="chapter_name information_form">
-                        Глава 1. Переменные                
-                    </div>
-                    <div class="description information_form">
-                        Вы познакомитесь с Java
-                    </div>
-                    <button class="start_button but">
-                        Начать
-                    </button>
-                </div>
-            </div>
-            <div class="reminder information_form">
-                <p class="code_block">Если вы захотите вновь освежить знания, вы всегда можете вернуться и перепройти главу.</p>
-                <p class="code_block">Вам не обязательно перепроходить всю главу. В любом удобном случае вы можете продолжить изучение с следующей главы.</p>
-            </div>
-        </main>
-    </body>
-</html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/static/css/cyberpunk-css-main/cyberpunk.css" th:href="@{/css/cyberpunk-css-main/cyberpunk.css}">
+    <link type="text/css" rel="stylesheet" href="/static/css/towers.css" th:href="@{/css/towers.css}">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/js/menu.js" th:src="@{/js/menu.js}"></script>
+  <title>Choose Towers</title>
+</head>
+<body th:style="|background:url(@{/images/towers/основнойФон.png}); background-size: cover;
+background-repeat: no-repeat;|">
+<div>
+  <div class="JavaTower">
+    <a href="/CodeUp/javaTower"><img th:src="@{/images/towers/ГлавБашня.png}" alt="Java Tower"></a>
+  </div>
+  <a href="/CodeUp/javaTower" class="cyberpunk-font-og f-x2-5 fg-yellow TextJava" >Java Tower</a>
+</div>
+<div>
+  <div class="LeftTower cyber-glitch-1">
+    <img th:src="@{/images/towers/ЛевБашня.png}">
+  </div>
+  <a class="cyberpunk-font-og f-x2-5 fg-blue cyber-glitch-4 TextLeftTower">Coming</a>
+  <div class="oxanium-font f-x2-5 fg-blue cyber-glitch-3 TextLeftTower" style="left: 18%;">_</div>
+</div>
+<div>
+  <div class="RightTower cyber-glitch-1">
+    <img th:src="@{/images/towers/ПравБашня.png}">>
+  </div>
+  <a class="cyberpunk-font-og f-x2-5 fg-cyan cyber-glitch-4 TextRightTower">Coming</a>
+  <div class="oxanium-font f-x2-5 fg-cyan cyber-glitch-3 TextRightTower" style="left: 91%;">_</div>
+</div>
+</body>

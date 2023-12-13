@@ -37,6 +37,11 @@ public class MenuController {
         return "level";
     }
 
+    @GetMapping("/javaTower")
+    public String javaTowerGet(){
+        return "javaTower";
+    }
+
     @GetMapping("/profile")
     public String profileGet(Principal principal, Model model) {
         String email = principal.getName();
