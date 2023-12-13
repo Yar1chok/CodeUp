@@ -1,100 +1,3 @@
-/* Базовые стили сайта */
-
-* {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-html, body {
-    height: 100%;
-}
-
-body {
-    background-color: #222222;
-    font-family: 'Lato', sans-serif;
-}
-
-
-/*    */
-
-
-
-/* Классы для шрифтов */
-
-.title_font {
-    font-weight: 900;
-    font-size: 48px;
-}
-
-.text_font {
-    line-height: 40px;
-    font-weight: 500;
-    font-size: 24px;
-}
-
-.code_font {
-    font-family: 'Courier Prime';
-    font-size: 16px;
-    white-space: pre-wrap;
-}
-
-.code_block {
-    font-family: 'Courier Prime';
-    color: #00C400;
-}
-
-.code_comment {
-    font-family: 'Courier Prime';
-    color: #808080;
-    font-size: 16px;
-}
-
-.code_text {
-    font-family: 'Courier Prime';
-    color: #ED1389;
-}
-
-/*    */
-
-
-
-/* Блок header */
-
-header {
-    height: 80px;
-    padding: 0px 120px;
-    border-bottom: 1px #ED1389 solid;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header::before {
-    content: ''; 
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ED1389;
-    filter: blur(10px);
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-#title {
-    font-size: 36px;
-    font-weight: 800;
-}
-
-/*    */
-
-
-
 /* Блок main */
 
 main {
@@ -113,13 +16,9 @@ main {
     width: 482px;
 }
 
-.block {
+.information_form {
     padding: 10px 30px 10px 30px;
     width: 100%;
-    background-color: #444444;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.50);
-    border-radius: 15px;
-    border: 2px #222222 solid;
 }
 
 .greeting {
@@ -140,27 +39,6 @@ main {
     flex-direction: column;
 }
 
-.input_field {
-    width: calc(100% - 44px);
-    padding: 8px 20px;
-    margin-top: 7px;
-    background: #333333;
-    border: 2px solid #333333;
-    border-radius: 15px;
-    font-family: 'Courier Prime';
-    font-size: 16px;
-}
-
-
-.input_field::placeholder {
-    color: #808080;
-}
-
-.input_field:focus {
-    border: 2px solid #CBCBCB;
-    outline: none;
-}
-
 #forg_pass {
     margin-top: 11px;
     text-align: right;
@@ -171,10 +49,7 @@ main {
 .log_in_acc {
     margin: 57px auto;
     position: relative;
-    border: 2px solid;
-    border-radius: 20px;
     max-width: 209px;
-    border-color: #00C400;
     background: #444444;
     padding: 8px 20px;
     font-size: 20px;
@@ -182,38 +57,6 @@ main {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.log_in_acc:hover {
-    background: #353535;
-    border-color: #01aa01;
-}
-
-/*    Footer    */
-
-footer {
-    color: #CBCBCB;
-    font-size: 16px;
-    height: 55px;
-    padding: 0px 500px;
-    border-top: 1px #ED1389 solid;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-footer::before {
-    content: ''; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ED1389;
-    filter: blur(10px);
-    transform: scaleX(1);
-    transform-origin: left;
 }
 
 .registration {
@@ -226,4 +69,17 @@ footer::before {
 .registration a {
     margin-left: 11px;
     text-decoration: underline;
+    color: #00C400;
 }
+
+.registration a span {
+    color: #00C400;
+}
+
+/*    Footer    */
+
+footer {
+    margin-top: 0px;
+}
+
+/*    */

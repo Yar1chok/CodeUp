@@ -1,94 +1,4 @@
-/* Базовые стили сайта */
-
-* {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-html, body {
-    height: 100%;
-}
-
-body {
-    background-color: #222222;
-    font-family: 'Lato', sans-serif;
-}
-
-/*    */
-
-
-
-/* Классы для шрифтов */
-
-.title_font {
-    font-weight: 900;
-    font-size: 48px;
-}
-
-.text_font {
-    line-height: 40px;
-    font-weight: 500;
-    font-size: 24px;
-}
-
-.code_font {
-    font-family: 'Courier Prime';
-    font-size: 16px;
-    white-space: pre-wrap;
-}
-
-.code_block {
-    font-family: 'Courier Prime';
-    color: #00C400;
-}
-
-.code_comment {
-    font-family: 'Courier Prime';
-    color: #808080;
-    font-size: 16px;
-}
-
-.code_text {
-    font-family: 'Courier Prime';
-    color: #ED1389;
-}
-
-/*    */
-
-
-
 /* Блок header */
-
-header {
-    height: 80px;
-    padding: 0px 120px;
-    border-bottom: 1px #ED1389 solid;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header::before {
-    content: ''; 
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ED1389;
-    filter: blur(10px);
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-#title {
-    font-size: 36px;
-    font-weight: 800;
-}
 
 .navigation {
     display: flex;
@@ -101,7 +11,6 @@ header::before {
     background-color: #222222;
     color: #FFFFFF;
     font-size: 24px;
-    cursor: pointer;
 }
 
 .sign_in {
@@ -130,10 +39,6 @@ header::before {
     filter: blur(5px);
     pointer-events: none;
     border-color: #00C400;
-}
-
-.sign_up:hover {
-    color: #CBCBCB;
 }
 
 .sign_in:hover {
@@ -184,34 +89,10 @@ main {
     padding-left: 10px;
 }
 
-.input_field {
-    width: calc(100% - 44px);
-    padding: 8px 20px;
-    margin-top: 7px;
-    background: #333333;
-    border: 2px solid #333333;
-    border-radius: 15px;
-    font-family: 'Courier Prime';
-    font-size: 16px;
-}
-
-
-.input_field::placeholder {
-    color: #808080;
-}
-
-.input_field:focus {
-    border: 2px solid #CBCBCB;
-    outline: none;
-}
-
 .create_account {
     margin: 57px auto;
     position: relative;
-    border: 2px solid;
-    border-radius: 20px;
     max-width: 209px;
-    border-color: #00C400;
     background: #444444;
     padding: 8px 20px;
     font-size: 20px;
@@ -221,35 +102,10 @@ main {
     cursor: pointer;
 }
 
-.create_account:hover {
-    background: #353535;
-    border-color: #01aa01;
-}
-
-
 /*    Footer    */
 
 footer {
-    color: white;
-    font-size: 16px;
-    height: 55px;
-    padding: 0px 500px;
-    border-top: 1px #ED1389 solid;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    margin-top: 0px;
 }
 
-footer::before {
-    content: ''; 
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ED1389;
-    filter: blur(10px);
-    transform: scaleX(1);
-    transform-origin: left;
-}
+/*    */

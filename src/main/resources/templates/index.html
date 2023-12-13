@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="rus">
     <head>
-        <meta http-equiv="Content-Type" Content="text/html; Charset=UTF-8">
-        <meta content="программирование, обучение программированию, java, джава, игра" name="keywords">
-        <meta content="Обучение программированию в игровом формате" name="description">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-        <link  type="text/css" rel="stylesheet" href="/static/css/index.css" th:href="@{/css/index.css}">
+        <th:block th:replace="head :: head">
+        </th:block>
+        <link type="text/css" rel="stylesheet" href="/static/css/index.css" th:href="@{/css/index.css}">
+        <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
         <title>CodeUp</title>
     </head>
     <body>
@@ -33,7 +29,7 @@
                     </form>
                 </div>
 
-                <div class="container" id="practice">
+                <div class="information_form" id="practice">
                     <div>
                         <p class="title_font">Практика</p>
                         <p class="text_font">Можно начать обучение, написав свой первый код и сразу же применить его на практике.</p>
@@ -53,11 +49,11 @@
                 </div>            
             </div>
             <div class="second_block">
-                <div class="container" id="chat">
+                <div class="information_form" id="chat">
                     <p class="title_font">Общение</p>
                     <p class="text_font">Общение с единомышленниками - это бесконечные возможности. Можно не только для обсуждать код, но и разделять идеи и вдохновение.</p>
                 </div>
-                <div class="container" id="rating">
+                <div class="information_form" id="rating">
                     <p class="title_font">Рейтинговая система</p>
                     <p class="text_font">Есть уникальная система рангов, которая делает ваше обучение ещё более увлекательным и интерактивным. 
                         Система рангов поможет легко найти участников с таким же или близким уровнем навыков, новичкам обращаться за советом и помощью к более опытным, 
@@ -67,42 +63,40 @@
             <div class="third_block">
                 <p id="third_block_title">Команда разработчиков</p>
                 <div class="developer_block">
-                    <div class="container developer" id="team_leader">
+                    <div class="information_form developer" id="team_leader">
                         <p class="title_font">Тимлид</p>
                         <div class="description">
                             <div class="description_underblock">
                                 <p class="text_font">Ярослав Смолянинов<br>4 июня 2003</p>   
                                 <img src="../../webapp/images/1.png" th:src="@{/images/1.png}">
                             </div>
-                            <p class="github_link code_comment">https://github.com/Yar1chok</p>
+                            <a class="github_link code_comment" href="https://github.com/Yar1chok" target="_blank">https://github.com/Yar1chok</a>
                         </div>
                     </div>
-                    <div class="container developer" id="backend">
+                    <div class="information_form developer" id="backend">
                         <p class="title_font">Бэкенд разработчик</p>
                         <div class="description">
                             <div class="description_underblock">
                                 <p class="text_font">Данил Устинов<br>23 августа 2003</p>   
                                 <img src="../../webapp/images/2.png" th:src="@{/images/2.png}">
                             </div>
-                            <p class="github_link code_comment">https://github.com/Novtin</p>
+                            <a class="github_link code_comment" href="https://github.com/Novtin" target="_blank">https://github.com/Novtin</a>
                         </div>
                     </div>
-                    <div class="container developer" id="frontend">
+                    <div class="information_form developer" id="frontend">
                         <p class="title_font">Фронтенд разработчик</p>
                         <div class="description">
                             <div class="description_underblock">
                                 <p class="text_font">Игорь Ковалев<br>4 ноября 2003</p>   
                                 <img src="../../webapp/images/3.png" th:src="@{/images/3.png}">
                             </div>
-                            <p class="github_link code_comment">https://github.com/Ig0rKovalev</p>
+                            <a class="github_link code_comment" href="https://github.com/Ig0rKovalev" target="_blank">https://github.com/Ig0rKovalev</a>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-        <footer>
-            <a><span>© ООО GymCoders 2023</span></a>
-            <a><span>Политика обработки данных</span></a>
+        <footer th:replace="footer :: footer">
         </footer>
     </body>
 </html>

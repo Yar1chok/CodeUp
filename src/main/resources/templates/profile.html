@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="rus">
     <head>
-        <meta http-equiv="Content-Type" Content="text/html; Charset=UTF-8">
-        <meta content="программирование, обучение программированию, java, джава, игра" name="keywords">
-        <meta content="Обучение программированию в игровом формате" name="description">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
-        <link  type="text/css" rel="stylesheet" href="/static/css/profile.css" th:href="@{/css/profile.css}">
+        <th:block th:replace="head :: head">
+        </th:block>
+        <link type="text/css" rel="stylesheet" href="/static/css/profile.css" th:href="@{/css/profile.css}">
+        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
         <title>CodeUp</title>
@@ -22,7 +18,7 @@
                     <form method="get" action="/CodeUp/profile">
                         <li><button type="submit">Мой профиль</button></li>
                     </form>
-                    <form method="get" action="/">
+                    <form method="get" action="/CodeUp/settings">
                         <li><button type="submit">Настройки</button></li>
                     </form>
                     <form method="get" action="/logout">
@@ -33,7 +29,7 @@
         </header>
         <main>
             <div class="profile">
-                <div class="top_profile">
+                <div class="top_profile information_form">
                     <div th:if="${gamer.getImage() == null}">
                         <img th:src="@{/images/4.jpg}" alt="Gamer Image" class="profile_img">
                     </div>
@@ -42,7 +38,7 @@
                     </div>
                     <span th:text="${gamer.getNickname()}"></span>
                 </div>
-                <div class="bottom_profile">
+                <div class="bottom_profile information_form">
                     <div class="profile_line">
                         <span class="line_tag">Имя:</span>
                         <span class="line_text" th:text="${gamer.getRealName()}"></span>

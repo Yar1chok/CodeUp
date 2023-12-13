@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="rus">
+    <head>
+        <th:block th:replace="head :: head">
+        </th:block>
+        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
+        <link type="text/css" rel="stylesheet" href="/static/css/settings.css" th:href="@{/css/settings.css}">
+        <!-- <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}"> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=".../static/js/settings.js" th:src="@{/js/settings.js}"></script>
+        <title>CodeUp</title>
+    </head>
+    <body>
+        <header>
+            <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
+            <div class="avatar_menu">
+                <img th:src="@{/images/4.jpg}" class="avatar">
+                <ul class="menu">
+                    <form method="get" action="/CodeUp/profile">
+                        <li><button type="submit">Мой профиль</button></li>
+                    </form>
+                    <form method="get" action="/CodeUp/settings">
+                        <li><button type="submit">Настройки</button></li>
+                    </form>
+                    <form method="get" action="/logout">
+                        <li><button type="submit">Выход</button></li>
+                    </form>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <form class="settings information_form">
+                <div class="settings_form">
+                    <div class="left_form">
+                        <div>
+                            <div class="field">
+                                <p>Email</p>
+                                <input class="input_field" type="email" name="email" maxlength="25" minlength="4" required>
+                                </input>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="field">
+                                <p>Username</p>
+                                <input class="input_field">
+                                </input>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="field">
+                                <p>Name</p>
+                                <input class="input_field">
+                                </input>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="field">
+                                <p>GitHub</p>
+                                <input type="text" class="input_field" id="githubLink" placeholder="https://github.com/" pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right_form">
+                        <div class="image_form">
+                            <img th:src="@{/images/4.jpg}" alt="Gamer Image" class="profile_img" id="previewImage">
+                            <label for="photoInput" class="change_image but">Загрузить фото
+                                <input type="file" id="photoInput" accept="image/*" style="display: none;" />
+                            </label>
+                        </div>
+                        <div class="bottom_image_form">
+                            <div class="field">
+                                <p>Age</p>
+                                <fieldset>
+                                    <select id="day">
+                                            <option value="1">1</option>
+                                    </select>
+                                    <select id="month">
+                                        <option value="1">Январь</option>
+                                        <option value="2">Февраль</option>
+                                        <option value="3">Март</option>
+                                        <option value="4">Апрель</option>
+                                        <option value="5">Май</option>
+                                        <option value="6">Июнь</option>
+                                        <option value="7">Июль</option>
+                                        <option value="8">Август</option>
+                                        <option value="9">Сентябрь</option>
+                                        <option value="10">Октябрь</option>
+                                        <option value="11">Ноябрь</option>
+                                        <option value="12">Декабрь</option>
+                                    </select>
+                                    <select id="year">
+                                        <option value="">2023</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="create_account but">Сохранить</button>
+            </form>
+        </main>
+        <div class="error">
+            <div class="error_form information_form">
+                <p class="title">Ошибка загрузки фото</p>
+                <p>Возможно загружать только файлы JPG, PNG, GIF</p>
+                <div class="button_form">
+                    <button class="repeat but">Повторить</button>
+                    <button class="cancel but">Отменить</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

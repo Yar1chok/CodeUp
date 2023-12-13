@@ -1,91 +1,4 @@
-/* Базовые стили сайта */
-
-* {
-    margin: 0px;
-    padding: 0px;
-    border: none;
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-body {
-    background-color: #222222;
-    font-family: 'Lato', sans-serif;
-}
-
-/*    */
-
-
-
-/* Классы для шрифтов */
-
-.title_font {
-    font-weight: 900;
-    font-size: 48px;
-}
-
-.text_font {
-    line-height: 40px;
-    font-weight: 500;
-    font-size: 24px;
-}
-
-.code_font {
-    font-family: 'Courier Prime';
-    font-size: 16px;
-    white-space: pre-wrap;
-}
-
-.code_block {
-    font-family: 'Courier Prime';
-    color: #00C400;
-}
-
-.code_comment {
-    font-family: 'Courier Prime';
-    color: #808080;
-    font-size: 16px;
-}
-
-.code_text {
-    font-family: 'Courier Prime';
-    color: #ED1389;
-}
-
-/*    */
-
-
-
 /* Блок header */
-
-header {
-    height: 80px;
-    width: calc(100% - 240px);
-    padding: 0px 120px;
-    border-bottom: 1px #ED1389 solid;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-header::before {
-    content: ''; 
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #ED1389;
-    filter: blur(10px);
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-#title {
-    font-size: 36px;
-    font-weight: 800;
-}
 
 .avatar_menu {
     position: relative;
@@ -179,13 +92,6 @@ main {
     border-radius: 10px;
 }
 
-.chapter, .chapter_name, .description {
-    background: #444444;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.50);
-    border-radius: 15px; 
-    border: 2px #333333 solid;
-}
-
 .chapter {
     padding: 0px 20px;
     width: 100%;
@@ -233,25 +139,14 @@ main {
     font-family: Lato;
     font-weight: 500;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    border: 2px #00C400 solid;
     cursor: pointer;
     position: absolute;
     bottom: 15px;
 }
 
-.start_button:hover {
-    border-color: #01aa01;
-    background: #333333;
-}
-
 
 .reminder {
     height: 100%;
-    background: #444444;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.50);
-    border-radius: 15px;
-    border: 2px #222222 solid;
     max-width: 310px;
     padding: 0px 20px 15px 20px;
 }

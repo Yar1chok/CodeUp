@@ -27,6 +27,16 @@ public class MenuController {
         return "menu";
     }
 
+    @GetMapping("/settings")
+    public String settingsGet(){
+        return "settings";
+    }
+
+    @GetMapping("/level")
+    public String levelGet(){
+        return "level";
+    }
+
     @GetMapping("/profile")
     public String profileGet(Principal principal, Model model) {
         String email = principal.getName();

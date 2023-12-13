@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="rus">
     <head>
-        <meta http-equiv="Content-Type" Content="text/html; Charset=UTF-8">
-        <meta content="программирование, обучение программированию, java, джава, игра" name="keywords">
-        <meta content="Обучение программированию в игровом формате" name="description">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+        <th:block th:replace="head :: head">
+        </th:block>
+        <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
         <link href="/static/css/index.css" rel="stylesheet" type="text/css" th:href="@{/css/registration.css}">
         <title>Регистрация</title>
     </head>
@@ -15,11 +11,9 @@
         <header>
             <a id="title" href="/"><span>CodeUp</span></a>
             <div class="navigation">
-                <form action="/registration" method="get">
-                    <button type="submit" class="sign_up">У вас уже есть аккаунт?</button>
-                </form>
+                <p class="sign_up">У вас уже есть аккаунт?</p>
                 <form action="/login" method="get">
-                    <button type="submit" class="sign_in" >Вход</button>
+                    <button type="submit" class="sign_in">Вход</button>
                 </form>
             </div>
         </header>
@@ -34,7 +28,7 @@
                 <form method="post" class="input block" action="/registration" th:object="${gamer}">
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" name="email" placeholder="Введите email" maxlength="25" minlength="4" required>
+                        <input class="input_field" type="email" name="email" placeholder="Введите email" maxlength="25" minlength="4" required>
                         </input>
                         <div th:if="${#fields.hasErrors('email')}"
                              style="color: red">Некорректное значение email</div>
@@ -54,13 +48,11 @@
                              style="color: red">Некорректное значение имени пароля</div>
                     </div>
                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
-                    <button type="submit" class="create_account">Создать аккаунт</button>
+                    <button type="submit" class="create_account but">Создать аккаунт</button>
                 </form>
             </div>
         </main>
-        <footer>
-            <a><span>© ООО GymCoders 2023</span></a>
-            <a><span>Политика обработки данных</span></a>
+        <footer th:replace="footer :: footer">
         </footer>
     </body>
 </html>
