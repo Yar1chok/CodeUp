@@ -40,18 +40,23 @@ public class Gamer implements UserDetails {
         return github;
     }
 
+
     public void setGithub(String github) {
         this.github = github;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
     }
 
     @Column(name = "github")
     private String github;
 
-    public String getRealName() {
+    public String getName() {
         return name;
     }
 
-    public void setRealName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -62,6 +67,7 @@ public class Gamer implements UserDetails {
     public void setAge(Integer age) {
         this.age = age;
     }
+
 
     public Object getImage() {
         return null;
@@ -154,10 +160,11 @@ public class Gamer implements UserDetails {
         this.curLvlJava = curLvlJava;
     }
 
-    public Gamer(String email, String password, String nickname) {
+    public Gamer(String email, String password, String nickname, String name) {
         this.email = email;
         this.password = password;
         this.curLvlJava = 1;
         this.nickname = nickname;
+        this.name = name;
     }
 }

@@ -29,34 +29,27 @@
             </div>
         </header>
         <main>
-            <form class="settings information_form">
+            <form class="settings information_form" th:object="${gamer}" th:action="@{/CodeUp/settings/{userId}(userId=${gamer.getIdUser()})}" method="post">
                 <div class="settings_form">
                     <div class="left_form">
                         <div>
                             <div class="field">
-                                <p>Email</p>
-                                <input class="input_field" type="email" name="email" maxlength="25" minlength="4" required>
-                                </input>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="field">
                                 <p>Username</p>
-                                <input class="input_field">
+                                <input class="input_field" name="nickname" required>
                                 </input>
                             </div>
                         </div>
                         <div>
                             <div class="field">
                                 <p>Name</p>
-                                <input class="input_field">
+                                <input class="input_field" name="name" required>
                                 </input>
                             </div>
                         </div>
                         <div>
                             <div class="field">
                                 <p>GitHub</p>
-                                <input type="text" class="input_field" id="githubLink" placeholder="https://github.com/" pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+">
+                                <input type="text" name="github" class="input_field" id="githubLink" placeholder="https://github.com/" pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+" required>
                                 </input>
                             </div>
                         </div>
@@ -97,6 +90,7 @@
                         </div>
                     </div>
                 </div>
+                <p th:if="${param.error}" style="color: red;">Неверный логин или пароль</p>
                 <button type="submit" class="create_account but">Сохранить</button>
             </form>
         </main>

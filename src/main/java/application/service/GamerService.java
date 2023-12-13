@@ -50,6 +50,20 @@ public class GamerService {
         return true;
     }
 
+    public boolean updateGamer(Gamer gamer, Long id) {
+        Optional<Gamer> gamerFromDB = gamerRepository.findById(id);
+        if (gamerFromDB.isPresent()) {
+            gamer.setIdUser(id);
+            gamer.setEmail(gamerFromDB.get().getEmail());
+            gamer.setPassword(gamerFromDB.get().getPassword());
+            gamer.setCurLvlJava(gamerFromDB.get().getCurLvlJava());
+            gamerRepository.save(gamer);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean deleteUser(Long userId) {
         if (gamerRepository.findById(userId).isPresent()) {
             gamerRepository.deleteById(userId);
