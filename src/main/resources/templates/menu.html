@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="/static/css/cyberpunk-css-main/cyberpunk.css" th:href="@{/css/cyberpunk-css-main/cyberpunk.css}">
     <link type="text/css" rel="stylesheet" href="/static/css/towers.css" th:href="@{/css/towers.css}">
+    <link type="text/css" rel="stylesheet" href="/static/css/profile.css" th:href="@{/css/profile.css}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/js/menu.js" th:src="@{/js/menu.js}"></script>
@@ -12,6 +13,24 @@
 </head>
 <body th:style="|background:url(@{/images/towers/основнойФон.png}); background-size: cover;
 background-repeat: no-repeat;|">
+
+<header style="text-align: right; margin-right: 25px; margin-top: 10px">
+  <div class="avatar_menu">
+    <img th:src="@{/images/4.jpg}" class="avatar" style="border: 2px #B822D1 solid">
+    <ul class="menu">
+      <form method="get" action="/CodeUp/profile">
+        <li><button type="submit">Мой профиль</button></li>
+      </form>
+      <form method="get" action="/CodeUp/settings">
+        <li><button type="submit">Настройки</button></li>
+      </form>
+      <form method="get" action="/logout">
+        <li><button type="submit">Выход</button></li>
+      </form>
+    </ul>
+  </div>
+</header>
+
 <div>
   <div class="JavaTower">
     <a href="/CodeUp/javaTower"><img th:src="@{/images/towers/ГлавБашня.png}" alt="Java Tower"></a>
