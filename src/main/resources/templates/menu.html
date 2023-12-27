@@ -16,7 +16,12 @@ background-repeat: no-repeat;|">
 
 <header style="text-align: right; margin-right: 25px; margin-top: 10px">
   <div class="avatar_menu">
-    <img th:src="@{/images/4.jpg}" class="avatar" style="border: 2px #B822D1 solid">
+    <div th:if="${image == null}">
+      <img th:src="@{/images/4.jpg}" class="avatar" style="border: 2px #B822D1 solid">
+    </div>
+    <div th:if="${image != null}">
+      <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar" style="border: 2px #B822D1 solid">
+    </div>
     <ul class="menu">
       <form method="get" action="/CodeUp/profile">
         <li><button type="submit">Мой профиль</button></li>

@@ -14,7 +14,12 @@
         <header>
             <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
             <div class="avatar_menu">
-                <img th:src="@{/images/4.jpg}" class="avatar">
+                <div th:if="${gamer.getImage() == null}">
+                    <img th:src="@{/images/4.jpg}" class="avatar">
+                </div>
+                <div th:if="${gamer.getImage() != null}">
+                    <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar">
+                </div>
                 <ul class="menu">
                     <form method="get" action="/CodeUp/profile">
                         <li><button type="submit">Мой профиль</button></li>

@@ -27,7 +27,7 @@ public class Gamer implements UserDetails {
     @Column(name = "cur_lvl_java", columnDefinition = "INTEGER DEFAULT 1")
     private Integer curLvlJava;
 
-    @Column(name = "birthday", columnDefinition = "STRING DEFAULT '1.1.1'")
+    @Column(name = "birthday", columnDefinition = "STRING DEFAULT '1.1.2023'")
     private String birthday;
 
 

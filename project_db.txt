@@ -14,7 +14,9 @@ CREATE TABLE gamer (
 	password VARCHAR(1000) NOT NULL,
 	cur_lvl_java INTEGER NOT NULL,
 	user_name VARCHAR(25) NOT NULL,
-	age INTEGER NOT NULL DEFAULT 1,
+	birthday VARCHAR(255) DEFAULT '1.1.2023',
+	github VARCHAR(1000),
+	image BYTEA,
 	name VARCHAR(25)
 );
 

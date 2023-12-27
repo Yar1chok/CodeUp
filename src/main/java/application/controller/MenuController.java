@@ -8,11 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.security.Principal;
-import java.util.Arrays;
 import java.util.Base64;
 
 @Controller
@@ -27,8 +23,17 @@ public class MenuController {
     }
 
     @GetMapping("/menu")
-    public String menuGet(){
-        return "menu";
+    public String menuGet(Model model, Principal principal){
+        String email = principal.getName();
+        Gamer gamer = gamerService.findGamerByEmail(email);
+        if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
+            return "menu";
+        } else {
+            return "redirect:/customLogin";
+        }
     }
 
     @GetMapping("/settings")
@@ -38,7 +43,7 @@ public class MenuController {
         if (gamer != null) {
             return "redirect:/CodeUp/settings/" + gamer.getIdUser();
         } else {
-            return "menu";
+            return "redirect:/login";
         }
     }
 
@@ -67,13 +72,31 @@ public class MenuController {
     }
 
     @GetMapping("/level")
-    public String levelGet(){
-        return "level";
+    public String levelGet(Model model, Principal principal){
+        String email = principal.getName();
+        Gamer gamer = gamerService.findGamerByEmail(email);
+        if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
+            return "level";
+        } else {
+            return "redirect:/customLogin";
+        }
     }
 
     @GetMapping("/javaTower")
-    public String javaTowerGet(){
-        return "javaTower";
+    public String javaTowerGet(Model model, Principal principal){
+        String email = principal.getName();
+        Gamer gamer = gamerService.findGamerByEmail(email);
+        if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
+            return "javaTower";
+        } else {
+            return "redirect:/customLogin";
+        }
     }
 
     @GetMapping("/profile")
@@ -82,10 +105,13 @@ public class MenuController {
         Gamer gamer = gamerService.findGamerByEmail(email);
 
         if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
             model.addAttribute("gamer", gamer);
             return "redirect:/CodeUp/profile/" + gamer.getIdUser();
         } else {
-            return "menu";
+            return "redirect:/login";
         }
     }
 
@@ -95,12 +121,12 @@ public class MenuController {
 
         if (gamer != null) {
             model.addAttribute("gamer", gamer);
-            if (gamer.getImage() != null && gamer.getImage().length != 0) {
+            if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
             return "profile";
         } else {
-            return "redirect:/CodeUp/menu";
+            return "redirect:/login";
         }
     }
 }
