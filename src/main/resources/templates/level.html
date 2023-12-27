@@ -5,7 +5,7 @@
         </th:block>
         <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
         <link type="text/css" rel="stylesheet" href="/static/css/level.css" th:href="@{/css/level.css}">
-        <!-- <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}"> -->
+        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src=".../static/js/level.js" th:src="@{/js/level.js}"></script>
         <title>CodeUp</title>
@@ -34,9 +34,27 @@
             </div>
         </header>
         <main>
-            <textarea id="code" rows="10" cols="50"></textarea>
-            <button onclick="runCode()">Запустить</button>
-            <div id="output"></div>
+            <div class="question_form information_form">
+                <p class="question"></p>
+                <form action="" method="post">
+                    <input type="radio" id="answer_1" name="answer" value="answer_1">
+                    <label for="answer_1">Вариант ответа 1</label><br>
+                    
+                    <input type="radio" id="answer_2" name="answer" value="answer_2">
+                    <label for="answer_2">Вариант ответа 2</label><br>
+                    
+                    <input type="radio" id="answer_3" name="answer" value="answer_3">
+                    <label for="answer_3">Вариант ответа 3</label><br>
+                    
+                    <input type="radio" id="answer_4" name="answer" value="answer_4">
+                    <label for="answer_4">Вариант ответа 4</label><br><br>
+                    
+                    <button type="submit" class="but">Отправить ответ</button>
+                </form>
+            </div>
+            <div class="result_message information_form" style="display: none;">
+                <p id="result_text"></p>
+            </div>
         </main>
     </body>
 </html>

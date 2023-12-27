@@ -11,20 +11,59 @@ $(document).ready(function(){
     });
 });
 
-function runCode() {
-    var code = document.getElementById('code').value;
 
 
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:9090/compile",
-        data: JSON.stringify({ code: code }),
-        contentType: "application/json",
-        success: function(response) {
-            document.getElementById('output').innerText = "Результат компиляции: " + response;
-        },
-        error: function() {
-            alert('Произошла ошибка при отправке кода на компиляцию.');
+fetch('/texts/questions.json')
+  .then(response => response.json())
+  .then(data => {
+    const questionElement = document.querySelector('.question');
+    const answerLabels = document.querySelectorAll('label[for^="answer_"]');
+    const submitButton = document.querySelector('.but');
+    const resultMessage = document.querySelector('.result_message');
+    const resultText = document.getElementById('result_text');
+
+    let currentQuestionIndex = 0;
+    let currentQuestion = data[currentQuestionIndex];
+
+    function displayQuestion() {
+      questionElement.textContent = currentQuestion.question;
+      currentQuestion.answers.forEach((answer, index) => {
+        answerLabels[index].textContent = answer;
+      });
+    }
+
+    displayQuestion();
+
+    submitButton.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+      if (!selectedAnswer) {
+        resultMessage.style.display = 'block';
+        resultText.textContent = 'Пожалуйста, выберите ответ.';
+        return;
+      }
+
+      const selectedAnswerIndex = parseInt(selectedAnswer.value.split('_')[1]);
+      if (selectedAnswerIndex === currentQuestion.correctAnswer) {
+        // resultText.textContent = 'Ответ верный!';
+        resultMessage.style.display = 'none';
+        currentQuestionIndex++;
+        if (currentQuestionIndex < data.length) {
+          currentQuestion = data[currentQuestionIndex];
+          displayQuestion();
+        } else {
+            resultMessage.style.display = 'block';
+            resultText.textContent = 'Вопросы закончились';
         }
+
+        document.querySelector('input[name="answer"]:checked').checked = false;
+      } else {
+        resultMessage.style.display = 'block';
+        resultText.textContent = 'Ответ неверный!';
+      }
     });
-}
+  })
+  .catch(error => {
+    console.error('Ошибка загрузки или обработки JSON файла:', error);
+  });
