@@ -3,7 +3,6 @@ package application.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,9 +27,8 @@ public class Gamer implements UserDetails {
     @Column(name = "cur_lvl_java", columnDefinition = "INTEGER DEFAULT 1")
     private Integer curLvlJava;
 
-    @Column(name = "age", columnDefinition = "INTEGER DEFAULT 1")
-    @Min(1) @Max(140)
-    private Integer age;
+    @Column(name = "birthday", columnDefinition = "STRING DEFAULT '1.1.1'")
+    private String birthday;
 
 
     @Column(name = "name")
@@ -52,6 +50,8 @@ public class Gamer implements UserDetails {
     @Column(name = "github")
     private String github;
 
+    @Column(name = "image")
+    private byte[] image;
     public String getName() {
         return name;
     }
@@ -60,17 +60,20 @@ public class Gamer implements UserDetails {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
 
-    public Object getImage() {
-        return null;
+    public byte[] getImage() {
+        return image;
+    }
+    public void setImage(byte[] image) {
+        this.image = image;
     }
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(

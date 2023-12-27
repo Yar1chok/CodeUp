@@ -34,7 +34,7 @@
                         <img th:src="@{/images/4.jpg}" alt="Gamer Image" class="profile_img">
                     </div>
                     <div th:if="${gamer.getImage() != null}">
-                        <img th:src="'data:image/jpeg;base64,' + ${#strings.arrayEncode(gamer.getImage())}" alt="Gamer Image" class="profile_img">
+                        <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Gamer Image" class="profile_img">
                     </div>
                     <span th:text="${gamer.getNickname()}"></span>
                 </div>
@@ -44,8 +44,8 @@
                         <span class="line_text" th:text="${gamer.getName()}"></span>
                     </div>
                     <div class="profile_line">
-                        <span class="line_tag">Возраст:</span>
-                        <span class="line_text" th:text="${gamer.getAge()}"></span>
+                        <span class="line_tag">День рождения:</span>
+                        <span class="line_text" th:text="${gamer.getBirthday()}"></span>
                     </div>
                     <div class="profile_line">
                         <span class="line_tag">Уровень Java:</span>

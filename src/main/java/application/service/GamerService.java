@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import application.repository.GamerRepository;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 @Service
@@ -44,15 +47,26 @@ public class GamerService {
         Role gamerRole = roleRepository.getRoleById(1L);
         roleSet.add(gamerRole);
         gamer.setRoles(roleSet);
-        gamer.setAge(1);
+        gamer.setBirthday("1.1.2023");
         gamer.setPassword(passwordEncoder.encode(gamer.getPassword()));
         gamerRepository.save(gamer);
         return true;
     }
 
-    public boolean updateGamer(Gamer gamer, Long id) {
+    public boolean updateGamer(Gamer gamer, Long id, MultipartFile image, String birthday) {
         Optional<Gamer> gamerFromDB = gamerRepository.findById(id);
         if (gamerFromDB.isPresent()) {
+            try (InputStream stream = image.getInputStream()) {
+                byte[] bytes = stream.readAllBytes();
+                if (bytes.length != 0) {
+                    gamer.setImage(bytes);
+                } else {
+                    gamer.setImage(gamerFromDB.get().getImage());
+                }
+            } catch (IOException e) {
+                return false;
+            }
+            gamer.setBirthday(birthday);
             gamer.setIdUser(id);
             gamer.setEmail(gamerFromDB.get().getEmail());
             gamer.setPassword(gamerFromDB.get().getPassword());

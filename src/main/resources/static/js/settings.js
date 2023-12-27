@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var daySelect = document.getElementById('day');
     var yearSelect = document.getElementById('year');
     var photoInput = document.getElementById('photoInput');
-    var previewImage = document.getElementById('previewImage');
+    var previewImage = document.getElementsByClassName('profile_img')[0];
     var githubLinkInput = document.getElementById('githubLink');
     var placeholderText = 'https://github.com/';
 
@@ -64,8 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             openErrorModal();
         }
-
-        photoInput.value = null;
     }
 
     repeatButton.addEventListener('click', function() {
@@ -91,20 +89,4 @@ document.addEventListener('DOMContentLoaded', function() {
     errorForm.addEventListener('click', function(event) {
         event.stopPropagation();
     });
-
-    for (var i = 1; i <= 31; i++) {
-        var option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        daySelect.appendChild(option);
-    };
-    
-    var i = 2022;
-    while (i >= 1901) {
-        var option = document.createElement('option');
-        option.value = i;
-        option.textContent = i;
-        yearSelect.appendChild(option);
-        i--;
-    };
 });
