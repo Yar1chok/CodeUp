@@ -57,10 +57,10 @@
                 <p id="result_text"></p>
             </div> ---->
 
-            <form th:action="'/CodeUp/javaTower/level/' + ${id} + '/result/'" method="get">
+            <form th:action="'/CodeUp/javaTower/level/' + ${id} + '/result/'" method="get" class="question_form information_form">
                 <div th:each="question, iterStat : ${questions}">
-                    <p th:text="${iterStat.index + 1} + '/' + ${questions.size()}"></p>
-                    <p th:text="${question.textQues}"></p>
+                    <p th:text="${iterStat.index + 1} + '/' + ${questions.size()} + ' ' + ${question.textQues}"
+                       class="question"></p>
 
                     <div th:each="answer, iterStat : ${question.shuffledAnswers}">
                         <input type="radio" th:id="'answer-' + ${question.idQues} + '-' + ${iterStat.index}"
@@ -71,7 +71,7 @@
                     </div>
                     <br>
                 </div>
-                <button type="submit">Завершить тест</button>
+                <input type="submit" value="Завершить тест"/>
             </form>
         </main>
     </body>

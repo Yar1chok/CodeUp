@@ -37,3 +37,8 @@ CREATE TABLE gamer_roles (
 pg_dump -U postgres project > project_dump.sql
 docker cp team_project:mydatabase_dump.sql ./mydatabase_dump.sql
 psql -U postgres -d project < project_dump.sql
+
+INSERT INTO java_tower values ('Текст вопроса:', 'Правильный ответ', 'Неправильный ответ 1', 'Неправильный ответ 2',
+                               'Неправильный ответ 3', 1, 1);
+INSERT INTO java_tower values ('Текст вопроса:', 'Правильный ответ', 'Неправильный ответ 1', 'Неправильный ответ 2',
+                               'Неправильный ответ 3', 1, 2);
