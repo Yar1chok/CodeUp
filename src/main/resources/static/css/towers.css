@@ -10,8 +10,8 @@
 
 .JavaTower {
     position: absolute;
-    top: 18.8%;
-    left: 40.5%;
+    top: 19.9%;
+    left: 40.9%;
     transform: translate(-50%, -50%);
     scale: 0.5;
 }
@@ -22,7 +22,7 @@
     overflow: hidden;
     scale: 0.51;
     top: 19.5%;
-    left: 40.7%;
+    left: 41%;
 }
 
 .TextJava {
@@ -41,10 +41,13 @@
 
 .LeftTower {
     position: absolute;
-    top: -11%;
-    left: 7.6%;
+    top: -11.9%;
+    left: -14.6%;
     scale: 0.5;
     -webkit-filter: brightness(90%);
+    width: 100%;
+    overflow: hidden;
+    transition: transform 0.5s ease;
 }
 
 .TextLeftTower {
@@ -59,8 +62,8 @@
 
 .RightTower {
     position: absolute;
-    top: -21.9%;
-    left: 80.1%;
+    top: -20.7%;
+    left: 80.3%;
     scale: 0.5;
     -webkit-filter: brightness(90%);
 }
