@@ -53,6 +53,9 @@ public class GamerService {
         return true;
     }
 
+    public void justUpdate(Gamer gamer){
+        gamerRepository.save(gamer);
+    }
     public boolean updateGamer(Gamer gamer, Long id, MultipartFile image, String birthday) {
         Optional<Gamer> gamerFromDB = gamerRepository.findById(id);
         if (gamerFromDB.isPresent()) {

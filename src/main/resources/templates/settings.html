@@ -39,14 +39,14 @@
                     <div class="left_form">
                         <div>
                             <div class="field">
-                                <p>Username</p>
+                                <p>Никнейм</p>
                                 <input class="input_field" name="nickname" th:field="*{nickname}" required>
                                 </input>
                             </div>
                         </div>
                         <div>
                             <div class="field">
-                                <p>Name</p>
+                                <p>Имя</p>
                                 <input class="input_field" name="name" th:field="*{name}" required>
                                 </input>
                             </div>
@@ -68,12 +68,12 @@
                                 <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Gamer Image" class="profile_img">
                             </div>
                             <label for="photoInput" class="change_image but">Загрузить фото
-                                <input type="file" id="photoInput" name="photoInput" accept="image/*"/>
                             </label>
+                                <input type="file" id="photoInput" name="photoInput" accept="image/*" style="display: none"/>
                         </div>
                         <div class="bottom_image_form">
                             <div class="field">
-                                <p>Age</p>
+                                <p>День рождения</p>
                                 <fieldset>
                                     <select id="day" name="day">
                                         <option th:each="day : ${#numbers.sequence(1, 31)}"

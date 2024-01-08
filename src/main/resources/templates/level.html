@@ -6,8 +6,9 @@
         <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
         <link type="text/css" rel="stylesheet" href="/static/css/level.css" th:href="@{/css/level.css}">
         <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src=".../static/js/level.js" th:src="@{/js/level.js}"></script>
+        <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=".../static/js/level.js" th:src="@{/js/level.js}"></script> -->
         <title>CodeUp</title>
     </head>
     <body>
@@ -34,7 +35,7 @@
             </div>
         </header>
         <main>
-            <div class="question_form information_form">
+            <!--- <div class="question_form information_form">
                 <p class="question"></p>
                 <form action="" method="post">
                     <input type="radio" id="answer_1" name="answer" value="answer_1">
@@ -54,7 +55,24 @@
             </div>
             <div class="result_message information_form" style="display: none;">
                 <p id="result_text"></p>
-            </div>
+            </div> ---->
+
+            <form th:action="'/CodeUp/javaTower/level/' + ${id} + '/result/'" method="get">
+                <div th:each="question, iterStat : ${questions}">
+                    <p th:text="${iterStat.index + 1} + '/' + ${questions.size()}"></p>
+                    <p th:text="${question.textQues}"></p>
+
+                    <div th:each="answer, iterStat : ${question.shuffledAnswers}">
+                        <input type="radio" th:id="'answer-' + ${question.idQues} + '-' + ${iterStat.index}"
+                               th:name="${question.idQues}"
+                               th:value="${answer}" />
+                        <label th:for="'answer-' + ${question.idQues} + '-' + ${iterStat.index}"
+                               th:text="${answer}"></label>
+                    </div>
+                    <br>
+                </div>
+                <button type="submit">Завершить тест</button>
+            </form>
         </main>
     </body>
 </html>

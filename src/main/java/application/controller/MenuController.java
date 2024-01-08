@@ -1,7 +1,10 @@
 package application.controller;
 
 import application.entity.Gamer;
+import application.entity.JavaTower;
+import application.repository.JavaTowerRepository;
 import application.service.GamerService;
+import application.service.JavaTowerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,17 +12,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.security.Principal;
-import java.util.Base64;
+import java.util.*;
 
 @Controller
 @RequestMapping("/CodeUp")
 public class MenuController {
 
     private final GamerService gamerService;
+    private final JavaTowerService javaTowerService;
 
     @Autowired
-    public MenuController(GamerService gamerService) {
+    public MenuController(GamerService gamerService, JavaTowerService javaTowerService) {
         this.gamerService = gamerService;
+        this.javaTowerService = javaTowerService;
     }
 
     @GetMapping("/menu")
@@ -129,4 +134,64 @@ public class MenuController {
             return "redirect:/login";
         }
     }
+
+    @GetMapping("/javaTower/level/{id}")
+    public String javaLevelGet(Principal principal, Model model, @PathVariable Integer id) {
+        String email = principal.getName();
+        Gamer gamer = gamerService.findGamerByEmail(email);
+        if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
+            model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            model.addAttribute("questions", javaTowerService.getShuffled(id));
+            return "level";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/javaTower/level/{id}/result/")
+    public String submitAnswers(@RequestParam Map<String, String> userAnswers,
+                                Model model,
+                                @PathVariable Integer id,
+                                Principal principal) {
+        String email = principal.getName();
+        Gamer gamer = gamerService.findGamerByEmail(email);
+        if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
+            model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            List<JavaTower> questions = javaTowerService.findByLevel(id);
+            int correctAnswersCount = 0;
+
+            for (JavaTower question : questions) {
+                Long questionId = question.getIdQues();
+
+                if (userAnswers.containsKey(questionId.toString())) {
+                    String userAnswer = userAnswers.get(questionId.toString());
+                    if (userAnswer.equals(question.getRightAnswer())) {
+                        correctAnswersCount++;
+                    }
+                }
+            }
+
+            model.addAttribute("correctAnswersCount", correctAnswersCount);
+            model.addAttribute("allQues", questions.size());
+            if (((double) correctAnswersCount / questions.size()) >= 0.6) {
+                if (gamer.getCurLvlJava() <= id){
+                    gamer.setCurLvlJava(id + 1);
+                    gamerService.justUpdate(gamer);
+                }
+                model.addAttribute("success", true);
+            } else {
+                model.addAttribute("success", false);
+            }
+            return "result";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
 }

@@ -7,16 +7,16 @@
         "Java",
         "C++"
       ],
-      "correctAnswer": 4
+      "correctAnswer": 3
     },
     {
-        "question": "Какое время года вы любите больше всего?",
+        "question": "Целочисленный тип данных в Java?",
         "answers": [
-          "Весна",
-          "Лето",
-          "Осень",
-          "Зима"
+          "int",
+          "float",
+          "boolean",
+          "char"
         ],
-        "correctAnswer": 4
+        "correctAnswer": 1
     }
 ]
