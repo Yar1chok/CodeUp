@@ -164,7 +164,6 @@ select#year {
     right: 0;
     position: fixed;
     background-color: rgba(0,0,0,0.48);
-    /* visibility: hidden; */
 }
 
 .error_form {
@@ -202,3 +201,5 @@ select#year {
 .cancel:hover {
     border-color: #e71384;
 }
+
+/*    */

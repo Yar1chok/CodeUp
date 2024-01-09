@@ -62,45 +62,14 @@ main {
     flex-direction: column;
 }
 
-.question_form {
-    padding: 20px;
+.result_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 500px;
-    font-size: 20px;
-    overflow-y: auto;
-    max-height: 500px;
-}
-
-.question_form::-webkit-scrollbar {
-    width: 15px;
-}
-
-.question_form::-webkit-scrollbar-thumb {
-    background-color: #555555;
-    border-radius: 10px;
-}
-
-.question {
-    word-wrap: break-word;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-form input {
-    margin-top: 20px;
-}
-
-.but {
-    background: #444444;
-    padding: 8px 20px;
-    font-size: 20px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
-
-.result_message {
-    margin-top: 20px;
-    padding: 20px;
-    width: 500px;
+    height: 100px;
+    padding: 20px 20px;
     font-size: 20px;
 }
 

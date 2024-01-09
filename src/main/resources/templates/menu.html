@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="/static/css/cyberpunk-css-main/cyberpunk.css" th:href="@{/css/cyberpunk-css-main/cyberpunk.css}">
-    <link type="text/css" rel="stylesheet" href="/static/css/towers.css" th:href="@{/css/towers.css}">
-    <link type="text/css" rel="stylesheet" href="/static/css/profile.css" th:href="@{/css/profile.css}">
+  <link type="text/css" rel="stylesheet" href="/static/css/cyberpunk-css-main/cyberpunk.css" th:href="@{/css/cyberpunk-css-main/cyberpunk.css}">
+  <link type="text/css" rel="stylesheet" href="/static/css/towers.css" th:href="@{/css/towers.css}">
+  <link type="text/css" rel="stylesheet" href="/static/css/profile.css" th:href="@{/css/profile.css}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/static/js/towers.js" th:src="@{/js/towers.js}"></script>
-    <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
-    <script src="/static/js/menu.js" th:src="@{/js/menu.js}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/static/js/towers.js" th:src="@{/js/towers.js}"></script>
+  <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
   <title>Choose Towers</title>
 </head>
 <body th:style="|background:url(@{/images/towers/основнойФон.png}); background-size: cover;
@@ -26,13 +25,13 @@ background-repeat: no-repeat;|">
     </div>
     <ul class="menu">
       <form method="get" action="/CodeUp/profile">
-        <li><button type="submit">Мой профиль</button></li>
+        <li><button type="submit" style="border: none;">Мой профиль</button></li>
       </form>
       <form method="get" action="/CodeUp/settings">
-        <li><button type="submit">Настройки</button></li>
+        <li><button type="submit" style="border: none;">Настройки</button></li>
       </form>
       <form method="get" action="/logout">
-        <li><button type="submit">Выход</button></li>
+        <li><button type="submit" style="border: none;">Выход</button></li>
       </form>
     </ul>
   </div>
