@@ -67,7 +67,16 @@ main {
     width: 500px;
     font-size: 20px;
     overflow-y: auto;
-    max-width: 500px;
+    max-height: 500px;
+}
+
+.question_form::-webkit-scrollbar {
+    width: 15px;
+}
+
+.question_form::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 10px;
 }
 
 .question {

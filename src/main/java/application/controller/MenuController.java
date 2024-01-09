@@ -143,7 +143,6 @@ public class MenuController {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
-            model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             model.addAttribute("questions", javaTowerService.getShuffled(id));
             return "level";
         } else {
@@ -162,7 +161,6 @@ public class MenuController {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
-            model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             List<JavaTower> questions = javaTowerService.findByLevel(id);
             int correctAnswersCount = 0;
 
