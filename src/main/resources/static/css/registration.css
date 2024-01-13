@@ -90,7 +90,7 @@ main {
 }
 
 .create_account {
-    margin: 57px auto;
+    margin: 40px auto;
     position: relative;
     max-width: 209px;
     background: #444444;
@@ -102,10 +102,26 @@ main {
     cursor: pointer;
 }
 
+#email {
+    transition: border-color 0.4s, box-shadow 0.4s;
+}
+
+#password-strength {
+    transition: border-color 0.5s, box-shadow 0.5s, width 0.5s ease;
+}
+
+#password-strength {
+    border: 2px;
+    border-radius: 20px;
+}
+
+#password-complexity {
+}
+
 /*    Footer    */
 
 footer {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 /*    */

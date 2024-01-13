@@ -5,6 +5,7 @@
         </th:block>
         <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
         <link href="/static/css/index.css" rel="stylesheet" type="text/css" th:href="@{/css/registration.css}">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <title>Регистрация</title>
     </head>
     <body>
@@ -28,24 +29,22 @@
                 <form method="post" class="input block" action="/registration" th:object="${gamer}">
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" type="email" name="email" placeholder="Введите email" maxlength="25" minlength="4" required>
-                        </input>
+                        <input id="email" class="input_field" type="email" name="email" placeholder="Введите email" maxlength="35" minlength="4" required>
                         <div th:if="${#fields.hasErrors('email')}"
                              style="color: red">Некорректное значение email</div>
                     </div>
                     <div class="field">
                         <p>Username</p>
-                        <input class="input_field" name="nickname" placeholder="Введите имя вашего аватара" maxlength="25" required>
-                        </input>
+                        <input id="nickname" class="input_field" name="nickname" placeholder="Введите имя вашего аватара" maxlength="25" minlength="3" required>
                         <div th:if="${#fields.hasErrors('nickname')}"
                              style="color: red">Некорректное значение имени вашего аватара</div>
                     </div>
                     <div class="field">
                         <p>Password</p>
-                        <input class="input_field" name="password" type="password" placeholder="Придумайте пароль" maxlength="25" minlength="4" required>
-                        </input>
-                        <div th:if="${#fields.hasErrors('password')}"
-                             style="color: red">Некорректное значение имени пароля</div>
+                        <input class="input_field" name="password" id="password" type="password" placeholder="Придумайте пароль" maxlength="25" minlength="4" required>
+                        <div id="password-strength" style="margin-top: 10px; height: 10px; margin-left: 5px; max-width: 97.5%"></div>
+                        <p id="password-complexity" style="padding-top: 5px"></p>
+                        <div th:if="${#fields.hasErrors('password')}" style="color: red">Некорректное значение имени пароля</div>
                     </div>
                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
                     <button type="submit" class="create_account but">Создать аккаунт</button>
@@ -54,5 +53,6 @@
         </main>
         <footer th:replace="footer :: footer">
         </footer>
+        <script src="/static/js/registration.js" th:src="@{/js/registration.js}"></script>
     </body>
 </html>
