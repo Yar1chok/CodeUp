@@ -5,6 +5,7 @@
         </th:block>
         <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
         <link href="/static/css/index.css" rel="stylesheet" type="text/css" th:href="@{/css/registration.css}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.1.0/jsencrypt.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <title>Регистрация</title>
     </head>
@@ -26,7 +27,7 @@
                         Введите свои данные для создания профиля
                     </p>
                 </div>
-                <form method="post" class="input block" action="/registration" th:object="${gamer}">
+                <form method="post" class="input block" action="/registration" onsubmit="encryptAndSend(event)" th:object="${gamer}">
                     <div class="field">
                         <p>Email</p>
                         <input id="email" class="input_field" type="email" name="email" placeholder="Введите email" maxlength="35" minlength="4" required>
@@ -48,11 +49,33 @@
                     </div>
                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
                     <button type="submit" class="create_account but">Создать аккаунт</button>
+                    <input type="hidden" th:value="${publicKey}" id="publicKey">
+                    <input type="hidden" name="encodedEmail" id="encodedEmail">
+                    <input type="hidden" name="encodedNickname" id="encodedNickname">
+                    <input type="hidden" name="encodedPassword" id="encodedPassword">
                 </form>
             </div>
         </main>
         <footer th:replace="footer :: footer">
         </footer>
         <script src="/static/js/registration.js" th:src="@{/js/registration.js}"></script>
+        <script src="/static/js/registration.js" th:src="@{/js/encrypt.js}"></script>
+        <script>
+            async function encryptAndSend(event) {
+                event.preventDefault();
+                let publicKey = document.getElementById("publicKey").value;
+                console.log(publicKey);
+                let email = document.getElementById("email").value;
+                let nickname = document.getElementById("nickname").value;
+                let password = document.getElementById("password").value;
+                //document.getElementById("encodedEmail").value = await encryptText(email, publicKey);
+                //document.getElementById("encodedNickname").value = await encryptText(nickname, publicKey);
+                //document.getElementById("encodedPassword").value = await encryptText(password, publicKey);
+                document.getElementById("encodedEmail").value = email;
+                document.getElementById("encodedNickname").value = nickname;
+                document.getElementById("encodedPassword").value = password;
+                event.target.submit();
+            }
+        </script>
     </body>
 </html>

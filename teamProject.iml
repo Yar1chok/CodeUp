@@ -7,7 +7,7 @@
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" value="696aeb16-3aea-43d1-b023-b9bd1532efa7" />
           <factory-entry name="noname-a.xml@0" value="7999eb88-27cd-4725-8b55-ed4d08df3e6b" />
-          <factory-entry name="teamProject" value="7999eb88-27cd-4725-8b55-ed4d08df3e6b" />
+          <factory-entry name="teamProject" value="696aeb16-3aea-43d1-b023-b9bd1532efa7" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
