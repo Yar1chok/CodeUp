@@ -192,4 +192,8 @@ public class MenuController {
         }
     }
 
+    @GetMapping("/compilate")
+    public String compilate(Model model){
+        return "compilate";
+    }
 }
