@@ -27,25 +27,20 @@
                         Введите свои данные для создания профиля
                     </p>
                 </div>
-                <form method="post" class="input block" action="/registration" onsubmit="encryptAndSend(event)" th:object="${gamer}">
+                <form method="post" class="input block" action="/registration" onsubmit="encryptAndSend(event)">
                     <div class="field">
                         <p>Email</p>
-                        <input id="email" class="input_field" type="email" name="email" placeholder="Введите email" maxlength="35" minlength="4" required>
-                        <div th:if="${#fields.hasErrors('email')}"
-                             style="color: red">Некорректное значение email</div>
+                        <input id="email" class="input_field" type="email" name="email" placeholder="Введите email" maxlength="25" minlength="4" required>
                     </div>
                     <div class="field">
                         <p>Username</p>
                         <input id="nickname" class="input_field" name="nickname" placeholder="Введите имя вашего аватара" maxlength="25" minlength="3" required>
-                        <div th:if="${#fields.hasErrors('nickname')}"
-                             style="color: red">Некорректное значение имени вашего аватара</div>
                     </div>
                     <div class="field">
                         <p>Password</p>
                         <input class="input_field" name="password" id="password" type="password" placeholder="Придумайте пароль" maxlength="25" minlength="4" required>
                         <div id="password-strength" style="margin-top: 10px; height: 10px; margin-left: 5px; max-width: 97.5%"></div>
                         <p id="password-complexity" style="padding-top: 5px"></p>
-                        <div th:if="${#fields.hasErrors('password')}" style="color: red">Некорректное значение имени пароля</div>
                     </div>
                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
                     <button type="submit" class="create_account but">Создать аккаунт</button>
@@ -59,21 +54,17 @@
         <footer th:replace="footer :: footer">
         </footer>
         <script src="/static/js/registration.js" th:src="@{/js/registration.js}"></script>
-        <script src="/static/js/registration.js" th:src="@{/js/encrypt.js}"></script>
+        <script src="/static/js/encrypt.js" th:src="@{/js/encrypt.js}"></script>
         <script>
             async function encryptAndSend(event) {
                 event.preventDefault();
                 let publicKey = document.getElementById("publicKey").value;
-                console.log(publicKey);
                 let email = document.getElementById("email").value;
                 let nickname = document.getElementById("nickname").value;
                 let password = document.getElementById("password").value;
-                //document.getElementById("encodedEmail").value = await encryptText(email, publicKey);
-                //document.getElementById("encodedNickname").value = await encryptText(nickname, publicKey);
-                //document.getElementById("encodedPassword").value = await encryptText(password, publicKey);
-                document.getElementById("encodedEmail").value = email;
-                document.getElementById("encodedNickname").value = nickname;
-                document.getElementById("encodedPassword").value = password;
+                document.getElementById("encodedEmail").value = await encryptText(email, publicKey);
+                document.getElementById("encodedNickname").value = await encryptText(nickname, publicKey);
+                document.getElementById("encodedPassword").value = await encryptText(password, publicKey);
                 event.target.submit();
             }
         </script>

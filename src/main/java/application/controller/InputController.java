@@ -2,9 +2,6 @@ package application.controller;
 
 import application.entity.Gamer;
 import application.service.CipherService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -35,7 +32,6 @@ public class InputController {
     @GetMapping("/registration")
     public String registrationGet(Model model) {
         model.addAttribute("publicKey", cipherService.getPublicKey());
-        model.addAttribute("gamer", new Gamer());
         return "registration";
     }
 
@@ -44,19 +40,16 @@ public class InputController {
                                    @RequestParam("encodedNickname") String encryptedNickname,
                                    @RequestParam("encodedPassword") String encryptedPassword,
                                    Model model) {
-        // Не удалять
-        //String email = cipherService.decrypt(encryptedEmail);
-        //System.out.println(email);
-        //String nickname = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedNickname)));
-        //System.out.println(nickname);
-        //String password = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword)));
-        //System.out.println(password);
+        String email = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedEmail)));
+        String nickname = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedNickname)));
+        String password = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword)));
         Gamer gamer = new Gamer();
-        gamer.setEmail(encryptedEmail);
-        gamer.setNickname(encryptedNickname);
-        gamer.setPassword(encryptedPassword);
+        gamer.setEmail(email);
+        gamer.setNickname(nickname);
+        gamer.setPassword(password);
         if (!gamerService.saveGamer(gamer)){
             model.addAttribute("errorMessage", "Пользователь с таким именем уже существует");
+            model.addAttribute("publicKey", cipherService.getPublicKey());
             return "registration";
         }
 
@@ -66,19 +59,20 @@ public class InputController {
     @GetMapping("/login")
     public String loginGet(Model model) {
         model.addAttribute("gamer", new Gamer());
+        model.addAttribute("publicKey", cipherService.getPublicKey());
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginPost(@ModelAttribute("gamer") @Validated Gamer gamer, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
+    public String loginPost(@RequestParam("encodedEmail") String encryptedEmail,
+                            @RequestParam("encodedPassword") String encryptedPassword,
+                            Model model) {
+        String email = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedEmail)));
+        String password = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword)));
+        if (!gamerService.loginGamer(email, password)){
+            model.addAttribute("publicKey", cipherService.getPublicKey());
             return "login";
         }
-        if (!gamerService.loginGamer(gamer.getEmail(), gamer.getPassword())){
-            return "login";
-        }
-
         return "redirect:/CodeUp/menu";
     }
 }
