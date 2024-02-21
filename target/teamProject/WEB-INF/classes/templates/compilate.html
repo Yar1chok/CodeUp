@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="rus">
+    <head>
+        <th:block th:replace="head :: head">
+        </th:block>
+        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
+        <link type="text/css" rel="stylesheet" href="/static/css/compilate.css" th:href="@{/css/compilate.css}">
+        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
+        <script src=".../static/js/compilate.js" th:src="@{/js/compilate.js}"></script>
+        <title>CodeUp</title>
+    </head>
+    <body>
+        <header>
+            <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
+            <div class="avatar_menu">
+                <div th:if="${image == null}">
+                    <img th:src="@{/images/4.jpg}" class="avatar">
+                </div>
+                <div th:if="${image != null}">
+                    <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar">
+                </div>
+                <ul class="menu">
+                    <form method="get" action="/CodeUp/profile">
+                        <li><button type="submit">Мой профиль</button></li>
+                    </form>
+                    <form method="get" action="/CodeUp/settings">
+                        <li><button type="submit">Настройки</button></li>
+                    </form>
+                    <form method="get" action="/logout">
+                        <li><button type="submit">Выход</button></li>
+                    </form>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <textarea id="input" rows="10" cols="50"></textarea>
+            <button id="compile_but" class="but" onclick="compile_code()">Компилировать</button>
+            <textarea id="output" rows="10" cols="50"></textarea>
+        </main>
+    </body>
+</html>

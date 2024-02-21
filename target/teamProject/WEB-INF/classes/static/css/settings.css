@@ -1,0 +1,205 @@
+/* Блок header */
+
+.avatar_menu {
+    position: relative;
+    display: inline-block;
+  }
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px #ED1389 solid;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.menu {
+    overflow: hidden;
+    display: none;
+    position: absolute;
+    top: 55px;
+    right: 0;
+    min-width: 145px;
+    background-color: #444444;
+    border: 2px #333333 solid;
+    border-radius: 25px;
+    padding: 8px 0;
+    z-index: 2;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.menu li button {
+    width: 100%;
+    list-style: none;
+    padding: 10px 20px;
+    color: #FFFFFF;
+    background-color: #444444;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+}
+
+.menu li button:hover {
+    background-color: #333333;
+}
+
+/*    */
+
+
+
+/* Блок main */
+
+main {
+    padding: 130px 120px 0px 120px;
+}
+
+.settings {
+    margin: auto;
+    max-width: 1000px;
+}
+
+.settings_form {
+    display: flex;
+}
+
+.left_form {
+    margin-left: 40px;
+    margin-right: 25px;
+    margin-top: 40px;
+    width: 50%;
+}
+
+.right_form {
+    margin-left: 25px;
+    margin-right: 40px;
+    margin-top: 62px;
+    width: 50%;
+}
+
+.field {
+    margin-top: 15px;
+}
+
+.image_form {
+    display: flex;
+    align-items: flex-end;
+}
+
+.image_form .but {
+    margin-left: 20px;
+    height: 100%;
+}
+
+.image_form img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px #ED1389 solid;
+}
+
+.change_image, .create_account {
+    background: #444444;
+    font-size: 24px;
+    padding: 8px 20px;
+    font-size: 20px;
+}
+
+.bottom_image_form {
+    margin-top: 22px;
+}
+
+fieldset {
+    width: calc(100% - 2px);
+    margin-top: 7px;
+    background: #333333;
+    border-radius: 15px;
+    height: 36px;
+}
+
+select {
+    text-align: center;
+    font-size: 16px;
+    margin-left: -2px;
+    margin-right: -2px;
+    border: 1px #222222 solid;
+    height: 100%;
+}
+
+select#day, select#year {
+    background: #333333;
+    width: 25%;
+}
+
+select#month {
+    background: #333333;
+    width: calc(50% + 3px);
+}
+
+select#day {
+    margin-left: 0px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+select#year {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.create_account {
+    display: block;
+    margin: 70px auto;
+}
+
+.error {
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background-color: rgba(0,0,0,0.48);
+}
+
+.error_form {
+    top: calc(50% - 87px);
+    left: calc(50% - 212px);
+    position: absolute;
+    width: 400px;
+    height: 150px;
+    padding: 24px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.button_form {
+    margin-top: 30px;
+    display: flex;
+    padding: 0px 55px;
+    justify-content: space-between;
+}
+
+.repeat, .cancel {
+    font-size: 20px;
+    padding: 8px;
+    background-color: #444444;
+}
+
+.cancel {
+    border-color:#ED1389;
+}
+
+.cancel:hover {
+    border-color: #e71384;
+}
+
+/*    */

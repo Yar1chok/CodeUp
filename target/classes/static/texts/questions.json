@@ -1,0 +1,22 @@
+[
+    {
+      "question": "Какой язык программирования вы предпочитаете?",
+      "answers": [
+        "JavaScript",
+        "Python",
+        "Java",
+        "C++"
+      ],
+      "correctAnswer": 3
+    },
+    {
+        "question": "Целочисленный тип данных в Java?",
+        "answers": [
+          "int",
+          "float",
+          "boolean",
+          "char"
+        ],
+        "correctAnswer": 1
+    }
+]
