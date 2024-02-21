@@ -1,5 +1,8 @@
 package application.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +16,13 @@ import java.io.OutputStream;
 
 @RestController
 public class CompilerController {
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
+    Process executionProcess;
+
     @PostMapping("/compile")
-    public String compileCode(@RequestBody String code) throws IOException, InterruptedException {
+    @SendTo("/topic/greetings")
+    public void compileCode(@RequestBody String code) throws IOException, InterruptedException {
         try (FileWriter writer = new FileWriter("Main.java")) {
             writer.write(code);
         } catch (IOException e) {
@@ -27,25 +35,39 @@ public class CompilerController {
             process.waitFor();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            return "Ошибка при компиляции: " + e.getMessage();
+            messagingTemplate.convertAndSend("/topic/greetings", "Ошибка компиляции\n");
         }
 
         if (process.exitValue() == 0) {
             ProcessBuilder executionProcessBuilder = new ProcessBuilder("java", "Main");
 
-            Process executionProcess = executionProcessBuilder.start();
+            processBuilder.redirectErrorStream(true);
 
-            String executionResult = new String(executionProcess.getInputStream().readAllBytes());
-            executionResult += new String(executionProcess.getErrorStream().readAllBytes());
+            executionProcess = executionProcessBuilder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(executionProcess.getInputStream()));
+            int charRead;
+            char[] buffer = new char[10];
+
+            while ((charRead = reader.read(buffer)) != -1) {
+                String chunk = new String(buffer, 0, charRead);
+                messagingTemplate.convertAndSend("/topic/greetings", chunk);
+            }   
             try {
                 executionProcess.waitFor();
             } catch (InterruptedException e) {
-                return "Ошибка при выполнении: " + e.getMessage();
+                messagingTemplate.convertAndSend("/topic/greetings", "Ошибка при выполнении: " + e.getMessage());
             }
-
-            return executionResult;
         } else {
-            return "Ошибка при компиляции";
+            messagingTemplate.convertAndSend("/topic/greetings", "Ошибка компиляции\n");
         }
+    }
+    @PostMapping("/input")
+    public void Input(@RequestBody String input) throws IOException {
+        OutputStream outputStream = executionProcess.getOutputStream();
+        outputStream.write(input.getBytes());
+        outputStream.flush();
+
+        outputStream.close();
     }
 }

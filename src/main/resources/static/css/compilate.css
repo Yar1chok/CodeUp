@@ -69,16 +69,107 @@ main {
     margin: 40px;
 }
 
-#input, #output {
-    background-color:#444444;
-    resize: none;
-    padding: 10px;
+#input_textarea {
+    overflow-x: auto;
+    white-space: nowrap;
+    color: transparent;
+    caret-color: white;
+    z-index: 2;
+}
+
+#input_textarea::selection {
+    color: transparent;
+    background-color: #666666;
+}
+
+#output {
+    margin-left: 25px;
     color: white;
 }
 
-#input:focus, #output:focus {
+#input_textarea, #output {
+    font-size: 16px;
+    font-family: "Consolas";
+    width: 600px;
+    height: 400px;
+    background-color:#444444;
+    resize: none;
+    font-weight: 400;
+}
+
+#input_textarea:focus, #output:focus {
     outline: none;
 }
 
+.inp_out_block {
+    display: flex;
+    flex-direction: row;
+}
+
+.keyword {
+    font-size: 16px;
+    font-family: "Consolas";
+    color: #00C400;
+    font-weight: 400;
+}
+
+.line {
+    font-size: 16px;
+    font-family: "Consolas";
+    user-select: none;
+    height: 19px;
+    font-weight: 400;
+}
+
+#input_block {
+    height: 100%;
+    position: relative;
+}
+
+.input_lines {
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 3px);
+    pointer-events: none;
+}
+
+.input_lines_change {
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 583px;
+    height: 383px;
+    pointer-events: none;
+}
+
+.tab {
+    z-index: 1;
+    box-shadow: inset -1px 0 0 0 #808080;
+}
+
+.comment {
+    white-space: pre;
+    color: #808080;
+}
+
+.string {
+    white-space: pre;
+    color:#ff50ad;
+}
+
+#mark_pos {
+    background-color:#333333;
+    width: calc(100% - 10px);
+    margin-top: -3px;
+    padding: 10px 0px 10px 10px;
+    font-size: 16px;
+    font-family: "Consolas";
+}
 
 /*    */
