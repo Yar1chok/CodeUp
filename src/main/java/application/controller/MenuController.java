@@ -197,6 +197,9 @@ public class MenuController {
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
         if (gamer != null) {
+            if (gamer.getImage() != null) {
+                model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
+            }
             if (gamer.getCurLvlJava() != null) {
                 model.addAttribute("curLevel", gamer.getCurLvlJava());
             }
