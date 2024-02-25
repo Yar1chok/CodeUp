@@ -12,7 +12,7 @@ CREATE TABLE gamer (
  	id_user SERIAL PRIMARY KEY,
 	email VARCHAR(25) NOT NULL UNIQUE,
 	password VARCHAR(1000) NOT NULL,
-	cur_lvl_java INTEGER NOT NULL,
+	cur_lvl_java FLOAT NOT NULL DEFAULT 1.1,
 	user_name VARCHAR(25) NOT NULL,
 	birthday VARCHAR(255) DEFAULT '1.1.2023',
 	github VARCHAR(1000),

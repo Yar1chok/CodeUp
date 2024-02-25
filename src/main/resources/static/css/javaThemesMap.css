@@ -1,0 +1,159 @@
+body {
+    margin: 0; 
+    padding: 0;
+}
+
+::-webkit-scrollbar { /* chrome based */
+    width: 0px;  /* ширина scrollbar'a */
+    background: transparent;  /* опционально */
+}
+
+.coin {
+    width: 21.5%;
+    position: absolute;
+    z-index: 1;
+    transition: width 0.3s, height 0.3s;
+}
+
+.coin_hover {
+    transition: opacity .2s ease-out;
+    transition: 0.2s;
+    filter: brightness(150%);
+    scale: 1.02; 
+}
+
+.coin1 {
+    left: 8.3%;
+    bottom: 20%;
+}
+
+.coin1_hover {
+    left: 8.37%;
+}
+
+.coin2 {
+    left: 4%;
+    bottom: 57%;
+}
+
+.coin2_hover {
+    left: 4.07%;
+}
+
+.coin3 {
+    left: 11.2%;
+    bottom: 70%;
+}
+
+.coin3_hover {
+    left: 11.27%;
+}
+
+.coin4 {
+    left: 31%;
+    bottom: 70.2%;
+}
+
+.coin4_hover {
+    left: 31.01%;
+}
+
+.coin5 {
+    left: 27%;
+    bottom: 51%;
+}
+
+.coin5_hover {
+    left: 27.07%;
+}
+
+.coin6 {
+    left: 27%;
+    bottom: 26%;
+}
+
+.coin6_hover {
+    left: 27.07%;
+}
+
+.coin7 {
+    left: 43%;
+    bottom: 32%;
+}
+
+.coin7_hover {
+    left: 43.01%;
+}
+
+.coin8 {
+    left: 59%;
+    bottom: 12.5%;
+}
+
+.coin8_hover {
+    left: 58.93%;
+}
+
+.coin9 {
+    right: 11%;
+    top: 36%;
+}
+
+.coin9_hover {
+    right: 11.07%;
+}
+
+.bg-image {
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.map {
+    position: relative;
+    text-align: center;
+}
+
+svg {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+.part {
+    opacity: .25;
+}
+
+.part_opacity_start {
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.part_opacity_end {
+    transition: opacity .5s ease;
+    opacity: 0.5;
+}
+
+.part_opacity_end_red {
+    transition: opacity .5s ease;
+    opacity: 1;
+}
+
+.part_opacity_end_red_1 {
+    transition: opacity .5s ease;
+    opacity: .85;
+}
+
+.part_hover{
+    transition: opacity .3s ease;
+    opacity: .5;
+    filter: brightness(110%);
+}

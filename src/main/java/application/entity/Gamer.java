@@ -24,8 +24,8 @@ public class Gamer implements UserDetails {
     private String nickname;
     @Column(name = "password")
     private String password;
-    @Column(name = "cur_lvl_java", columnDefinition = "INTEGER DEFAULT 1")
-    private Integer curLvlJava;
+    @Column(name = "cur_lvl_java", columnDefinition = "FLOAT DEFAULT 1.1")
+    private Float curLvlJava;
 
     @Column(name = "birthday", columnDefinition = "STRING DEFAULT '1.1.2023'")
     private String birthday;
@@ -155,18 +155,18 @@ public class Gamer implements UserDetails {
         this.password = password;
     }
 
-    public Integer getCurLvlJava() {
+    public Float getCurLvlJava() {
         return curLvlJava;
     }
 
-    public void setCurLvlJava(Integer curLvlJava) {
+    public void setCurLvlJava(Float curLvlJava) {
         this.curLvlJava = curLvlJava;
     }
 
     public Gamer(String email, String password, String nickname, String name) {
         this.email = email;
         this.password = password;
-        this.curLvlJava = 1;
+        this.curLvlJava = 1.1f;
         this.nickname = nickname;
         this.name = name;
     }

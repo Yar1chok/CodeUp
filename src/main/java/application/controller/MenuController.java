@@ -179,7 +179,7 @@ public class MenuController {
             model.addAttribute("allQues", questions.size());
             if (((double) correctAnswersCount / questions.size()) >= 0.6) {
                 if (gamer.getCurLvlJava() <= id){
-                    gamer.setCurLvlJava(id + 1);
+                    gamer.setCurLvlJava(id + 0.1f);
                     gamerService.justUpdate(gamer);
                 }
                 model.addAttribute("success", true);
@@ -187,6 +187,20 @@ public class MenuController {
                 model.addAttribute("success", false);
             }
             return "result";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/javaMap")
+    public String javaMap(Principal principal, Model model) {
+        String email = principal.getName();
+        Gamer gamer = gamerService.findGamerByEmail(email);
+        if (gamer != null) {
+            if (gamer.getCurLvlJava() != null) {
+                model.addAttribute("curLevel", gamer.getCurLvlJava());
+            }
+            return "javaThemesMap";
         } else {
             return "redirect:/login";
         }
