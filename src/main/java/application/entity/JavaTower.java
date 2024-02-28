@@ -26,6 +26,9 @@ public class JavaTower {
     @Column(name = "level")
     public Integer level;
 
+    @Column(name = "block")
+    public Integer block;
+
     @Transient
     public List<String> shuffledAnswers;
 
@@ -91,5 +94,13 @@ public class JavaTower {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public Integer getBlock() {
+        return block;
+    }
+
+    public void setBlock(Integer block) {
+        this.block = block;
     }
 }

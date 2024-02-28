@@ -16,12 +16,12 @@ public class JavaTowerService {
         this.javaTowerRepository = javaTowerRepository;
     }
 
-    public List<JavaTower> findByLevel(Integer level){
-        return javaTowerRepository.findAllByLevel(level);
+    public List<JavaTower> findAllByBlockAndLevel(Integer block, Integer level){
+        return javaTowerRepository.findAllByBlockAndLevel(block, level);
     }
 
-    public List<JavaTower> getShuffled(Integer level){
-        List<JavaTower> javaTowers = javaTowerRepository.findAllByLevel(level);
+    public List<JavaTower> getShuffled(Integer block, Integer level){
+        List<JavaTower> javaTowers = javaTowerRepository.findAllByBlockAndLevel(block, level);
         javaTowers.forEach(javaTower -> {
             List<String> answers = Arrays.asList(
                     javaTower.getRightAnswer(),
@@ -33,6 +33,13 @@ public class JavaTowerService {
             javaTower.setShuffledAnswers(answers);
         });
         return javaTowers;
+    }
+
+    public boolean existByBlockAndLevel(Integer block, Integer level){
+        return javaTowerRepository.existsByBlockAndLevel(block, level);
+    }
+    public boolean existByBlock(Integer block){
+        return javaTowerRepository.existsByBlock(block);
     }
 
 }

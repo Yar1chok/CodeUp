@@ -135,33 +135,34 @@ public class MenuController {
         }
     }
 
-    @GetMapping("/javaTower/level/{id}")
-    public String javaLevelGet(Principal principal, Model model, @PathVariable Integer id) {
+    @GetMapping("/javaTower/level/{block}/{level}")
+    public String javaLevelGet(Principal principal, Model model, @PathVariable Integer block,
+                               @PathVariable Integer level) {
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
         if (gamer != null) {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
-            model.addAttribute("questions", javaTowerService.getShuffled(id));
+            model.addAttribute("questions", javaTowerService.getShuffled(block, level));
             return "level";
         } else {
             return "redirect:/login";
         }
     }
 
-    @GetMapping("/javaTower/level/{id}/result/")
+    @GetMapping("/javaTower/level/{block}/{level}/result/")
     public String submitAnswers(@RequestParam Map<String, String> userAnswers,
                                 Model model,
-                                @PathVariable Integer id,
-                                Principal principal) {
+                                @PathVariable Integer block,
+                                Principal principal, @PathVariable Integer level) {
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
         if (gamer != null) {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
-            List<JavaTower> questions = javaTowerService.findByLevel(id);
+            List<JavaTower> questions = javaTowerService.findAllByBlockAndLevel(block, level);
             int correctAnswersCount = 0;
 
             for (JavaTower question : questions) {
@@ -178,9 +179,19 @@ public class MenuController {
             model.addAttribute("correctAnswersCount", correctAnswersCount);
             model.addAttribute("allQues", questions.size());
             if (((double) correctAnswersCount / questions.size()) >= 0.6) {
-                if (gamer.getCurLvlJava() <= id){
-                    gamer.setCurLvlJava(id + 0.1f);
-                    gamerService.justUpdate(gamer);
+                if (gamer.getCurLvlJava() <= level){
+                    level++;
+                    if (javaTowerService.existByBlockAndLevel(block, level)) {
+                        gamer.setCurLvlJava(level);
+                        gamerService.justUpdate(gamer);
+                    } else {
+                        block++;
+                        if (javaTowerService.existByBlock(block)){
+                            gamer.setCurLvlJava(1);
+                            gamer.setBlockJava(block);
+                            gamerService.justUpdate(gamer);
+                        }
+                    }
                 }
                 model.addAttribute("success", true);
             } else {

@@ -24,8 +24,10 @@ public class Gamer implements UserDetails {
     private String nickname;
     @Column(name = "password")
     private String password;
-    @Column(name = "cur_lvl_java", columnDefinition = "FLOAT DEFAULT 1.1")
-    private Float curLvlJava;
+    @Column(name = "cur_lvl_java", columnDefinition = "INTEGER DEFAULT 1")
+    private Integer curLvlJava;
+    @Column(name = "block_java", columnDefinition = "INTEGER DEFAULT 1")
+    private Integer blockJava;
 
     @Column(name = "birthday", columnDefinition = "STRING DEFAULT '1.1.2023'")
     private String birthday;
@@ -68,6 +70,13 @@ public class Gamer implements UserDetails {
         this.birthday = birthday;
     }
 
+    public Integer getBlockJava() {
+        return blockJava;
+    }
+
+    public void setBlockJava(Integer blockJava) {
+        this.blockJava = blockJava;
+    }
 
     public byte[] getImage() {
         return image;
@@ -155,18 +164,18 @@ public class Gamer implements UserDetails {
         this.password = password;
     }
 
-    public Float getCurLvlJava() {
+    public Integer getCurLvlJava() {
         return curLvlJava;
     }
 
-    public void setCurLvlJava(Float curLvlJava) {
+    public void setCurLvlJava(Integer curLvlJava) {
         this.curLvlJava = curLvlJava;
     }
 
     public Gamer(String email, String password, String nickname, String name) {
         this.email = email;
         this.password = password;
-        this.curLvlJava = 1.1f;
+        this.curLvlJava = 1;
         this.nickname = nickname;
         this.name = name;
     }

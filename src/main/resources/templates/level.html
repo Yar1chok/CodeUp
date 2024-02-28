@@ -34,7 +34,7 @@
             </div>
         </header>
         <main>
-            <form th:action="'/CodeUp/javaTower/level/' + ${id} + '/result/'" method="get" class="question_form information_form">
+            <form th:action="'/CodeUp/javaTower/level/'+ '/' + ${block} + '/'+ ${level} +'/result/'" method="get" class="question_form information_form">
                 <div th:each="question, iterStat : ${questions}">
                     <p th:text="${iterStat.index + 1} + '/' + ${questions.size()} + ' ' + ${question.textQues}"
                        class="question"></p>

@@ -42,7 +42,7 @@ public class GamerService {
         if (gamerFromDB != null) {
             return false;
         }
-        gamer.setCurLvlJava(1.1f);
+        gamer.setCurLvlJava(1);
         Set<Role> roleSet = new HashSet<>();
         Role gamerRole = roleRepository.getRoleById(1L);
         roleSet.add(gamerRole);

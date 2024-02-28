@@ -5,14 +5,16 @@ CREATE TABLE java_tower (
     	wrong_answer_1 VARCHAR(300) NOT NULL,
     	wrong_answer_2 VARCHAR(300) NOT NULL,
     	wrong_answer_3 VARCHAR(300) NOT NULL,
-	level INTEGER NOT NULL
+	level INTEGER NOT NULL DEFAULT 1,
+	block INTEGER NOT NULL DEFAULT 1
 );
 
 CREATE TABLE gamer (
  	id_user SERIAL PRIMARY KEY,
 	email VARCHAR(25) NOT NULL UNIQUE,
 	password VARCHAR(1000) NOT NULL,
-	cur_lvl_java FLOAT NOT NULL DEFAULT 1.1,
+	cur_lvl_java INTEGER NOT NULL DEFAULT 1,
+	block_java INTEGER NOT NULL DEFAULT 1,
 	user_name VARCHAR(25) NOT NULL,
 	birthday VARCHAR(255) DEFAULT '1.1.2023',
 	github VARCHAR(1000),
@@ -39,6 +41,6 @@ docker cp team_project:mydatabase_dump.sql ./mydatabase_dump.sql
 psql -U postgres -d project < project_dump.sql
 
 INSERT INTO java_tower values ('Текст вопроса:', 'Правильный ответ', 'Неправильный ответ 1', 'Неправильный ответ 2',
-                               'Неправильный ответ 3', 1, 1);
+                               'Неправильный ответ 3', 1, 1, 1);
 INSERT INTO java_tower values ('Текст вопроса:', 'Правильный ответ', 'Неправильный ответ 1', 'Неправильный ответ 2',
-                               'Неправильный ответ 3', 1, 2);
+                               'Неправильный ответ 3', 1, 2, 1);
