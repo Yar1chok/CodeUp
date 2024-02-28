@@ -43,6 +43,7 @@ public class GamerService {
             return false;
         }
         gamer.setCurLvlJava(1);
+        gamer.setBlockJava(1);
         Set<Role> roleSet = new HashSet<>();
         Role gamerRole = roleRepository.getRoleById(1L);
         roleSet.add(gamerRole);
