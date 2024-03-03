@@ -29,7 +29,7 @@ public class Gamer implements UserDetails {
     @Column(name = "block_java", columnDefinition = "INTEGER DEFAULT 1")
     private Integer blockJava;
 
-    @Column(name = "birthday", columnDefinition = "STRING DEFAULT '1.1.2023'")
+    @Column(name = "birthday")
     private String birthday;
 
 
@@ -176,6 +176,7 @@ public class Gamer implements UserDetails {
         this.email = email;
         this.password = password;
         this.curLvlJava = 1;
+        this.blockJava = 1;
         this.nickname = nickname;
         this.name = name;
     }

@@ -44,21 +44,26 @@
                     <span th:text="${gamer.getNickname()}"></span>
                 </div>
                 <div class="bottom_profile information_form">
-                    <div class="profile_line">
-                        <span class="line_tag">Имя:</span>
-                        <span class="line_text" th:text="${gamer.getName()}"></span>
+                    <div class="profile_line" th:if="${gamer.getName() != null}">
+                        <div th:if="${gamer.getName() != ''}">
+                            <span class="line_tag">Имя:</span>
+                            <span class="line_text" th:text="${gamer.getName()}"></span>
+                        </div>
                     </div>
-                    <div class="profile_line">
+                    <div class="profile_line" th:if="${gamer.getBirthday() != null}">
                         <span class="line_tag">День рождения:</span>
                         <span class="line_text" th:text="${gamer.getBirthday()}"></span>
                     </div>
                     <div class="profile_line">
                         <span class="line_tag">Уровень Java:</span>
-                        <span class="line_text" th:text="${gamer.getCurLvlJava()}"></span>
+                        <span class="line_text" th:text="${gamer.getCurLvlJava()} + '.' + ${gamer.getCurLvlJava()}">
+                        </span>
                     </div>
-                    <div class="profile_line github">
+                    <div class="profile_line github" th:if="${gamer.getGithub() != null}">
+                        <div th:if="${gamer.getName() != ''}">
                         <span class="line_tag">GitHub:</span>
                         <a class="line_text" th:text="${gamer.getGithub()}" th:href="${gamer.getGithub()}"></a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -48,14 +48,14 @@
                         <div>
                             <div class="field">
                                 <p>Имя</p>
-                                <input class="input_field" name="name" th:field="*{name}" required>
+                                <input class="input_field" name="name" th:field="*{name}">
                                 </input>
                             </div>
                         </div>
                         <div>
                             <div class="field">
                                 <p>GitHub</p>
-                                <input type="text" name="github" class="input_field" id="githubLink" th:field="*{github}" placeholder="https://github.com/" pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+" required>
+                                <input type="text" name="github" class="input_field" id="githubLink" th:field="*{github}" placeholder="https://github.com/" pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+">
                                 </input>
                             </div>
                         </div>
@@ -80,19 +80,19 @@
                                         <option th:each="day : ${#numbers.sequence(1, 31)}"
                                                 th:value="${day}"
                                                 th:text="${day}"
-                                                th:selected="${#strings.toString(day) == #strings.substring(gamer.getBirthday(), 0, gamer.getBirthday().indexOf('.'))}"></option>
+                                                th:selected="${gamer.getBirthday() != null && #strings.toString(day) == #strings.substring(gamer.getBirthday(), 0, gamer.getBirthday().indexOf('.'))}"></option>
                                     </select>
                                     <select id="month" name="month">
                                         <option th:each="month, index : ${month}"
                                                 th:value="${index.index + 1}"
                                                 th:text="${month}"
-                                                th:selected="${#strings.toString(index.index + 1) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().indexOf('.') + 1, gamer.getBirthday().lastIndexOf('.'))}"></option>
+                                                th:selected="${gamer.getBirthday() != null && #strings.toString(index.index + 1) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().indexOf('.') + 1, gamer.getBirthday().lastIndexOf('.'))}"></option>
                                     </select>
                                     <select id="year" name="year">
                                         <option th:each="year : ${#numbers.sequence(1901, 2023)}"
                                                 th:value="${year}"
                                                 th:text="${year}"
-                                                th:selected="${#strings.toString(year) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().lastIndexOf('.') + 1)}">
+                                                th:selected="${gamer.getBirthday() != null && #strings.toString(year) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().lastIndexOf('.') + 1)}">
                                         </option>
                                     </select>
                                 </fieldset>

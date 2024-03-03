@@ -16,7 +16,7 @@ CREATE TABLE gamer (
 	cur_lvl_java INTEGER NOT NULL DEFAULT 1,
 	block_java INTEGER NOT NULL DEFAULT 1,
 	user_name VARCHAR(25) NOT NULL,
-	birthday VARCHAR(255) DEFAULT '1.1.2023',
+	birthday VARCHAR(255),
 	github VARCHAR(1000),
 	image BYTEA,
 	name VARCHAR(25)

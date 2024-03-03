@@ -16,12 +16,15 @@ import java.util.*;
 @Service
 public class GamerService {
 
-    @Autowired
-    private GamerRepository gamerRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final GamerRepository gamerRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public GamerService(GamerRepository gamerRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+        this.gamerRepository = gamerRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public Gamer findGamerById(Long id) {
         Optional<Gamer> gamerFromDb = gamerRepository.findById(id);
@@ -38,7 +41,6 @@ public class GamerService {
 
     public boolean saveGamer(Gamer gamer) {
         Gamer gamerFromDB = gamerRepository.findGamerByEmail(gamer.getEmail());
-
         if (gamerFromDB != null) {
             return false;
         }
@@ -48,7 +50,6 @@ public class GamerService {
         Role gamerRole = roleRepository.getRoleById(1L);
         roleSet.add(gamerRole);
         gamer.setRoles(roleSet);
-        gamer.setBirthday("1.1.2023");
         gamer.setPassword(passwordEncoder.encode(gamer.getPassword()));
         gamerRepository.save(gamer);
         return true;
@@ -75,6 +76,7 @@ public class GamerService {
             gamer.setEmail(gamerFromDB.get().getEmail());
             gamer.setPassword(gamerFromDB.get().getPassword());
             gamer.setCurLvlJava(gamerFromDB.get().getCurLvlJava());
+            gamer.setBlockJava(gamerFromDB.get().getBlockJava());
             gamerRepository.save(gamer);
             return true;
         } else {
