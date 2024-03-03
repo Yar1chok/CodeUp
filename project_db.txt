@@ -36,6 +36,16 @@ CREATE TABLE gamer_roles (
             PRIMARY KEY (user_id, role_id)
 );
 
+CREATE TABLE levels_java
+(
+    level INTEGER NOT NULL,
+    block INTEGER NOT NULL,
+    PRIMARY KEY(level, block),
+    chapter TEXT NOT NULL,
+    text_level TEXT NOT NULL,
+    theory TEXT NOT NULL
+);
+
 pg_dump -U postgres project > project_dump.sql
 docker cp team_project:mydatabase_dump.sql ./mydatabase_dump.sql
 psql -U postgres -d project < project_dump.sql

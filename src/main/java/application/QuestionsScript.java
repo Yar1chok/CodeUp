@@ -94,7 +94,7 @@ public class QuestionsScript {
         return input.trim();
     }
 
-    public static void main(String[] args) {
+    public static void insertIntoJavaTower() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -139,6 +139,101 @@ public class QuestionsScript {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void insertIntoLevelsJava() {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5222/project", "postgres", "postgres");
+
+            String insertQuery = "INSERT INTO levels_java (level, block, chapter, text_level, theory)" +
+                    " VALUES (?, ?, ?, ?, ?)";
+            Map<Map<String, String>, Map<String, String>> chaptersLevelsTheory = readJavaTheory();
+            for(Map<String, String> numberLevel: chaptersLevelsTheory.keySet()) {
+                for (String number: numberLevel.keySet()) {
+                    int block = Integer.parseInt(number.split("\\.")[0]);
+                    int level = Integer.parseInt(number.split("\\.")[1]);
+                    preparedStatement = connection.prepareStatement(insertQuery);
+                    preparedStatement.setInt(1, level);
+                    preparedStatement.setInt(2, block);
+                    preparedStatement.setString(3, numberLevel.get(number));
+                    String levelText = (String) chaptersLevelsTheory.get(numberLevel)
+                            .keySet().toArray()[0];
+                    String theory = chaptersLevelsTheory.get(numberLevel)
+                            .get(levelText);
+                    preparedStatement.setString(4, levelText);
+                    preparedStatement.setString(5, theory);
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+        private static Map<Map<String, String>, Map<String, String>> readJavaTheory() {
+            try {
+                FileInputStream fileInputStream = new FileInputStream("TheoryJava.docx");
+                XWPFDocument document = new XWPFDocument(fileInputStream);
+                Map<Map<String, String>, Map<String, String>> chaptersLevelsTheory = new HashMap<>();
+                String number = "";
+                String chapter = "";
+                String level = "";
+                for (XWPFParagraph paragraph : document.getParagraphs()) {
+                    String text = paragraph.getText();
+                    if (text != null && !text.trim().isEmpty()) {
+                        if (text.matches("^\\d+\\.\\s.*") && paragraph.getRuns().get(0).isBold()) {
+                            chapter = text.replaceAll("^\\d+\\.\\s", "").trim();
+                        } else if (paragraph.getRuns().get(0).isBold() && text.matches("^\\d+\\.\\d+\\s.*")) {
+                            number = text.split(" ")[0];
+                            level = text.replaceAll("^\\d+\\.\\d+\\s", "").trim();
+                        } else {
+                            if (paragraph.getRuns().get(0).isBold()) {
+                                text = "<strong>" + text + "</strong>";
+                            }
+                            Map<String, String> numberChapter = new HashMap<>();
+                            numberChapter.put(number, chapter);
+                            if (chaptersLevelsTheory.get(numberChapter) != null){
+                                Map<String, String> levelTheory = chaptersLevelsTheory.get(numberChapter);
+                                if (levelTheory.get(level) != null){
+                                    String theory = levelTheory.get(level).concat("<br>&#9;" + text);
+                                    levelTheory.put(level, theory);
+                                } else {
+                                    levelTheory.put(level, text);
+                                }
+                                chaptersLevelsTheory.put(numberChapter, levelTheory);
+                            } else {
+                                Map<String, String> levelTheory = new HashMap<>();
+                                levelTheory.put(level, "&#9;" + text);
+                                chaptersLevelsTheory.put(numberChapter, levelTheory);
+                            }
+                        }
+                    }
+                }
+                System.out.println(chaptersLevelsTheory);
+                return chaptersLevelsTheory;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    public static void main(String[] args) {
+        insertIntoLevelsJava();
     }
 }
 

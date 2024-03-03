@@ -34,28 +34,36 @@
 <main>
     <div class="selection_frame">
         <div class="chapter_section">
-            <button class="chapter information_form">Глава 1. Введение</button>
-            <button class="chapter information_form">Глава 2. Синтаксис</button>
-            <button class="chapter information_form">Глава 3. Стркуктура данных</button>
-            <button class="chapter information_form">Глава 4. Методы, вызовы методов</button>
-            <button class="chapter information_form">Глава 5. Классы, ООП</button>
-            <button class="chapter information_form">Глава 6. Исключения</button>
-            <button class="chapter information_form">Глава 7. Потоки</button>
-            <button class="chapter information_form">Глава 8. Работа с файлами</button>
-            <button class="chapter information_form">Глава 9. Графический интерфейс с JavaFX</button>
-        </div>
-        <div class="main_frame">
-            <div class="chapter_name information_form">
-                Глава 1. Переменные
-            </div>
-            <div class="description information_form">
-                Вы познакомитесь с Java
-            </div>
-            <form method="get" class="input information_form" action="/CodeUp/javaTower/level/1/1">
-                <button class="start_button but" type="submit">
-                    Начать
+            <div th:each="level, iterStat : ${levels}">
+                <button class="chapter information_form"
+                        th:id="'level' + ${iterStat.count}"
+                        th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}"
+                        th:attr="onclick=|switchLevel(${iterStat.count})|">
                 </button>
-            </form>
+            </div>
+        </div>
+        <div th:each="level, iterStat : ${levels}">
+            <div class="main_frame" th:id="'main_frame' + ${iterStat.count}" th:style="${iterStat.count == 1 ? '' : 'display:none;'}">
+            <div class="chapter_name information_form" th:id="'title'
+            + ${iterStat.count}" th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}">
+            </div>
+                <div th:if="${curBlock == block && curLevel >= iterStat.count || curBlock > block}">
+                    <div class="description information_form" th:id="'theory'
+                    + ${iterStat.count}" th:utext="${level.getTheory()}">
+                    </div>
+                    <form method="get" class="input information_form" th:action="'/CodeUp/javaTower/level/' + ${block} +
+                     '/'+ ${level.getLevel()}">
+                        <button class="start_button but" type="submit">
+                            Начать
+                        </button>
+                    </form>
+                </div>
+                <div th:unless="${curBlock == block && curLevel >= iterStat.count || curBlock > block}">
+                    <div class="description information_form">
+                        Пройдите сначала предыдущие уровни
+                    </div>
+                </div>
+        </div>
         </div>
     </div>
     <div class="reminder information_form">
@@ -64,4 +72,14 @@
     </div>
 </main>
 </body>
+<script th:inline="javascript">
+    function switchLevel(level) {
+        const levels = document.querySelectorAll('[id^="main_frame"]');
+        const needLevel = document.getElementById("main_frame" + level);
+        levels.forEach(function(element) {
+            element.style.display = "none";
+        });
+        needLevel.style.display = "";
+    }
+</script>
 </html>

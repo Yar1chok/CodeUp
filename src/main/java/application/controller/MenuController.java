@@ -5,6 +5,7 @@ import application.entity.JavaTower;
 import application.repository.JavaTowerRepository;
 import application.service.GamerService;
 import application.service.JavaTowerService;
+import application.service.LevelsJavaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,15 @@ public class MenuController {
 
     private final GamerService gamerService;
     private final JavaTowerService javaTowerService;
+    private final LevelsJavaService levelsJavaService;
 
     @Autowired
-    public MenuController(GamerService gamerService, JavaTowerService javaTowerService) {
+    public MenuController(GamerService gamerService,
+                          JavaTowerService javaTowerService,
+                          LevelsJavaService levelsJavaService) {
         this.gamerService = gamerService;
         this.javaTowerService = javaTowerService;
+        this.levelsJavaService = levelsJavaService;
     }
 
     @GetMapping("/menu")
@@ -90,14 +95,20 @@ public class MenuController {
         }
     }
 
-    @GetMapping("/javaTower")
-    public String javaTowerGet(Model model, Principal principal){
+    @GetMapping("/javaTower/{block}")
+    public String javaTowerGet(Model model, Principal principal, @PathVariable Integer block){
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
         if (gamer != null) {
+            if (gamer.getBlockJava() < block){
+                return "redirect:/javaMap";
+            }
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
+            model.addAttribute("curBlock", gamer.getBlockJava());
+            model.addAttribute("curLevel", gamer.getCurLvlJava());
+            model.addAttribute("levels", levelsJavaService.findAllByBlock(block));
             return "javaTower";
         } else {
             return "redirect:/customLogin";
@@ -211,8 +222,8 @@ public class MenuController {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
-            if (gamer.getCurLvlJava() != null) {
-                model.addAttribute("curLevel", gamer.getCurLvlJava());
+            if (gamer.getBlockJava() != null) {
+                model.addAttribute("curBlock", gamer.getBlockJava());
             }
             return "javaThemesMap";
         } else {
