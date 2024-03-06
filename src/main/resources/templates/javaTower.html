@@ -76,7 +76,7 @@
                 th:utext="${level.getTheory()}"
               ></div>
               <div class="container">
-                <a href="#">
+                <a th:attr="onclick=|switchLevel(${iterStat.count - 1})|">
                   <span>Предыдущий</span>
                 </a>
                 <a th:href="'/CodeUp/javaTower/level/' + ${block} +
@@ -92,7 +92,7 @@
                     </form>
                   </span>
                 </a>
-                <a href="#">
+                <a th:attr="onclick=|switchLevel(${iterStat.count + 1})|">
                   <span style="margin-right: 0;">Следующий</span>
                 </a>
               </div>
@@ -116,10 +116,12 @@
     function switchLevel(level) {
       const levels = document.querySelectorAll('[id^="main_frame"]');
       const needLevel = document.getElementById("main_frame" + level);
-      levels.forEach(function (element) {
-        element.style.display = "none";
-      });
-      needLevel.style.display = "";
+      if (needLevel != null) {
+        levels.forEach(function (element) {
+          element.style.display = "none";
+        });
+        needLevel.style.display = "";
+      }
     }
   </script>
 </html>
