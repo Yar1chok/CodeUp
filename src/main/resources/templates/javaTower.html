@@ -19,7 +19,10 @@
   </head>
   <body>
     <header>
-      <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
+      <div class="languages">
+        <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
+        <a id="java_map" href="/CodeUp/javaMap"><span>JavaMap</span></a>
+      </div>
       <div class="avatar_menu">
         <div th:if="${image == null}">
           <img th:src="@{/images/4.jpg}" class="avatar" />
@@ -79,21 +82,23 @@
                 <a th:attr="onclick=|switchLevel(${iterStat.count - 1})|">
                   <span>Предыдущий</span>
                 </a>
-                <a th:href="'/CodeUp/javaTower/level/' + ${block} +
-                '/'+ ${level.getLevel()}">
-                    <span>
-                      <form
+                <a
+                  th:href="'/CodeUp/javaTower/level/' + ${block} +
+                '/'+ ${level.getLevel()}"
+                >
+                  <span>
+                    <form
                       method="get"
                       class="input"
                       th:action="'/CodeUp/javaTower/level/' + ${block} +
                               '/'+ ${level.getLevel()}"
                     >
-                    Пройти тест
+                      Пройти тест
                     </form>
                   </span>
                 </a>
                 <a th:attr="onclick=|switchLevel(${iterStat.count + 1})|">
-                  <span style="margin-right: 0;">Следующий</span>
+                  <span style="margin-right: 0">Следующий</span>
                 </a>
               </div>
             </div>
@@ -116,11 +121,16 @@
     function switchLevel(level) {
       const levels = document.querySelectorAll('[id^="main_frame"]');
       const needLevel = document.getElementById("main_frame" + level);
+      const scrollbar = document.getElementById("second-section");
       if (needLevel != null) {
         levels.forEach(function (element) {
           element.style.display = "none";
         });
         needLevel.style.display = "";
+        scrollbar.scrollTo({
+          top: 0,
+          behavior: "smooth", // Делаем прокрутку плавной
+        });
       }
     }
   </script>
