@@ -1,13 +1,13 @@
 function addGlitchEffect(element, level) {
-    var curLevel = document.getElementById('curLevel').value;
-    if (curLevel < level) {
+    var curBlock = document.getElementById('curBlock').value;
+    if (curBlock < level) {
         element.classList.add("cyber-glitch-1");
     }
 }
 
 function removeGlitchEffect(element, level) {
-    var curLevel = document.getElementById('curLevel').value;
-    if (curLevel < level) {
+    var curBlock = document.getElementById('curBlock').value;
+    if (curBlock < level) {
         element.classList.remove("cyber-glitch-1");
     }
 }
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var coin7 = document.querySelector(".coin7");
     var coin8 = document.querySelector(".coin8");
     var coin9 = document.querySelector(".coin9");
-    var curLevel = document.getElementById('curLevel').value;
+    var curBlock = document.getElementById('curBlock').value;
 
     SvgTopic1.addEventListener("mouseenter", function() {
         coin1.classList.add("coin_hover", "coin1_hover");

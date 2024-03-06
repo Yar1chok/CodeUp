@@ -1,160 +1,361 @@
+@import url("htpps://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-track {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 2.5px 2 rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #af04f3, #2d3aef);
+  border-radius: 15px;
+}
+
 /* Блок header */
 
 .avatar_menu {
-    position: relative;
-    display: inline-block;
-  }
+  position: relative;
+  display: inline-block;
+}
 
 .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px #ED1389 solid;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px #ed1389 solid;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 .menu {
-    overflow: hidden;
-    display: none;
-    position: absolute;
-    top: 55px;
-    right: 0;
-    min-width: 145px;
-    background-color: #444444;
-    border-radius: 25px;
-    border: 2px #333333 solid;
-    padding: 8px 0;
-    z-index: 2;
+  overflow: hidden;
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0;
+  min-width: 145px;
+  border-radius: 25px;
+  border: 2px #333333 solid;
+  padding: 8px 0;
+  z-index: 2;
 }
 
 .menu li {
-    list-style: none;
+  list-style: none;
 }
 
 .menu li button {
-    width: 100%;
-    list-style: none;
-    padding: 10px 20px;
-    color: #FFFFFF;
-    background-color: #444444;
-    font-weight: 400;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: left;
+  width: 100%;
+  list-style: none;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: rgba(9, 25, 25, 0.7);
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: left;
 }
 
 .menu li button:hover {
-    background-color: #333333;
+  background-color: #333333;
 }
-
-/*    */
-
-
 
 /* Блок main */
 
+body {
+  background: url("/images/bg_in_block.jpg");
+  background-size: cover;
+}
+
 main {
-    display: flex;
-    justify-content: space-between;
-    padding: 70px 120px 0px 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 10px 10px 0px 10px;
 }
 
 .selection_frame {
-    display: flex;
-    margin-right: 50px;
-    padding: 10px;
-    width: 980px;
-    min-height: 750px;
-    height: 750px;
-    background-color: #222222;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.50);
-    border-radius: 15px;
+  display: flex;
+  padding: 10px;
+  border-radius: 15px;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  max-height: 83vh;
 }
 
 .chapter_section {
-    padding: 5px 15px;
-    height: 100%;
-    max-width: 320px;
-    background: #333333;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.50);
-    border-radius: 15px;
-    border: 1px #333333 solid;
-    overflow-y: auto;
+  flex: 1;
+  padding: 5px 10px;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.7);
+  border-radius: 15px;
 }
 
 .chapter_section::-webkit-scrollbar {
-    width: 15px;
+  width: 15px;
 }
 
 .chapter_section::-webkit-scrollbar-thumb {
-    background-color: #4e4e4e;
-    border-radius: 10px;
+  background-color: #4e4e4e;
+  border-radius: 10px;
 }
 
 .chapter {
-    padding: 0px 20px;
-    width: 100%;
-    margin: 10px 0px;
-    height: 80px;
-    font-size: 24px;
-    font-family: Lato;
-    font-weight: 700;
-    line-height: 25px;
-    text-align: left;
-    cursor: pointer;
+  padding: 10px 10px;
+  width: 100%;
+  margin: 10px 0px;
+  font-size: 20px;
+  font-family: Lato;
+  font-weight: 700;
+  line-height: 25px;
+  text-align: left;
+  cursor: pointer;
+  background-color: rgba(9, 25, 25, 0.8);
+  box-shadow: 0px 0px 10px rgba(2, 78, 255, 0.7);
+  border-radius: 15px;
+  border: 2px #121bc6 solid;
 }
 
 .main_frame {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin: 10px 20px 10px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-.chapter_name, .description {
-    width: calc(100% - 40px);
-    font-size: 24px;
-    font-family: Lato;
-    padding: 15px 20px;
+.chapter_name,
+.description {
+  width: calc(100% - 40px);
+  font-size: 24px;
+  font-family: Lato;
+  padding: 15px 20px;
+  text-align: justify;
 }
 
 .chapter_name {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .description {
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 40px;
-    font-weight: 500;
+  margin-top: 10px;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: 500;
+  overflow-y: auto;
 }
 
 .start_button {
-    padding: 8px 45px 12px 45px;
-    background-color: #222222;
-    font-size: 32px;
-    font-family: Lato;
-    font-weight: 500;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-    position: absolute;
-    bottom: 15px;
+  padding: 8px 45px 12px 45px;
+  background-color: #222222;
+  font-size: 26px;
+  font-family: Lato;
+  font-weight: 500;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-
 .reminder {
-    height: 100%;
-    max-width: 310px;
-    padding: 0px 20px 15px 20px;
+  height: 100%;
+  padding: 10px;
+  max-height: 82.5vh;
 }
 
 .reminder .code_block {
-    margin-top: 20px;
-    font-size: 16px;
-    line-height: 25px;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 25px;
 }
 
-/*    */
+.button {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.container a {
+  position: relative;
+  width: 170px;
+  height: 60px;
+  display: inline-block;
+  background: #fff;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.container a:before,
+.container a:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: 0.5s;
+  background: #f00;
+}
+
+.container a:nth-child(1):before,
+.container a:nth-child(1):after {
+  background: linear-gradient(45deg, #00ccff, #d400d4);
+  border-radius: 10px;
+}
+
+.container a:nth-child(2):before,
+.container a:nth-child(2):after {
+  background: linear-gradient(45deg, #d400d4, #00ccff);
+  border-radius: 10px;
+}
+
+.container a:nth-child(3):before,
+.container a:nth-child(3):after {
+  background: linear-gradient(45deg, #00ccff, #d400d4);
+  border-radius: 10px;
+}
+
+.container a:hover:before {
+  inset: -3px;
+}
+
+.container a:hover:after {
+  filter: blur(10px);
+}
+
+.container a span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  background: #0b102b;
+  z-index: 10;
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  font-size: 20px;
+}
+
+.information_forms {
+  background-color: rgba(9, 25, 25, 0.7);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  border: 2px #222222 solid;
+}
+
+.second_block {
+  max-height: 82.5vh;
+  overflow: auto;
+}
+
+.task_button {
+  margin-top: 10px;
+}
+
+#first-section {
+  width: 15%;
+}
+
+#second-section {
+  width: 40%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(51, 51, 51, 0.7);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+#third-section {
+  margin: 10px;
+  width: 45%;
+  background-color: rgba(9, 25, 25, 0.7);
+  border-radius: 15px;
+}
+
+/* Адаптивность сайта */
+@media screen and (max-width: 1468px) {
+  .container a {
+    width: 150px;
+    height: 50px;
+  }
+  .container a span {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1376px) {
+  .chapter {
+    font-size: 18px;
+  }
+  .container a {
+    width: 130px;
+    height: 50px;
+  }
+  .container a span {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1276px) {
+  .chapter {
+    font-size: 16px;
+  }
+  .container a {
+    width: 120px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 1108px) {
+  .chapter {
+    font-size: 14px;
+  }
+  .container a span {
+    font-size: 14px;
+  }
+  .container a {
+    width: 100px;
+    height: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chapter {
+    font-size: 13px;
+  }
+}
+
+@media screen and (min-height: 1076px) {
+  .second_block,
+  .selection_frame,
+  .reminder {
+    max-height: 89vh;
+  }
+}
+
+@media screen and (min-height: 1376px) {
+  .second_block,
+  .selection_frame,
+  .reminder {
+    max-height: 100vh;
+  }
+}

@@ -1,85 +1,125 @@
 <html lang="rus">
-<head>
-    <th:block th:replace="head :: head">
-    </th:block>
-    <link type="text/css" rel="stylesheet" href="/static/css/menu.css" th:href="@{/css/menu.css}">
-    <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
+  <head>
+    <th:block th:replace="head :: head"> </th:block>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/menu.css"
+      th:href="@{/css/menu.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/duplicate.css"
+      th:href="@{/css/duplicate.css}"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
     <title>CodeUp</title>
-</head>
-<body>
-<header>
-    <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
-    <div class="avatar_menu">
+  </head>
+  <body>
+    <header>
+      <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
+      <div class="avatar_menu">
         <div th:if="${image == null}">
-            <img th:src="@{/images/4.jpg}" class="avatar">
+          <img th:src="@{/images/4.jpg}" class="avatar" />
         </div>
         <div th:if="${image != null}">
-            <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar">
+          <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar" />
         </div>
         <ul class="menu">
-            <form method="get" action="/CodeUp/profile">
-                <li><button type="submit">Мой профиль</button></li>
-            </form>
-            <form method="get" action="/CodeUp/settings">
-                <li><button type="submit">Настройки</button></li>
-            </form>
-            <form method="get" action="/logout">
-                <li><button type="submit">Выход</button></li>
-            </form>
+          <form method="get" action="/CodeUp/profile">
+            <li><button type="submit">Мой профиль</button></li>
+          </form>
+          <form method="get" action="/CodeUp/settings">
+            <li><button type="submit">Настройки</button></li>
+          </form>
+          <form method="get" action="/logout">
+            <li><button type="submit">Выход</button></li>
+          </form>
         </ul>
-    </div>
-</header>
-<main>
-    <div class="selection_frame">
+      </div>
+    </header>
+    <main>
+      <div class="selection_frame" id="first-section">
         <div class="chapter_section">
-            <div th:each="level, iterStat : ${levels}">
-                <button class="chapter information_form"
-                        th:id="'level' + ${iterStat.count}"
-                        th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}"
-                        th:attr="onclick=|switchLevel(${iterStat.count})|">
-                </button>
-            </div>
+          <div th:each="level, iterStat : ${levels}">
+            <button
+              class="chapter"
+              th:id="'level' + ${iterStat.count}"
+              th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}"
+              th:attr="onclick=|switchLevel(${iterStat.count})|"
+            ></button>
+          </div>
         </div>
+      </div>
+      <div class="second_block" id="second-section">
         <div th:each="level, iterStat : ${levels}">
-            <div class="main_frame" th:id="'main_frame' + ${iterStat.count}" th:style="${iterStat.count == 1 ? '' : 'display:none;'}">
-            <div class="chapter_name information_form" th:id="'title'
-            + ${iterStat.count}" th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}">
-            </div>
-                <div th:if="${curBlock == block && curLevel >= iterStat.count || curBlock > block}">
-                    <div class="description information_form" th:id="'theory'
-                    + ${iterStat.count}" th:utext="${level.getTheory()}">
-                    </div>
-                    <form method="get" class="input information_form" th:action="'/CodeUp/javaTower/level/' + ${block} +
-                     '/'+ ${level.getLevel()}">
-                        <button class="start_button but" type="submit">
-                            Начать
-                        </button>
+          <div
+            class="main_frame"
+            th:id="'main_frame' + ${iterStat.count}"
+            th:style="${iterStat.count == 1 ? '' : 'display:none;'}"
+          >
+            <div
+              class="chapter_name information_forms"
+              th:id="'title'
+            + ${iterStat.count}"
+              th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}"
+            ></div>
+            <div
+              th:if="${curBlock == block && curLevel >= iterStat.count || curBlock > block}"
+            >
+              <div
+                class="description information_forms"
+                th:id="'theory'
+                    + ${iterStat.count}"
+                th:utext="${level.getTheory()}"
+              ></div>
+              <div class="container">
+                <a href="#">
+                  <span>Предыдущий</span>
+                </a>
+                <a th:href="'/CodeUp/javaTower/level/' + ${block} +
+                '/'+ ${level.getLevel()}">
+                    <span>
+                      <form
+                      method="get"
+                      class="input"
+                      th:action="'/CodeUp/javaTower/level/' + ${block} +
+                              '/'+ ${level.getLevel()}"
+                    >
+                    Пройти тест
                     </form>
-                </div>
-                <div th:unless="${curBlock == block && curLevel >= iterStat.count || curBlock > block}">
-                    <div class="description information_form">
-                        Пройдите сначала предыдущие уровни
-                    </div>
-                </div>
+                  </span>
+                </a>
+                <a href="#">
+                  <span style="margin-right: 0;">Следующий</span>
+                </a>
+              </div>
+            </div>
+            <div
+              th:unless="${curBlock == block && curLevel >= iterStat.count || curBlock > block}"
+            >
+              <div class="description information_forms">
+                Пройдите сначала предыдущие уровни
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-    </div>
-    <div class="reminder information_form">
-        <p class="code_block">Если вы захотите вновь освежить знания, вы всегда можете вернуться и перепройти главу.</p>
-        <p class="code_block">Вам не обязательно перепроходить всю главу. В любом удобном случае вы можете продолжить изучение с следующей главы.</p>
-    </div>
-</main>
-</body>
-<script th:inline="javascript">
+      </div>
+      <div class="reminder" id="third-section">
+        <p class="code_block">Компилятор.</p>
+      </div>
+    </main>
+  </body>
+  <script th:inline="javascript">
     function switchLevel(level) {
-        const levels = document.querySelectorAll('[id^="main_frame"]');
-        const needLevel = document.getElementById("main_frame" + level);
-        levels.forEach(function(element) {
-            element.style.display = "none";
-        });
-        needLevel.style.display = "";
+      const levels = document.querySelectorAll('[id^="main_frame"]');
+      const needLevel = document.getElementById("main_frame" + level);
+      levels.forEach(function (element) {
+        element.style.display = "none";
+      });
+      needLevel.style.display = "";
     }
-</script>
+  </script>
 </html>
