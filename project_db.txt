@@ -46,6 +46,30 @@ CREATE TABLE levels_java
     theory TEXT NOT NULL
 );
 
+CREATE TABLE chat_room (
+    room_id bigserial PRIMARY KEY
+);
+
+CREATE TABLE chat_message (
+                              message_id bigserial PRIMARY KEY,
+                              sender_email text NOT NULL,
+                              content text NOT NULL,
+                              timestamp timestamp NOT NULL,
+                              room_id bigint NOT NULL,
+                              FOREIGN KEY (room_id) REFERENCES chat_room(room_id)
+);
+
+
+CREATE TABLE chat_room_clients (
+                                   room_id bigserial,
+                                   gamer_id integer,
+                                   PRIMARY KEY (room_id, gamer_id),
+                                   FOREIGN KEY (room_id) REFERENCES chat_room(room_id),
+                                   FOREIGN KEY (gamer_id) REFERENCES gamer(id_user)
+);
+
+
+
 pg_dump -U postgres project > project_dump.sql
 docker cp team_project:mydatabase_dump.sql ./mydatabase_dump.sql
 psql -U postgres -d project < project_dump.sql
