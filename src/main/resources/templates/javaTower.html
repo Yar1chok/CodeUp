@@ -13,8 +13,16 @@
       href="/static/css/duplicate.css"
       th:href="@{/css/duplicate.css}"
     />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/chat.css"
+      th:href="@{/css/chat.css}"
+    />
+    <script src="/static/js/chat.js" th:src="@{/js/chat.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
+
     <title>CodeUp</title>
   </head>
   <body>
@@ -43,6 +51,7 @@
         </ul>
       </div>
     </header>
+    <div th:replace="blocks/chat::chat"></div>
     <main>
       <div class="selection_frame" id="first-section">
         <div class="chapter_section">

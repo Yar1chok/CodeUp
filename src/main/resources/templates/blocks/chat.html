@@ -1,0 +1,21 @@
+<div th:fragment="chat">
+  <div class="chat-circle chatroom">
+    <img class="icon-chat" src="/images/svgIcons/chat-circle.svg" />
+  </div>
+  <div class="chat-window">
+    <div class="chat-header">
+      Общий чат
+      <img class="cross" src="/images/svgIcons/x.svg" />
+    </div>
+    <div class="chat-box-body">
+      <div class="chat-input chatroom">
+        <form>
+          <input type="text" class="chat-input" placeholder="Написать..." />
+          <button class="chat-submit">
+            <img class="send" src="/images/svgIcons/send.svg" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

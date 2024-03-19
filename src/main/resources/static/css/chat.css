@@ -1,0 +1,165 @@
+body {
+  overflow: hidden;
+}
+
+.chatroom {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.chat-window {
+  z-index: 9999;
+  display: none;
+  position: absolute;
+  max-width: 500px;
+  width: 350px;
+  height: 450px;
+  background: #fafafa;
+  bottom: 50px;
+  right: 30px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+  .chat-header {
+    line-height: 60px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+    background: -webkit-linear-gradient(left, #8a19d0, #1d2ec9);
+    color: white;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    scale: 0;
+    width: 0;
+    height: 0;
+  }
+  to {
+    scale: 1;
+    width: 350px;
+    height: 450px;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    scale: 1;
+    width: 350px;
+    height: 450px;
+  }
+  to {
+    scale: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.chat-open {
+  display: block;
+  animation: fadeIn 1s ease;
+  transition:
+    scale 1s ease,
+    width 1s ease,
+    height 1s ease;
+}
+
+.chat-close {
+  display: block;
+  animation: fadeOut 1s ease;
+}
+
+.chat-circle {
+  z-index: 9999;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #4349bc;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: white;
+  padding: 28px;
+  cursor: pointer;
+  box-shadow:
+    0px 3px 16px 0px rgba(0, 0, 0, 0.6),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.icon-chat {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+}
+
+.icon-chat-open {
+  scale: 1;
+  bottom: 30px;
+  right: 30px;
+  transition:
+    bottom 1s ease,
+    right 1s ease,
+    scale 1s ease;
+}
+
+.icon-chat-close {
+  scale: 0;
+  right: 0;
+  bottom: 0;
+  transition:
+    bottom 1s ease,
+    right 1s ease,
+    scale 1s ease;
+}
+
+.cross {
+  float: right;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.chat-input {
+  background: #e5e8ea;
+  width: 99.3%;
+  position: absolute;
+  bottom: 0;
+  height: 35px;
+  padding-top: 10px;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  border: none;
+  border-color: #fafafa;
+  color: #888;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.chat-input:focus {
+  outline: none;
+  border: none;
+}
+
+.chat-submit {
+  position: absolute;
+  bottom: 3px;
+  right: 10px;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.send {
+  margin-top: 5px;
+  float: right;
+}

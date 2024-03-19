@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="rus">
     <head>
-        <th:block th:replace="head :: head">
+        <th:block th:insert="~{head :: head}">
         </th:block>
         <link type="text/css" rel="stylesheet" href="/static/css/index.css" th:href="@{/css/index.css}">
         <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </main>
-        <footer th:replace="footer :: footer">
+        <footer th:insert="~{footer :: footer}">
         </footer>
     </body>
 </html>
