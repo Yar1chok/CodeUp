@@ -8,6 +8,11 @@ body {
   box-sizing: border-box;
 }
 
+#message-window{
+  overflow-y: scroll;
+  max-height: 360px;
+}
+
 .chat-window {
   z-index: 9999;
   display: none;
@@ -162,4 +167,9 @@ body {
 .send {
   margin-top: 5px;
   float: right;
+}
+
+.message{
+  color: #0b102b;
+  margin: 5%;
 }

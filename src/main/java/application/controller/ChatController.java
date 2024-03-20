@@ -24,14 +24,13 @@ public class ChatController {
         messageJson.put("messageId", chatMessage.getMessageId());
         messageJson.put("senderEmail", chatMessage.getSenderEmail());
         messageJson.put("content", chatMessage.getContent());
-        messageJson.put("messageId", chatMessage.getTimestamp().toString());
-        messageJson.put("roomId", chatMessage.getRoom().getRoomId());
+        messageJson.put("messageTime", chatMessage.getTimestamp().toString());
         return messageJson;
     }
     @MessageMapping("/chat/sendMessage")
     public String sendMessage(@Payload ChatMessage chatMessage) {
         chatMessage.setTimestamp(LocalDateTime.now());
-        chatMessageService.save(chatMessage);
+        //chatMessageService.save(chatMessage);
         System.out.println(chatMessage.getSenderEmail());
         System.out.println(chatMessage.getContent());
         return makeJSONMessage(chatMessage).toString();

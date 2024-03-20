@@ -106,6 +106,7 @@ public class MenuController {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
+            model.addAttribute("username", gamer.getUsername());
             model.addAttribute("curBlock", gamer.getBlockJava());
             model.addAttribute("curLevel", gamer.getCurLvlJava());
             model.addAttribute("levels", levelsJavaService.findAllByBlock(block));
