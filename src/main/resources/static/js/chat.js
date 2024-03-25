@@ -43,10 +43,10 @@ stompClient.connect();
 
 function sendMessage(senderEmail) {
   const message = {
-    senderEmail: senderEmail,
-    content: document.getElementById("chat-input").value,
+      senderEmail: senderEmail,
+      content: document.getElementById("chat-input").value
   }
-  stompClient.send("/app/chat/sendMessage", {}, JSON.stringify(message));
+  stompClient.send("/app/chat/sendMessage/1", {}, JSON.stringify(message));
   document.getElementById("chat-input").value = "";
 }
 
@@ -58,22 +58,46 @@ function displayMessage(message) {
   chatMessages.appendChild(messageElement);
 }
 function openChat(){
-      if (curSubscription) {
-        curSubscription.unsubscribe();
-      }
-      curSubscription =
-          stompClient.subscribe('/topic/chat/sendMessage', function (message) {
-            const chatMessage = JSON.parse(message.body);
-            console.log('Полученное сообщение: ' + chatMessage.content);
-            displayMessage(chatMessage);
-          });
-    let chatMessages = document.getElementById('message-window');
-    try {
-        let messages = chatMessages.getElementsByClassName('message');
-        let messagesArray = Array.from(messages);
-        messagesArray.forEach(function (message) {
-            message.remove();
+    fetch('/communication/1', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка получения чат-комнаты');
+            }
+            return response.json()
+        })
+        .then(chatRoom => {
+            if (curSubscription) {
+              curSubscription.unsubscribe();
+            }
+            curSubscription =
+                stompClient.subscribe('/topic/chat/sendMessage/1', function (message) {
+                  const chatMessage = JSON.parse(message.body);
+                  console.log('Полученное сообщение: ' + chatMessage.content);
+                  displayMessage(chatMessage);
+                });
+            let chatMessages = document.getElementById('message-window');
+            try {
+                let messages = chatMessages.getElementsByClassName('message');
+                let messagesArray = Array.from(messages);
+                messagesArray.forEach(function (message) {
+                    message.remove();
+                });
+            } catch (Error){
+            }
+            if (chatRoom.messages.length !== 0) {
+                chatRoom.messages.forEach(message => {
+                    displayMessage(message)
+                });
+            }
+        })
+
+        .catch(error => {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка открытия чата');
         });
-    } catch (Error){
-    }
 }

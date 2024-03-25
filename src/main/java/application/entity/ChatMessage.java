@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "message_id", nullable = false)
     private Long messageId;
     @Column(name = "sender_email", nullable = false)
     private String senderEmail;

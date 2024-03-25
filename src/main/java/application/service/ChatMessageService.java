@@ -15,4 +15,8 @@ public class ChatMessageService {
     public void save(ChatMessage message){
         chatMessageRepository.save(message);
     }
+
+    public void deleteById(Long id){
+        chatMessageRepository.deleteByMessageId(id);
+    }
 }

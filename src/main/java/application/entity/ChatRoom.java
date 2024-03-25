@@ -25,7 +25,7 @@ public class ChatRoom {
     @Fetch(FetchMode.JOIN)
     private Set<Gamer> gamers = new HashSet<>();
 
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
     private List<ChatMessage> messages = new ArrayList<>();
 
     public Set<Gamer> getGamers() {
