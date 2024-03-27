@@ -1,39 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="rus">
-    <head>
-        <th:block th:replace="head :: head">
-        </th:block>
-        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
-        <link type="text/css" rel="stylesheet" href="/static/css/level.css" th:href="@{/css/level.css}">
-        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
-        <title>CodeUp</title>
-    </head>
-    <body>
-        <header>
-            <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
-            <div class="avatar_menu">
-                <div th:if="${image == null}">
-                    <img th:src="@{/images/4.jpg}" class="avatar">
-                </div>
-                <div th:if="${image != null}">
-                    <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar">
-                </div>
-                <ul class="menu">
-                    <form method="get" action="/CodeUp/profile">
-                        <li><button type="submit">Мой профиль</button></li>
-                    </form>
-                    <form method="get" action="/CodeUp/settings">
-                        <li><button type="submit">Настройки</button></li>
-                    </form>
-                    <form method="get" action="/logout">
-                        <li><button type="submit">Выход</button></li>
-                    </form>
-                </ul>
+  <head>
+    <th:block th:insert="~{head :: head}"> </th:block>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/level.css"
+      th:href="@{/css/level.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/duplicate.css"
+      th:href="@{/css/duplicate.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/chat.css"
+      th:href="@{/css/chat.css}"
+    />
+    <title>CodeUp</title>
+  </head>
+  <body>
+    <div th:replace="~{blocks/header::header}"></div>
+    <div class="quiz-window">
+      <div th:each="question, iterStat : ${questions}">
+        <div
+          class="quiz-box"
+          th:style="${iterStat.count == 1 ? '' : 'display:none;'}"
+        >
+          <h1></h1>
+          <div class="question-text" th:text="${question.textQues}"></div>
+          <div class="list-answers">
+            <div th:each="answer, iterStatic : ${question.shuffledAnswers}">
+              <input
+                class="answer"
+                type="button"
+                th:id="'answer-' + ${question.idQues} + '-' + ${iterStatic.index}"
+                th:name="${question.idQues}"
+                th:value="${answer}"
+              />
             </div>
-        </header>
-        <main>
+          </div>
+          <div class="quiz-footer">
+            <p
+              class="number-levels"
+              th:text="${iterStat.count} + ' из ' + ${questions.size} + ' вопросов'"
+            ></p>
+            <div class="button">
+              <button class="button-next-lvl">Следующий</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div th:replace="~{blocks/chat::chat}"></div>
+    <script src="/static/js/level.js" th:src="@{/js/level.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
+    <!-- <main>
             <form th:action="'/CodeUp/javaTower/level/' + ${block} + '/'+ ${level} +'/result/'" method="get" class="question_form information_form">
                 <div th:each="question, iterStat : ${questions}">
                     <p th:text="${iterStat.index + 1} + '/' + ${questions.size()} + ' ' + ${question.textQues}"
@@ -50,6 +76,6 @@
                 </div>
                 <button type="submit" class="but">Завершить тест</button>
             </form>
-        </main>
-    </body>
+        </main> -->
+  </body>
 </html>

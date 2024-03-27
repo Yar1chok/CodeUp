@@ -157,6 +157,7 @@ public class MenuController {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
             model.addAttribute("questions", javaTowerService.getShuffled(block, level));
+            model.addAttribute("username", gamer.getUsername());
             return "level";
         } else {
             return "redirect:/login";

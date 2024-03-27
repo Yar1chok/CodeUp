@@ -1,4 +1,4 @@
-@import url("htpps://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 ::-webkit-scrollbar {
   width: 15px;
@@ -15,69 +15,6 @@
   background: linear-gradient(45deg, #af04f3, #2d3aef);
   border-radius: 15px;
 }
-
-/* Блок header */
-
-.avatar_menu {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.languages {
-  color: rgb(20, 198, 198);
-}
-
-#java_map {
-  font-size: 20px;
-  font-weight: 700;
-  margin-left: 50px;
-  cursor: pointer;
-}
-
-.avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px #ed1389 solid;
-  box-shadow: 0px 0px 10px #ED1389;
-  cursor: pointer;
-}
-
-.menu {
-  overflow: hidden;
-  display: none;
-  position: absolute;
-  top: 55px;
-  right: 0;
-  min-width: 145px;
-  border-radius: 25px;
-  border: 2px #333333 solid;
-  padding: 8px 0;
-  z-index: 2;
-}
-
-.menu li {
-  list-style: none;
-}
-
-.menu li button {
-  width: 100%;
-  list-style: none;
-  padding: 10px 20px;
-  color: #ffffff;
-  background-color: rgba(9, 25, 25, 0.7);
-  font-weight: 400;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: left;
-}
-
-.menu li button:hover {
-  background-color: #333333;
-}
-
-/* Блок main */
 
 body {
   background: url("/images/bg_in_block.jpg");

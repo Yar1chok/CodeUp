@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="rus">
     <head>
-        <th:block th:replace="head :: head">
+        <th:block th:insert="~{head :: head}"> </th:block>
         </th:block>
         <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
         <link href="/static/css/index.css" rel="stylesheet" type="text/css" th:href="@{/css/registration.css}">
@@ -51,7 +51,7 @@
                 </form>
             </div>
         </main>
-        <footer th:replace="footer :: footer">
+        <footer th:replace="~{footer :: footer}">
         </footer>
         <script src="/static/js/registration.js" th:src="@{/js/registration.js}"></script>
         <script src="/static/js/encrypt.js" th:src="@{/js/encrypt.js}"></script>

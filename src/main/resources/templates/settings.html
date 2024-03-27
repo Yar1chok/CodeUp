@@ -1,118 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="rus">
-    <head>
-        <th:block th:replace="head :: head">
-        </th:block>
-        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
-        <link type="text/css" rel="stylesheet" href="/static/css/settings.css" th:href="@{/css/settings.css}">
-        <!-- <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}"> -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
-        <script src=".../static/js/settings.js" th:src="@{/js/settings.js}"></script>
-        <title>CodeUp</title>
-    </head>
-    <body>
-        <header>
-            <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
-            <div class="avatar_menu">
-                <div th:if="${gamer.getImage() == null}">
-                    <img th:src="@{/images/4.jpg}" class="avatar">
-                </div>
-                <div th:if="${gamer.getImage() != null}">
-                    <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar">
-                </div>
-                <ul class="menu">
-                    <form method="get" action="/CodeUp/profile">
-                        <li><button type="submit">Мой профиль</button></li>
-                    </form>
-                    <form method="get" action="/CodeUp/settings">
-                        <li><button type="submit">Настройки</button></li>
-                    </form>
-                    <form method="get" action="/logout">
-                        <li><button type="submit">Выход</button></li>
-                    </form>
-                </ul>
+  <head>
+    <th:block th:insert="~{head :: head}"> </th:block>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/duplicate.css"
+      th:href="@{/css/duplicate.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/settings.css"
+      th:href="@{/css/settings.css}"
+    />
+    <!-- <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
+    <script
+      src=".../static/js/settings.js"
+      th:src="@{/js/settings.js}"
+    ></script>
+    <title>CodeUp</title>
+  </head>
+  <body>
+    <div th:replace="~{blocks/header::header}"></div>
+    <main>
+      <form
+        class="settings information_form"
+        th:object="${gamer}"
+        th:action="@{'/CodeUp/settings/' + ${gamer.getIdUser()}}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="settings_form">
+          <div class="left_form">
+            <div>
+              <div class="field">
+                <p>Никнейм</p>
+                <input
+                  class="input_field"
+                  name="nickname"
+                  th:field="*{nickname}"
+                  required
+                />
+              </div>
             </div>
-        </header>
-        <main>
-            <form class="settings information_form" th:object="${gamer}" th:action="@{'/CodeUp/settings/' + ${gamer.getIdUser()}}" method="post" enctype="multipart/form-data">
-                <div class="settings_form">
-                    <div class="left_form">
-                        <div>
-                            <div class="field">
-                                <p>Никнейм</p>
-                                <input class="input_field" name="nickname" th:field="*{nickname}" required>
-                                </input>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="field">
-                                <p>Имя</p>
-                                <input class="input_field" name="name" th:field="*{name}">
-                                </input>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="field">
-                                <p>GitHub</p>
-                                <input type="text" name="github" class="input_field" id="githubLink" th:field="*{github}" placeholder="https://github.com/" pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+">
-                                </input>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right_form">
-                        <div class="image_form">
-                            <div th:if="${gamer.getImage() == null}">
-                                <img th:src="@{/images/4.jpg}" alt="Gamer Image" class="profile_img">
-                            </div>
-                            <div th:if="${gamer.getImage() != null}">
-                                <img th:src="'data:image/jpeg;base64,' + ${image}" alt="Gamer Image" class="profile_img">
-                            </div>
-                            <label for="photoInput" class="change_image but">Загрузить фото
-                            </label>
-                                <input type="file" id="photoInput" name="photoInput" accept="image/*" style="display: none"/>
-                        </div>
-                        <div class="bottom_image_form">
-                            <div class="field">
-                                <p>День рождения</p>
-                                <fieldset>
-                                    <select id="day" name="day">
-                                        <option th:each="day : ${#numbers.sequence(1, 31)}"
-                                                th:value="${day}"
-                                                th:text="${day}"
-                                                th:selected="${gamer.getBirthday() != null && #strings.toString(day) == #strings.substring(gamer.getBirthday(), 0, gamer.getBirthday().indexOf('.'))}"></option>
-                                    </select>
-                                    <select id="month" name="month">
-                                        <option th:each="month, index : ${month}"
-                                                th:value="${index.index + 1}"
-                                                th:text="${month}"
-                                                th:selected="${gamer.getBirthday() != null && #strings.toString(index.index + 1) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().indexOf('.') + 1, gamer.getBirthday().lastIndexOf('.'))}"></option>
-                                    </select>
-                                    <select id="year" name="year">
-                                        <option th:each="year : ${#numbers.sequence(1901, 2023)}"
-                                                th:value="${year}"
-                                                th:text="${year}"
-                                                th:selected="${gamer.getBirthday() != null && #strings.toString(year) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().lastIndexOf('.') + 1)}">
-                                        </option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p th:if="${param.error}" style="color: red;">Ошибка редактирования профиля</p>
-                <button type="submit" class="create_account but">Сохранить</button>
-            </form>
-        </main>
-        <div class="error">
-            <div class="error_form information_form">
-                <p class="title">Ошибка загрузки фото</p>
-                <p>Возможно загружать только файлы JPG, PNG, GIF</p>
-                <div class="button_form">
-                    <button class="repeat but">Повторить</button>
-                    <button class="cancel but">Отменить</button>
-                </div>
+            <div>
+              <div class="field">
+                <p>Имя</p>
+                <input class="input_field" name="name" th:field="*{name}" />
+              </div>
             </div>
+            <div>
+              <div class="field">
+                <p>GitHub</p>
+                <input
+                  type="text"
+                  name="github"
+                  class="input_field"
+                  id="githubLink"
+                  th:field="*{github}"
+                  placeholder="https://github.com/"
+                  pattern="https:\/\/github\.com\/[a-zA-Z0-9-]+"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="right_form">
+            <div class="image_form">
+              <div th:if="${gamer.getImage() == null}">
+                <img
+                  th:src="@{/images/4.jpg}"
+                  alt="Gamer Image"
+                  class="profile_img"
+                />
+              </div>
+              <div th:if="${gamer.getImage() != null}">
+                <img
+                  th:src="'data:image/jpeg;base64,' + ${image}"
+                  alt="Gamer Image"
+                  class="profile_img"
+                />
+              </div>
+              <label for="photoInput" class="change_image but"
+                >Загрузить фото
+              </label>
+              <input
+                type="file"
+                id="photoInput"
+                name="photoInput"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+            <div class="bottom_image_form">
+              <div class="field">
+                <p>День рождения</p>
+                <fieldset>
+                  <select id="day" name="day">
+                    <option
+                      th:each="day : ${#numbers.sequence(1, 31)}"
+                      th:value="${day}"
+                      th:text="${day}"
+                      th:selected="${gamer.getBirthday() != null && #strings.toString(day) == #strings.substring(gamer.getBirthday(), 0, gamer.getBirthday().indexOf('.'))}"
+                    ></option>
+                  </select>
+                  <select id="month" name="month">
+                    <option
+                      th:each="month, index : ${month}"
+                      th:value="${index.index + 1}"
+                      th:text="${month}"
+                      th:selected="${gamer.getBirthday() != null && #strings.toString(index.index + 1) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().indexOf('.') + 1, gamer.getBirthday().lastIndexOf('.'))}"
+                    ></option>
+                  </select>
+                  <select id="year" name="year">
+                    <option
+                      th:each="year : ${#numbers.sequence(1901, 2023)}"
+                      th:value="${year}"
+                      th:text="${year}"
+                      th:selected="${gamer.getBirthday() != null && #strings.toString(year) == #strings.substring(gamer.getBirthday(), gamer.getBirthday().lastIndexOf('.') + 1)}"
+                    ></option>
+                  </select>
+                </fieldset>
+              </div>
+            </div>
+          </div>
         </div>
-    </body>
+        <p th:if="${param.error}" style="color: red">
+          Ошибка редактирования профиля
+        </p>
+        <button type="submit" class="create_account but">Сохранить</button>
+      </form>
+    </main>
+    <div class="error">
+      <div class="error_form information_form">
+        <p class="title">Ошибка загрузки фото</p>
+        <p>Возможно загружать только файлы JPG, PNG, GIF</p>
+        <div class="button_form">
+          <button class="repeat but">Повторить</button>
+          <button class="cancel but">Отменить</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

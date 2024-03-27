@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="rus">
     <head>
-        <th:block th:replace="head :: head">
+        <th:block th:replace="~{head :: head}">
         </th:block>
         <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
         <link type="text/css" rel="stylesheet" href="/static/css/login.css" th:href="@{/css/login.css}">
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </main>
-        <footer th:replace="footer :: footer">
+        <footer th:replace="~{footer :: footer}">
         </footer>
     </body>
     <script src="/static/js/encrypt.js" th:src="@{/js/encrypt.js}"></script>

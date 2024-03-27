@@ -1,0 +1,81 @@
+<header
+  th:fragment="headerCircle"
+  style="text-align: right; margin-right: 25px; margin-top: 10px"
+>
+  <style>
+    .avatar_menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px #ed1389 solid;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+
+    .menu {
+      overflow: hidden;
+      display: none;
+      position: absolute;
+      top: 55px;
+      right: 0;
+      min-width: 145px;
+      background-color: #444444;
+      border: 2px #333333 solid;
+      border-radius: 25px;
+      padding: 8px 0;
+      z-index: 2;
+    }
+
+    .menu li {
+      list-style: none;
+    }
+
+    .menu li button {
+      width: 100%;
+      list-style: none;
+      padding: 10px 20px;
+      color: #ffffff;
+      background-color: #444444;
+      font-weight: 400;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .menu li button:hover {
+      background-color: #333333;
+    }
+  </style>
+  <div class="avatar_menu">
+    <div th:if="${image == null}">
+      <img
+        th:src="@{/images/4.jpg}"
+        class="avatar"
+        style="border: 2px #b822d1 solid"
+      />
+    </div>
+    <div th:if="${image != null}">
+      <img
+        th:src="'data:image/jpeg;base64,' + ${image}"
+        class="avatar"
+        style="border: 2px #b822d1 solid"
+      />
+    </div>
+    <ul class="menu">
+      <form method="get" action="/CodeUp/profile">
+        <li><button type="submit" style="border: none">Мой профиль</button></li>
+      </form>
+      <form method="get" action="/CodeUp/settings">
+        <li><button type="submit" style="border: none">Настройки</button></li>
+      </form>
+      <form method="get" action="/logout">
+        <li><button type="submit" style="border: none">Выход</button></li>
+      </form>
+    </ul>
+  </div>
+</header>

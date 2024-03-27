@@ -1,6 +1,6 @@
 <html lang="rus">
   <head>
-    <th:block th:replace="head :: head"> </th:block>
+    <th:block th:insert="~{head :: head}"> </th:block>
     <link
       type="text/css"
       rel="stylesheet"
@@ -19,41 +19,14 @@
       href="/static/css/chat.css"
       th:href="@{/css/chat.css}"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <script src="/static/js/chat.js" th:src="@{/js/chat.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
 
     <title>CodeUp</title>
   </head>
   <body>
-    <header>
-      <div class="languages">
-        <a id="title" href="/CodeUp/menu"><span>CodeUp</span></a>
-        <a id="java_map" href="/CodeUp/javaMap"><span>JavaMap</span></a>
-      </div>
-      <div class="avatar_menu">
-        <div th:if="${image == null}">
-          <img th:src="@{/images/4.jpg}" class="avatar" />
-        </div>
-        <div th:if="${image != null}">
-          <img th:src="'data:image/jpeg;base64,' + ${image}" class="avatar" />
-        </div>
-        <ul class="menu">
-          <form method="get" action="/CodeUp/profile">
-            <li><button type="submit">Мой профиль</button></li>
-          </form>
-          <form method="get" action="/CodeUp/settings">
-            <li><button type="submit">Настройки</button></li>
-          </form>
-          <form method="get" action="/logout">
-            <li><button type="submit">Выход</button></li>
-          </form>
-        </ul>
-      </div>
-    </header>
-    <div th:replace="blocks/chat::chat"></div>
+    <div th:replace="~{blocks/header::header}"></div>
+    <div th:replace="~{blocks/chat::chat}"></div>
     <main>
       <div class="selection_frame" id="first-section">
         <div class="chapter_section">

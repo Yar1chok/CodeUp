@@ -1,3 +1,19 @@
+::-webkit-scrollbar {
+  width: 15px;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-track {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 2.5px 2 rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #af04f3, #2d3aef);
+  border-radius: 15px;
+}
+
 body {
   overflow: hidden;
 }
@@ -8,13 +24,13 @@ body {
   box-sizing: border-box;
 }
 
-#message-window{
-  overflow-y: scroll;
+#message-window {
   max-height: 360px;
+  padding-left: 3px;
+  padding-top: 3px;
 }
 
 .chat-window {
-  z-index: 9999;
   display: none;
   position: absolute;
   max-width: 500px;
@@ -25,17 +41,17 @@ body {
   right: 30px;
   border-radius: 15px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
 
-  .chat-header {
-    line-height: 60px;
-    padding: 0 20px;
-    font-size: 20px;
-    font-weight: 500;
-    background: -webkit-linear-gradient(left, #8a19d0, #1d2ec9);
-    color: white;
-    border-radius: 15px 15px 0 0;
-    text-align: center;
-  }
+.chat-window .chat-header {
+  line-height: 60px;
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: 500;
+  background: -webkit-linear-gradient(left, #8a19d0, #1d2ec9);
+  color: white;
+  border-radius: 15px 15px 0 0;
+  text-align: center;
 }
 
 @keyframes fadeIn {
@@ -132,14 +148,13 @@ body {
 
 .chat-input {
   background: #e5e8ea;
-  width: 99.3%;
+  width: -webkit-fill-available;
   position: absolute;
   bottom: 0;
-  height: 35px;
+  max-height: 40px;
   padding-top: 10px;
   padding-right: 50px;
   padding-bottom: 10px;
-  padding-left: 5px;
   border: none;
   border-color: #fafafa;
   color: #888;
@@ -154,7 +169,7 @@ body {
 
 .chat-submit {
   position: absolute;
-  bottom: 3px;
+  bottom: 0px;
   right: 10px;
   background: transparent;
   box-shadow: none;
@@ -164,12 +179,7 @@ body {
   height: 35px;
 }
 
-.send {
-  margin-top: 5px;
-  float: right;
-}
-
-.message{
+.message {
   color: #0b102b;
-  margin: 5%;
+  margin-bottom: 5%;
 }

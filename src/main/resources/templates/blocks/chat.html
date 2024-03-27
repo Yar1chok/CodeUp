@@ -7,19 +7,28 @@
       Общий чат
       <img class="cross" src="/images/svgIcons/x.svg" />
     </div>
-      <div id="message-window">
-      </div>
+    <div id="message-window"></div>
     <div class="chat-box-body">
       <div class="chat-input chatroom">
-          <input type="text" class="chat-input" id="chat-input" placeholder="Написать..." />
-          <button
-                  class="chat-submit"
-                  th:data-username="${username}"
-                  th:onclick="'javascript:sendMessage(this.getAttribute(\'data-username\'))'"
-          >
-            <img class="send" src="/images/svgIcons/send.svg" alt="Отправить" />
-          </button>
+        <input
+          minlength="1"
+          style="padding-left: 10px"
+          type="text"
+          class="chat-input"
+          id="chat-input"
+          placeholder="Написать..."
+        />
+        <button
+          class="chat-submit"
+          th:data-username="${username}"
+          th:onclick="'javascript:sendMessage(this.getAttribute(\'data-username\'))'"
+        >
+          <img class="send" src="/images/svgIcons/send.svg" alt="Отправить" />
+        </button>
       </div>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="/static/js/chat.js" th:src="@{/js/chat.js}"></script>
 </div>
