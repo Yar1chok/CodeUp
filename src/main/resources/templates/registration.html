@@ -7,6 +7,7 @@
         <link href="/static/css/index.css" rel="stylesheet" type="text/css" th:href="@{/css/registration.css}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.1.0/jsencrypt.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <link href="/static/css/password.css" rel="stylesheet" type="text/css" th:href="@{/css/password.css}">
         <title>Регистрация</title>
     </head>
     <body>
@@ -42,8 +43,20 @@
                         <div id="password-strength" style="margin-top: 10px; height: 10px; margin-left: 5px; max-width: 97.5%"></div>
                         <p id="password-complexity" style="padding-top: 5px"></p>
                     </div>
+                    <div class="rules">
+                        <div id="password-rules">
+                            <p id="title-password">Ваш пароль должен содержать</p>
+                            <ul id="list-rules">
+                                <li id="length-rule">Не менее 8 символов</li>
+                                <li id="uppercase-rule">Хотя бы одну заглавную букву</li>
+                                <li id="lowercase-rule">Хотя бы одну строчную букву</li>
+                                <li id="number-rule">Хотя бы одну цифру</li>
+                                <li id="special-rule">Хотя бы один специальный символ (!@#$%/&*^№)</li>
+                            </ul>
+                        </div>
+                    </div>
                     <th:block th:insert="~{blocks/errorBlock :: error}"></th:block>
-                    <button type="submit" class="create_account but">Создать аккаунт</button>
+                    <button type="submit" id="submit-button" class="create_account but">Создать аккаунт</button>
                     <input type="hidden" th:value="${publicKey}" id="publicKey">
                     <input type="hidden" name="encodedEmail" id="encodedEmail">
                     <input type="hidden" name="encodedNickname" id="encodedNickname">
@@ -68,5 +81,6 @@
                 event.target.submit();
             }
         </script>
+    <script src="/js/checkPassword.js"></script>
     </body>
 </html>
