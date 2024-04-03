@@ -46,9 +46,18 @@
           <div class="quiz-footer">
             <p
               class="number-levels"
-              th:text="${iterStat.count} + ' из ' + ${questions.size} + ' вопросов'"
+              th:text="${iterStat.count} + ' из ' + ${questions.size()} + ' вопросов'"
             ></p>
-            <div class="button">
+            <div th:if="${iterStat.count == questions.size()}" class="button">
+              <form
+                method="get"
+                th:action="'/CodeUp/javaTower/level/' + ${block} + '/'+ ${level} +'/result/'"
+              >
+                <input id="userAnswers" type="hidden" name="userAnswers" />
+                <button type="submit" class="button-next-lvl">Завершить</button>
+              </form>
+            </div>
+            <div th:if="${iterStat.count != questions.size()}" class="button">
               <button class="button-next-lvl">Следующий</button>
             </div>
           </div>

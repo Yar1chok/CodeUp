@@ -13,12 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
     head.textContent = "Уровень " + block + "." + level;
   });
 
+  const answerMap = {};
+
   let countLevel = 0;
-  buttonNextLvl.forEach(function (button) {
+  buttonNextLvl.forEach(function (button, index) {
     button.onclick = () => {
+      let answer = document.querySelector(".answer-active");
       countLevel++;
       setupLevel(countLevel);
+      answerMap[countLevel.toString] = answer.value;
+      console.log(answerMap[countLevel.toString]);
     };
+    if (index === buttonNextLvl.length - 1) {
+      button.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const userAnswers = document.getElementById("userAnswers");
+        userAnswers.value = answerMap.toString();
+        event.submit();
+      });
+    }
   });
 
   let answers = quizBox[countLevel].querySelectorAll(".list-answers .answer");
@@ -37,8 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
     buttonNextLvl[level].onclick = () => {
       if (level < buttonNextLvl.length - 1) {
         countLevel++;
-        setupLevel(level + 1); // Рекурсивный вызов для следующего уровня
+        setupLevel(level + 1);
       }
+      let answer = document.querySelector(".answer-active");
+      answer.classList.remove("answer-active");
     };
   }
 

@@ -21,12 +21,28 @@
       th:href="@{/css/duplicate.css}"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src=".../static/js/profile.js" th:src="@{/js/profile.js}"></script>
+    <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
+    <script src="/static/js/result.js" th:src="@{/js/result.js}"></script>
     <title>CodeUp</title>
   </head>
   <body>
     <div th:replace="~{blocks/header::header}"></div>
-    <main>
+    <div class="result">
+      <div class="result-box">
+        <h2>Результат уровня</h2>
+        <div class="percentage">
+          <div class="circular-progress">
+            <p class="progress-value">0%</p>
+          </div>
+          <p class="score-text">Вы решили 5 из 9 заданий</p>
+        </div>
+        <div class="buttons">
+          <button class="tryAgain-btn">Попробовать снова</button>
+          <button class="home-btn">Выбор уровня</button>
+        </div>
+      </div>
+    </div>
+    <!-- <main>
       <div class="information_form result_form">
         <p
           th:text="'Ваш результат: ' + ${correctAnswersCount} + '/' + ${allQues}"
@@ -37,6 +53,6 @@
           Перепройдите уровень для открытия следующего
         </p>
       </div>
-    </main>
+    </main> -->
   </body>
 </html>

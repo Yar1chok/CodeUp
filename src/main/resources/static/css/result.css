@@ -1,76 +1,131 @@
-/* Блок header */
-
-.avatar_menu {
-    position: relative;
-    display: inline-block;
-  }
-
-.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px #ED1389 solid;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
-}
-
-.menu {
-    overflow: hidden;
-    display: none;
-    position: absolute;
-    top: 55px;
-    right: 0;
-    min-width: 145px;
-    background-color: #444444;
-    border-radius: 25px;
-    border: 2px #333333 solid;
-    padding: 8px 0;
-    z-index: 2;
-}
-
-.menu li {
-    list-style: none;
-}
-
-.menu li button {
-    width: 100%;
-    list-style: none;
-    padding: 10px 20px;
-    color: #FFFFFF;
-    background-color: #444444;
-    font-weight: 400;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: left;
-}
-
-.menu li button:hover {
-    background-color: #333333;
-}
-
-/*    */
-
-
-
 /* Блок main */
 
 main {
-    height: calc(100% - 81px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  height: calc(100% - 81px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .result_form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 500px;
-    height: 100px;
-    padding: 20px 20px;
-    font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+  height: 100px;
+  padding: 20px 20px;
+  font-size: 20px;
 }
 
 /*    */
+
+body {
+  background: #09001d;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+}
+
+.result-box {
+  position: absolute;
+  text-align: center;
+  top: 18%;
+  width: 500px;
+  background: transparent;
+  border: 2px solid #c40094;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+
+.result-box-active {
+  opacity: 1;
+  scale: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  transition: 1s ease;
+  transition-delay: 0.5s;
+}
+
+.percentage {
+  width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0 40px;
+}
+
+.circular-progress {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background: conic-gradient(#c40094 0deg, rgba(255, 255, 255, 0.1) 0deg);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  background: #09001d;
+  border-radius: 50%;
+}
+
+.progress-value {
+  position: relative;
+  font-size: 45px;
+  font-weight: 600;
+}
+
+.score-text {
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+button {
+  width: 170px;
+  height: 50px;
+  background: #c40094;
+  border: 2px solid #c40094;
+  outline: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tryAgain-btn:hover {
+  background: #950170;
+  background-color: #950170;
+}
+
+.home-btn {
+  background: transparent;
+  color: #c40094;
+}
+
+.home-btn:hover {
+  background: #c40094;
+  color: #fff;
+}

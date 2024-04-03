@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="rus">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -316,49 +316,7 @@
           ></path>
         </a>
       </svg>
-      <header
-        style="
-          text-align: right;
-          margin-right: 25px;
-          margin-top: 10px;
-          position: absolute;
-          top: 0;
-          right: 0;
-          z-index: 1;
-        "
-      >
-        <div class="avatar_menu">
-          <div th:if="${image == null}">
-            <img
-              th:src="@{/images/4.jpg}"
-              class="avatar"
-              style="border: 2px #b822d1 solid"
-            />
-          </div>
-          <div th:if="${image != null}">
-            <img
-              th:src="'data:image/jpeg;base64,' + ${image}"
-              class="avatar"
-              style="border: 2px #b822d1 solid"
-            />
-          </div>
-          <ul class="menu">
-            <form method="get" action="/CodeUp/profile">
-              <li>
-                <button type="submit" style="border: none">Мой профиль</button>
-              </li>
-            </form>
-            <form method="get" action="/CodeUp/settings">
-              <li>
-                <button type="submit" style="border: none">Настройки</button>
-              </li>
-            </form>
-            <form method="get" action="/logout">
-              <li><button type="submit" style="border: none">Выход</button></li>
-            </form>
-          </ul>
-        </div>
-      </header>
+      <div th:replace="~{blocks/headerCircle::headerCircle}"></div>
       <img th:src="@{/images/javaMap/mapJava.png}" class="bg-image" />
       <div class="levels">
         <div class="coin coin1">

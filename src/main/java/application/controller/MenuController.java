@@ -169,6 +169,7 @@ public class MenuController {
                                 Model model,
                                 @PathVariable Integer block,
                                 Principal principal, @PathVariable Integer level) {
+                                    System.out.println(userAnswers);
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
         if (gamer != null) {
@@ -191,6 +192,8 @@ public class MenuController {
 
             model.addAttribute("correctAnswersCount", correctAnswersCount);
             model.addAttribute("allQues", questions.size());
+            model.addAttribute("block", block);
+            model.addAttribute("level", level);
             if (((double) correctAnswersCount / questions.size()) >= 0.6) {
                 if (gamer.getCurLvlJava() <= level){
                     level++;
