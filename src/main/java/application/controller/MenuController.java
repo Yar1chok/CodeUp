@@ -2,10 +2,10 @@ package application.controller;
 
 import application.entity.Gamer;
 import application.entity.JavaTower;
-import application.repository.JavaTowerRepository;
 import application.service.GamerService;
 import application.service.JavaTowerService;
 import application.service.LevelsJavaService;
+import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -164,12 +164,13 @@ public class MenuController {
         }
     }
 
-    @GetMapping("/javaTower/level/{block}/{level}/result/")
-    public String submitAnswers(@RequestParam Map<String, String> userAnswers,
+    @PostMapping("/javaTower/level/{block}/{level}/result/")
+    public String submitAnswers(@RequestParam(value = "userAnswers") String userAnswers,
                                 Model model,
                                 @PathVariable Integer block,
                                 Principal principal, @PathVariable Integer level) {
-                                    System.out.println(userAnswers);
+        Gson gson = new Gson();
+        Map<String, String> userAnswersMap = gson.fromJson(userAnswers, Map.class);
         String email = principal.getName();
         Gamer gamer = gamerService.findGamerByEmail(email);
         if (gamer != null) {
@@ -180,16 +181,14 @@ public class MenuController {
             int correctAnswersCount = 0;
 
             for (JavaTower question : questions) {
-                Long questionId = question.getIdQues();
-
-                if (userAnswers.containsKey(questionId.toString())) {
-                    String userAnswer = userAnswers.get(questionId.toString());
+                String questionText= question.getTextQues();
+                if (userAnswersMap.containsKey(questionText)) {
+                    String userAnswer = userAnswersMap.get(questionText);
                     if (userAnswer.equals(question.getRightAnswer())) {
                         correctAnswersCount++;
                     }
                 }
             }
-
             model.addAttribute("correctAnswersCount", correctAnswersCount);
             model.addAttribute("allQues", questions.size());
             model.addAttribute("block", block);

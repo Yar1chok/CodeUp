@@ -30,7 +30,6 @@
           class="quiz-box"
           th:style="${iterStat.count == 1 ? '' : 'display:none;'}"
         >
-          <h1></h1>
           <div class="question-text" th:text="${question.textQues}"></div>
           <div class="list-answers">
             <div th:each="answer, iterStatic : ${question.shuffledAnswers}">
@@ -50,11 +49,11 @@
             ></p>
             <div th:if="${iterStat.count == questions.size()}" class="button">
               <form
-                method="get"
+                method="post"
                 th:action="'/CodeUp/javaTower/level/' + ${block} + '/'+ ${level} +'/result/'"
               >
                 <input id="userAnswers" type="hidden" name="userAnswers" />
-                <button type="submit" class="button-next-lvl">Завершить</button>
+                <button  class="button-next-lvl">Завершить</button>
               </form>
             </div>
             <div th:if="${iterStat.count != questions.size()}" class="button">

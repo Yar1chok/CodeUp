@@ -20,7 +20,7 @@ function showResultBox() {
   const progressText = document.querySelector(".progress-value");
   const circularProgress = document.querySelector(".circular-progress");
   let progressStart = -1;
-  let progressEnd = 80;
+  let progressEnd = parseInt(document.getElementById("percent").value);
   const speed = 20;
 
   let progress = setInterval(() => {
@@ -29,7 +29,7 @@ function showResultBox() {
     circularProgress.style.background = `conic-gradient(#c40094 ${
       progressStart * 3.6
     }deg, rgba(255, 255, 255, 0.1) 0deg)`;
-    if (progressStart == progressEnd) {
+    if (progressStart === progressEnd) {
       clearInterval(progress);
     }
   }, speed);

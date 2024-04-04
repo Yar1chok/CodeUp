@@ -34,8 +34,9 @@
           <div class="circular-progress">
             <p class="progress-value">0%</p>
           </div>
-          <p class="score-text">Вы решили 5 из 9 заданий</p>
+          <p class="score-text" th:text="${'Вы правильно решили ' + correctAnswersCount + ' из ' + allQues + ' заданий'}"></p>
         </div>
+        <input type="hidden" id="percent" th:value="${correctAnswersCount * 100 / allQues}">
         <div class="buttons">
           <button class="tryAgain-btn">Попробовать снова</button>
           <button class="home-btn">Выбор уровня</button>
