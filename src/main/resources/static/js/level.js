@@ -14,13 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   const answerMap = {};
-
   let countLevel = 0;
+  setupLevel();
+
   buttonNextLvl.forEach(function (button, index) {
     button.onclick = () => {
       let answer = document.querySelector(".answer-active");
       countLevel++;
-      setupLevel(countLevel);
+      quizBox[countLevel].classList.add("quiz-box-active");
+      quizBox[countLevel - 1].style.display = "none";
+      quizBox[countLevel].style.display = "";
+      setupLevel();
       answerMap[countLevel.toString] = answer.value;
       console.log(answerMap[countLevel.toString]);
     };
@@ -34,33 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  let answers = quizBox[countLevel].querySelectorAll(".list-answers .answer");
-  answers.forEach(function (answer) {
-    answer.addEventListener("click", function () {
-      answers.forEach(function (item) {
-        item.classList.remove("answer-active");
-      });
-      this.classList.add("answer-active");
-      buttonNextLvl[countLevel].style.pointerEvents = "visible";
-      buttonNextLvl[countLevel].classList.add("button-next-lvl-active");
-    });
-  });
-
-  function setupLevel(level) {
-    buttonNextLvl[level].onclick = () => {
-      if (level < buttonNextLvl.length - 1) {
-        countLevel++;
-        setupLevel(level + 1);
-      }
-      let answer = document.querySelector(".answer-active");
-      answer.classList.remove("answer-active");
-    };
-  }
-
   function setupLevel() {
-    quizBox[countLevel].classList.add("quiz-box-active");
-    quizBox[countLevel - 1].style.display = "none";
-    quizBox[countLevel].style.display = "";
     let answers = quizBox[countLevel].querySelectorAll(".list-answers .answer");
     answers.forEach(function (answer) {
       answer.addEventListener("click", function () {
