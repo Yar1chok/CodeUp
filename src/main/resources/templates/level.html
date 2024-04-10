@@ -53,7 +53,7 @@
                 th:action="'/CodeUp/javaTower/level/' + ${block} + '/'+ ${level} +'/result/'"
               >
                 <input id="userAnswers" type="hidden" name="userAnswers" />
-                <button  class="button-next-lvl">Завершить</button>
+                <button class="button-next-lvl">Завершить</button>
               </form>
             </div>
             <div th:if="${iterStat.count != questions.size()}" class="button">
@@ -67,23 +67,5 @@
     <script src="/static/js/level.js" th:src="@{/js/level.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
-    <!-- <main>
-            <form th:action="'/CodeUp/javaTower/level/' + ${block} + '/'+ ${level} +'/result/'" method="get" class="question_form information_form">
-                <div th:each="question, iterStat : ${questions}">
-                    <p th:text="${iterStat.index + 1} + '/' + ${questions.size()} + ' ' + ${question.textQues}"
-                       class="question"></p>
-
-                    <div th:each="answer, iterStat : ${question.shuffledAnswers}">
-                        <input type="radio" th:id="'answer-' + ${question.idQues} + '-' + ${iterStat.index}"
-                               th:name="${question.idQues}"
-                               th:value="${answer}" />
-                        <label th:for="'answer-' + ${question.idQues} + '-' + ${iterStat.index}"
-                               th:text="${answer}"></label>
-                    </div>
-                    <br>
-                </div>
-                <button type="submit" class="but">Завершить тест</button>
-            </form>
-        </main> -->
   </body>
 </html>

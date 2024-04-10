@@ -1,0 +1,44 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  cursor: pointer;
+  padding: 30px;
+  overflow-y: auto;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.modal-window {
+  position: relative;
+  max-width: 500px;
+  background-color: #47b7d0;
+  margin: auto;
+  color: black;
+  border-radius: 15px;
+  padding: 30px;
+  cursor: default;
+}
+
+.modal-title {
+  margin-bottom: 30px;
+}
+
+.description {
+  font-size: 22px;
+}
+
+.modal-cross {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 0;
+}

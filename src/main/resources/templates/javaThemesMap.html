@@ -21,6 +21,12 @@
       href="/static/css/profile.css"
       th:href="@{/css/profile.css}"
     />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/closeLvlModal.css"
+      th:href="@{/css/closeLvlModal.css}"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
       src="/static/js/javaThemesMap.js"
@@ -86,7 +92,11 @@
             c 0,0 1.2747,-7.2842 2.1853,-8.3768 0.9105,-1.0927 5.281,-11.8369 5.8273,-12.7474 0.5463,-0.9105 1.2748,-1.821 2.3674,-2.0032 1.0926,-0.1821 4.1884,-7.2842 4.1884,-7.2842
             z"
         ></path>
-        <a th:href="${curBlock >= 1 ? '/CodeUp/javaTower/1' : ''}">
+        <a
+          th:href="${curBlock >= 1 ? '/CodeUp/javaTower/1' : ''}"
+          th:class="(1 > ${curBlock} ? 'btn-modal' : '')"
+          id="block1"
+        >
           <path
             class="part"
             id="SvgTopic1"
@@ -101,7 +111,11 @@
             z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 2 ? '/CodeUp/javaTower/2' : ''}">
+        <a
+          th:href="${curBlock >= 2 ? '/CodeUp/javaTower/2' : ''}"
+          th:class="(2 > ${curBlock} ? 'btn-modal' : '')"
+          id="block2"
+        >
           <path
             class="part"
             id="SvgTopic2"
@@ -126,7 +140,11 @@
             z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 3 ? '/CodeUp/javaTower/3' : ''}">
+        <a
+          th:href="${curBlock >= 3 ? '/CodeUp/javaTower/3' : ''}"
+          th:class="(3 > ${curBlock} ? 'btn-modal' : '')"
+          id="block3"
+        >
           <path
             class="part"
             id="SvgTopic3"
@@ -147,7 +165,11 @@
             z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 4 ? '/CodeUp/javaTower/4' : ''}">
+        <a
+          th:href="${curBlock >= 4 ? '/CodeUp/javaTower/4' : ''}"
+          th:class="(4 > ${curBlock} ? 'btn-modal' : '')"
+          id="block4"
+        >
           <path
             class="part"
             id="SvgTopic4"
@@ -176,7 +198,11 @@
             z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 5 ? '/CodeUp/javaTower/5' : ''}">
+        <a
+          th:href="${curBlock >= 5 ? '/CodeUp/javaTower/5' : ''}"
+          th:class="(5 > ${curBlock} ? 'btn-modal' : '')"
+          id="block5"
+        >
           <path
             class="part"
             id="SvgTopic5"
@@ -193,7 +219,11 @@
                 z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 6 ? '/CodeUp/javaTower/6' : ''}">
+        <a
+          th:href="${curBlock >= 6 ? '/CodeUp/javaTower/6' : ''}"
+          th:class="(6 > ${curBlock} ? 'btn-modal' : '')"
+          id="block6"
+        >
           <path
             class="part"
             id="SvgTopic6"
@@ -214,7 +244,11 @@
                 z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 7 ? '/CodeUp/javaTower/7' : ''}">
+        <a
+          th:href="${curBlock >= 7 ? '/CodeUp/javaTower/7' : ''}"
+          th:class="(7 > ${curBlock} ? 'btn-modal' : '')"
+          id="block7"
+        >
           <path
             class="part"
             id="SvgTopic7"
@@ -247,7 +281,11 @@
                 z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 8 ? '/CodeUp/javaTower/8' : ''}">
+        <a
+          th:href="${curBlock >= 8 ? '/CodeUp/javaTower/8' : ''}"
+          th:class="(8 > ${curBlock} ? 'btn-modal' : '')"
+          id="block8"
+        >
           <path
             class="part"
             id="SvgTopic8"
@@ -264,7 +302,11 @@
                 z"
           ></path>
         </a>
-        <a th:href="${curBlock >= 9 ? '/CodeUp/javaTower/9' : ''}">
+        <a
+          th:class="(9 > ${curBlock} ? 'btn-modal' : '')"
+          th:href="${curBlock >= 9 ? '/CodeUp/javaTower/9' : ''}"
+          id="block9"
+        >
           <path
             class="part"
             id="SvgTopic9"
@@ -319,78 +361,23 @@
       <div th:replace="~{blocks/headerCircle::headerCircle}"></div>
       <img th:src="@{/images/javaMap/mapJava.png}" class="bg-image" />
       <div class="levels">
-        <div class="coin coin1">
-          <a th:href="${curBlock >= 1 ? '/CodeUp/javaTower/1' : ''}"
-            ><img
-              th:src="${curBlock >= 1 ? '/images/javaMap/coin1.png' : '/images/javaMap/closed.png'}"
-              class="coin coin1"
-              alt="Icon Theme 1"
-          /></a>
+        <div th:each="i: ${#numbers.sequence(1,9)}">
+          <div
+            th:class="'coin coin' + ${i} + (${i} > ${curBlock} ? ' btn-modal' : '')"
+          >
+            <div th:if="${curBlock >= i}">
+              <a th:href="${'/CodeUp/javaTower/' + i}">
+                <img
+                  th:src="${'/images/javaMap/coin' + i + '.png'}"
+                  th:class="'coin coin' + ${i}"
+                  th:alt="'Icon Theme ' + ${i}"
+                />
+              </a>
+            </div>
+            <div th:if="${curBlock < i}"></div>
+          </div>
         </div>
-        <div class="coin coin2">
-          <a th:href="${curBlock >= 2 ? '/CodeUp/javaTower/2' : ''}"
-            ><img
-              th:src="${curBlock >= 2 ? '/images/javaMap/coin2.png' : '/images/javaMap/closed.png'}"
-              class="coin coin2"
-              alt="Icon Theme 2"
-          /></a>
-        </div>
-        <div class="coin coin3">
-          <a th:href="${curBlock >= 3 ? '/CodeUp/javaTower/3' : ''}"
-            ><img
-              th:src="${curBlock >= 3 ? '/images/javaMap/coin3.png' : '/images/javaMap/closed.png'}"
-              class="coin coin3"
-              alt="Icon Theme 3"
-          /></a>
-        </div>
-        <div class="coin coin4">
-          <a th:href="${curBlock >= 4 ? '/CodeUp/javaTower/4' : ''}"
-            ><img
-              th:src="${curBlock >= 4 ? '/images/javaMap/coin4.png' : '/images/javaMap/closed.png'}"
-              class="coin coin4"
-              alt="Icon Theme 4"
-          /></a>
-        </div>
-        <div class="coin coin5">
-          <a th:href="${curBlock >= 5 ? '/CodeUp/javaTower/5' : ''}"
-            ><img
-              th:src="${curBlock >= 5 ? '/images/javaMap/coin5.png' : '/images/javaMap/closed.png'}"
-              class="coin coin5"
-              alt="Icon Theme 5"
-          /></a>
-        </div>
-        <div class="coin coin6">
-          <a th:href="${curBlock >= 6 ? '/CodeUp/javaTower/6' : ''}"
-            ><img
-              th:src="${curBlock >= 6 ? '/images/javaMap/coin6.png' : '/images/javaMap/closed.png'}"
-              class="coin coin6"
-              alt="Icon Theme 6"
-          /></a>
-        </div>
-        <div class="coin coin7">
-          <a th:href="${curBlock >= 7 ? '/CodeUp/javaTower/7' : ''}"
-            ><img
-              th:src="${curBlock >= 7 ? '/images/javaMap/coin7.png' : '/images/javaMap/closed.png'}"
-              class="coin coin7"
-              alt="Icon Theme 7"
-          /></a>
-        </div>
-        <div class="coin coin8">
-          <a th:href="${curBlock >= 8 ? '/CodeUp/javaTower/8' : ''}"
-            ><img
-              th:src="${curBlock >= 8 ? '/images/javaMap/coin8.png' : '/images/javaMap/closed.png'}"
-              class="coin coin8"
-              alt="Icon Theme 8"
-          /></a>
-        </div>
-        <div class="coin coin9">
-          <a th:href="${curBlock >= 9 ? '/CodeUp/javaTower/9' : ''}"
-            ><img
-              th:src="${curBlock >= 9 ? '/images/javaMap/coin9.png' : '/images/javaMap/closed.png'}"
-              class="coin coin9"
-              alt="Icon Theme 9"
-          /></a>
-        </div>
+        <div th:replace="~{blocks/closeLvlModal::closeLvlModal}"></div>
       </div>
     </div>
   </body>

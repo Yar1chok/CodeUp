@@ -1,0 +1,17 @@
+<div th:fragment="closeLvlModal">
+  <div class="modal">
+    <div class="modal-window">
+      <h2 class="modal-title">Что-то пошло не так...</h2>
+      <div class="modal-container">
+        <p class="description">
+          Сперва вам необходимо пройти уровни в предыдущих блоках!
+        </p>
+      </div>
+      <img class="modal-cross" src="/images/svgIcons/blackX.svg" />
+    </div>
+  </div>
+  <script
+    src="/static/js/closeLvlModal.js"
+    th:src="@{/js/closeLvlModal.js}"
+  ></script>
+</div>
