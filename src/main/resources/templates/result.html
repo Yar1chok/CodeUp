@@ -38,8 +38,12 @@
         </div>
         <input type="hidden" id="percent" th:value="${correctAnswersCount * 100 / allQues}">
         <div class="buttons">
-          <button class="tryAgain-btn">Попробовать снова</button>
-          <button class="home-btn">Выбор уровня</button>
+          <form th:action="${'/CodeUp/javaTower/level/' + block + '/' + level}" method="get">
+            <button class="tryAgain-btn">Попробовать снова</button>
+          </form>
+          <form th:action="${'/CodeUp/javaTower/' + block}" method="get">
+            <button class="home-btn">Выбор уровня</button>
+          </form>
         </div>
       </div>
     </div>

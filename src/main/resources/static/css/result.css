@@ -129,3 +129,7 @@ button {
   background: #c40094;
   color: #fff;
 }
+
+.buttons{
+  grid-row: auto;
+}
