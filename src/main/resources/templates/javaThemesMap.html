@@ -374,7 +374,13 @@
                 />
               </a>
             </div>
-            <div th:if="${curBlock < i}"></div>
+            <div th:if="${curBlock < i}">
+              <img
+                th:src="${'/images/javaMap/closed.png'}"
+                th:class="'coin coin' + ${i}"
+                th:alt="'Icon Close ' + ${i}"
+              />
+            </div>
           </div>
         </div>
         <div th:replace="~{blocks/closeLvlModal::closeLvlModal}"></div>

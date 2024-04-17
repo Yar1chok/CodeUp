@@ -240,6 +240,87 @@ main {
   width: 45%;
   background-color: rgba(9, 25, 25, 0.7);
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-block {
+  min-height: 50vh;
+  height: 50vh;
+  background-color: #09001db9;
+  border-radius: 15px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+#input_textarea {
+  background-color: #291e3f;
+  font-size: 16px;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  outline: none;
+}
+
+#input_textarea::selection {
+  color: white;
+  background-color: #999999;
+}
+
+.output-block {
+  margin-top: 10px;
+  min-height: 16vh;
+  background-color: #09001db9;
+  border-radius: 15px;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.output-block::selection {
+  background-color: #2c0888;
+}
+
+.keyword {
+  color: #00c400;
+}
+
+.compilate-btn {
+  width: 140px;
+  height: 40px;
+  background-image: linear-gradient(
+    92.88deg,
+    #455eb5 9.16%,
+    #5643cc 43.89%,
+    #673fd7 64.72%
+  );
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all 0.5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 10px;
+}
+
+.compilate-btn:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: 0.1s;
+}
+
+.compilate-button {
+  text-align: center;
 }
 
 /* Адаптивность сайта */

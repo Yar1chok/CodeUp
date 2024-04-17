@@ -36,6 +36,7 @@
               th:id="'level' + ${iterStat.count}"
               th:text="'Уровень ' + ${iterStat.count} +'. '+ ${level.getTextLevel()}"
               th:attr="onclick=|switchLevel(${iterStat.count})|"
+              th:style="${iterStat.count > curLevel ? 'box-shadow: 0px 0px 10px rgba(215, 4, 29, 0.7); border: 2px #c61212 solid;' : 'box-shadow: 0px 0px 10px rgba(2, 78, 255, 0.7); border: 2px #121bc6 solid;'}"
             ></button>
           </div>
         </div>
@@ -97,7 +98,21 @@
         </div>
       </div>
       <div class="reminder" id="third-section">
-        <p class="code_block">Компилятор.</p>
+        <div class="input-block">
+          <textarea
+            class="input-text"
+            id="input_textarea"
+            wrap="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="Напиши кодик!"
+          ></textarea>
+        </div>
+        <div class="output-block">Вывод компилятора</div>
+        <div class="compilate-button">
+          <button class="compilate-btn">Скомпилировать</button>
+        </div>
       </div>
     </main>
   </body>
