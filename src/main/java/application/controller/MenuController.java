@@ -106,7 +106,7 @@ public class MenuController {
             if (gamer.getImage() != null) {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
-            model.addAttribute("username", gamer.getUsername());
+            model.addAttribute("username", gamer.getNickname());
             model.addAttribute("curBlock", gamer.getBlockJava());
             model.addAttribute("curLevel", gamer.getCurLvlJava());
             model.addAttribute("levels", levelsJavaService.findAllByBlock(block));
@@ -157,7 +157,7 @@ public class MenuController {
                 model.addAttribute("image", Base64.getEncoder().encodeToString(gamer.getImage()));
             }
             model.addAttribute("questions", javaTowerService.getShuffled(block, level));
-            model.addAttribute("username", gamer.getUsername());
+            model.addAttribute("username", gamer.getNickname());
             return "level";
         } else {
             return "redirect:/login";

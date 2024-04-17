@@ -23,16 +23,16 @@
                 <form method="post" class="input information_form" action="/login" onsubmit="encryptAndSend(event)">
                     <div class="field">
                         <p>Email</p>
-                        <input class="input_field" type="email" id="email" name="email" placeholder="Введите свой email" maxlength="25" minlength="4" required>
-                        </input>
+                        <input class="input_field" type="email" id="email" name="email" placeholder="Введите свой email" maxlength="25" minlength="4" required/>
                     </div>
                     <div class="field">
                         <p>Password</p>
-                        <input class="input_field" name="password" id="password" type="password" placeholder="Введите пароль" maxlength="25" minlength="4" required>
-                        </input>
+                        <input class="input_field" name="password" id="password" type="password" placeholder="Введите пароль" maxlength="25" minlength="4" required/>
                     </div>
-                    <p th:if="${param.error}" style="color: red;">Неверный логин или пароль</p>
-                    <p th:if="${param.logout}" style="color: green;">Вы успешно вышли из аккаунта</p>
+                    <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">Ошибка подтверждения аккаунта</p>
+                    <p th:if="${param.verify}" style="color: #00C400; margin-top: 5%">Ваш аккаунт успешно подтверждён</p>
+                    <p th:if="${param.error}" style="color: red; margin-top: 5%">Неверный логин или пароль или аккаунт не подтверждён</p>
+                    <p th:if="${param.logout}"  style="color: #00C400; margin-top: 5%">Вы успешно вышли из аккаунта</p>
                     <a id="forg_pass" href="#">Забыли пароль?</a>
                     <input type="hidden" th:value="${publicKey}" id="publicKey">
                     <input type="hidden" name="encodedEmail" id="encodedEmail">

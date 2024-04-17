@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeUp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #666;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>CodeUp</h1>
+  <p>Пожалуйста, перейдите по следующей ссылке для подтверждения вашего аккаунта CodeUp:</p>
+  <a href="http://localhost:8080/verify-email?token=${verificationToken}">Подтвердить аккаунт</a>
+</div>
+<p>Если вы не регистрировались на нашем сайте, проигнорируйте это сообщение.</p>
+<p>С уважением,<br>Команда CodeUp</p>
+</body>
+</html>

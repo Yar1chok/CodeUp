@@ -2,6 +2,7 @@ package application.controller;
 
 import application.entity.Gamer;
 import application.service.CipherService;
+import application.service.EmailVerificationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import application.service.GamerService;
 
 import java.util.Base64;
+import java.util.UUID;
 
 
 @Controller
@@ -17,10 +19,15 @@ import java.util.Base64;
 public class InputController {
     private final GamerService gamerService;
     private final CipherService cipherService;
+    private final EmailVerificationService emailVerificationService;
 
-    public InputController(CipherService cipherService, GamerService gamerService) {
+
+    public InputController(CipherService cipherService,
+                           GamerService gamerService,
+                           EmailVerificationService emailVerificationService) {
         this.cipherService = cipherService;
         this.gamerService = gamerService;
+        this.emailVerificationService = emailVerificationService;
     }
 
 
@@ -47,13 +54,14 @@ public class InputController {
         gamer.setEmail(email);
         gamer.setNickname(nickname);
         gamer.setPassword(password);
+        gamer.setVerificationToken(email + UUID.randomUUID());
         if (!gamerService.saveGamer(gamer)){
             model.addAttribute("errorMessage", "Пользователь с таким именем уже существует");
             model.addAttribute("publicKey", cipherService.getPublicKey());
             return "registration";
         }
-
-        return "redirect:/customLogin";
+        emailVerificationService.sendVerificationEmail(gamer.getEmail(), gamer.getVerificationToken());
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
@@ -65,14 +73,23 @@ public class InputController {
 
     @PostMapping("/login")
     public String loginPost(@RequestParam("encodedEmail") String encryptedEmail,
-                            @RequestParam("encodedPassword") String encryptedPassword,
-                            Model model) {
+                            @RequestParam("encodedPassword") String encryptedPassword) {
         String email = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedEmail)));
         String password = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword)));
-        if (!gamerService.loginGamer(email, password)){
-            model.addAttribute("publicKey", cipherService.getPublicKey());
-            return "login";
+        if (!gamerService.loginGamer(email, password) || !gamerService.checkVerification(email)){
+            return "redirect:/login";
         }
         return "redirect:/CodeUp/menu";
+    }
+
+    @GetMapping("/verify-email")
+    public String verifyEmailGet(@RequestParam(value = "token") String token) {
+        Gamer gamer = this.gamerService.findGamerByVerificationToken(token);
+        if (gamer != null){
+            if(this.gamerService.activateEmail(gamer.getEmail())){
+                return "redirect:/login?verify=true";
+            }
+        }
+        return "redirect:/login?error_verify=true";
     }
 }

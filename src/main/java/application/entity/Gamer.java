@@ -17,10 +17,10 @@ public class Gamer implements UserDetails {
     @Column(name = "id_user")
     private Long idUser;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "user_name", nullable = false, unique = true)
     private String nickname;
     @Column(name = "password")
     private String password;
@@ -36,6 +36,18 @@ public class Gamer implements UserDetails {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "github")
+    private String github;
+
+    @Column(name = "image")
+    private byte[] image;
+
+    @Column(name = "email_verified", columnDefinition = "false")
+    private boolean emailVerified;
+
+    @Column(name = "verification_token")
+    private String verificationToken;
+
     public String getGithub() {
         return github;
     }
@@ -49,11 +61,22 @@ public class Gamer implements UserDetails {
         this.idUser = idUser;
     }
 
-    @Column(name = "github")
-    private String github;
+    public boolean isEmailVerified() {
+        return emailVerified;
+    }
 
-    @Column(name = "image")
-    private byte[] image;
+    public void setEmailVerified(boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
     public String getName() {
         return name;
     }

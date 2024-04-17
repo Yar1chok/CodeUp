@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GamerRepository extends JpaRepository<Gamer, Long> {
     Gamer findGamerByEmail(String email);
+    Gamer findGamerByVerificationToken(String token);
 }

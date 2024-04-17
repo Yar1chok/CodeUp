@@ -47,14 +47,14 @@ public class SecurityConfig  {
                 auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/resources/**","/static/**", "/images/**",
-                                "/css/**", "/login", "/", "/registration").permitAll()
+                                "/css/**", "/login", "/", "/registration", "/verify-email").permitAll()
                         .requestMatchers("/CodeUp/**").authenticated()
                         .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
-                                .usernameParameter("email")
+                                .usernameParameter("encodedEmail")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/CodeUp/menu", true)
                                 .failureUrl("/login?error=true")

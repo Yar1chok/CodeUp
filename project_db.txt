@@ -15,11 +15,13 @@ CREATE TABLE gamer (
 	password VARCHAR(1000) NOT NULL,
 	cur_lvl_java INTEGER NOT NULL DEFAULT 1,
 	block_java INTEGER NOT NULL DEFAULT 1,
-	user_name VARCHAR(25) NOT NULL,
+	user_name VARCHAR(25) NOT NULL UNIQUE,
 	birthday VARCHAR(255),
 	github VARCHAR(1000),
 	image BYTEA,
-	name VARCHAR(25)
+	name VARCHAR(25),
+	email_verified BOOLEAN DEFAULT false,
+	verification_token TEXT
 );
 
 CREATE TABLE role (

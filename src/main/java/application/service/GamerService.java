@@ -96,4 +96,24 @@ public class GamerService {
         Gamer gamer = gamerRepository.findGamerByEmail(email);
         return gamer != null && passwordEncoder.matches(password, gamer.getPassword());
     }
+
+    public boolean checkVerification(String email){
+        Gamer gamer = gamerRepository.findGamerByEmail(email);
+        return gamer != null && gamer.isEmailVerified();
+    }
+
+    public boolean activateEmail(String email){
+        try {
+            Gamer gamer = gamerRepository.findGamerByEmail(email);
+            gamer.setEmailVerified(true);
+            gamerRepository.save(gamer);
+            return true;
+        } catch (Exception exception){
+            return false;
+        }
+    }
+
+    public Gamer findGamerByVerificationToken(String token){
+        return this.gamerRepository.findGamerByVerificationToken(token);
+    }
 }
