@@ -25,7 +25,7 @@ public class EmailVerificationService {
         MimeMessageHelper helper;
         try {
             helper = new MimeMessageHelper(message, true);
-            helper.setFrom("danil_ustinov@mail.ru");
+            helper.setFrom("code.up@mail.ru");
             helper.setTo(userEmail);
             helper.setSubject("Подтверждение аккаунта CodeUp");
 

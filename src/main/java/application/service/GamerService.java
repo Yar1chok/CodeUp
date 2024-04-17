@@ -77,7 +77,14 @@ public class GamerService {
             gamer.setPassword(gamerFromDB.get().getPassword());
             gamer.setCurLvlJava(gamerFromDB.get().getCurLvlJava());
             gamer.setBlockJava(gamerFromDB.get().getBlockJava());
-            gamerRepository.save(gamer);
+            gamer.setVerificationToken(gamerFromDB.get().getVerificationToken());
+            gamer.setEmailVerified(gamerFromDB.get().isEmailVerified());
+            gamer.setRoles(gamerFromDB.get().getRoles());
+            try {
+                gamerRepository.save(gamer);
+            } catch (Exception exception) {
+                return false;
+            }
             return true;
         } else {
             return false;

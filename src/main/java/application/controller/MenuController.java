@@ -75,7 +75,7 @@ public class MenuController {
                                @RequestParam(value = "month") String month,
                                @RequestParam(value = "year") String year){
         if (!gamerService.updateGamer(gamer, Long.parseLong(id), image, day + "." + month + "." + year)) {
-            return "redirect:/CodeUp/settings?error=true";
+            return "redirect:/CodeUp/settings/" + id + "?error=true";
         } else {
             return "redirect:/CodeUp/profile";
         }
