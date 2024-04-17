@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Runner {
     /**
      * Запуск программы
+     *
      * @param args аргументы запуска
      */
     public static void main(String[] args) {

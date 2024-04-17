@@ -106,15 +106,18 @@
             autocorrect="off"
             autocapitalize="off"
             spellcheck="false"
-            placeholder="Напиши кодик!"
+            placeholder="Напиши код!"
           ></textarea>
         </div>
-        <div class="output-block">Вывод компилятора</div>
+        <div class="output-block">
+          <textarea id="output" placeholder="Вывод компилятора" readonly></textarea>
+        </div>
         <div class="compilate-button">
-          <button class="compilate-btn">Скомпилировать</button>
+          <button type="button" id="send-code" class="compilate-btn">Скомпилировать</button>
         </div>
       </div>
     </main>
+  <input type="hidden" id="username" th:value="${username}">
   </body>
   <script th:inline="javascript">
     function switchLevel(level) {
@@ -128,9 +131,37 @@
         needLevel.style.display = "";
         scrollbar.scrollTo({
           top: 0,
-          behavior: "smooth", // Делаем прокрутку плавной
+          behavior: "smooth",
         });
       }
     }
+    const socketCode = new SockJS('/compiler');
+    const stompClientCode = Stomp.over(socketCode);
+    const username = document.getElementById("username").value;
+    stompClientCode.connect({}, function() {
+      stompClientCode.subscribe('/topic/compilerOutput/' + username, function(message) {
+        const messageText = message.body;
+        appendTextToOutput(messageText);
+      });
+    });
+
+    function appendTextToOutput(text) {
+      const outputTextArea = document.getElementById("output");
+      text = text.replace(/\r/g, "");
+      outputTextArea.value += text;
+    }
+    document.getElementById("send-code").addEventListener("click", () => {
+      const code = document.getElementById("input_textarea").value;
+      document.getElementById("output").value = "";
+      if (code){
+        fetch('/compile/' + username, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain",
+          },
+          body: code
+        })
+      }
+    });
   </script>
 </html>
