@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <th:block th:insert="~{head :: head}"> </th:block>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/footer.css"
+      th:href="@{/css/footer.css}"
+    />
+    <link
+      href="/static/css/index.css"
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/css/registration.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/confirmation.css"
+      th:href="@{/css/confirmation.css}"
+    />
+    <title>Подтверждение электронной почты</title>
+  </head>
+  <body>
+    <header>
+      <a id="title" href="/"><span>CodeUp</span></a>
+      <div class="navigation">
+        <p class="sign_up">У вас уже есть аккаунт?</p>
+        <form action="/login" method="get">
+          <button type="submit" class="sign_in">Вход</button>
+        </form>
+      </div>
+    </header>
+    <main>
+      <div class="window-confirm">
+        <div class="window-elements">
+          <h1>Подтверждение электронной почты</h1>
+          <div class="line"></div>
+          <p>
+            Мы отправили вам письмо на
+            <span th:text="${email}"></span>. Перейдите по ссылке, которая
+            пришла вам в сообщении на почте, чтобы активировать ваш аккаунт.
+            Подтвержденные аккаунты дают доступ к еще большим возможностям
+            CodeUp!
+          </p>
+        </div>
+      </div>
+    </main>
+    <footer th:replace="~{footer :: footer}"></footer>
+  </body>
+</html>

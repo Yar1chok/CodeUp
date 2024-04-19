@@ -11,6 +11,10 @@
   "
 >
   <style>
+    :root {
+      --main-color: #ed1389;
+    }
+
     .avatar_menu {
       position: relative;
       display: inline-block;
@@ -20,9 +24,10 @@
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      border: 2px #ed1389 solid;
+      border: 2px var(--main-color) solid;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
       cursor: pointer;
+      object-fit: cover;
     }
 
     .menu {
@@ -32,8 +37,9 @@
       top: 55px;
       right: 0;
       min-width: 145px;
-      background-color: #444444;
-      border: 2px #333333 solid;
+      background-color: #211e97;
+      border: 2px solid #2623ce;
+      box-shadow: #2623ce 0px 0px 5px;
       border-radius: 25px;
       padding: 8px 0;
       z-index: 2;
@@ -48,7 +54,7 @@
       list-style: none;
       padding: 10px 20px;
       color: #ffffff;
-      background-color: #444444;
+      background-color: #211e97;
       font-weight: 400;
       cursor: pointer;
       font-size: 16px;
@@ -56,7 +62,7 @@
     }
 
     .menu li button:hover {
-      background-color: #333333;
+      background-color: #000f56;
     }
   </style>
   <div class="avatar_menu">

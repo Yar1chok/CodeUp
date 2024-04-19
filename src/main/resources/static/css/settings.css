@@ -42,10 +42,11 @@ main {
 }
 
 .image_form img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   border: 1px #ed1389 solid;
+  object-fit: cover;
 }
 
 .change_image,

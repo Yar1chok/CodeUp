@@ -4,8 +4,6 @@ import application.entity.Gamer;
 import application.service.CipherService;
 import application.service.EmailVerificationService;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import application.service.GamerService;
@@ -61,7 +59,13 @@ public class InputController {
             return "registration";
         }
         emailVerificationService.sendVerificationEmail(gamer.getEmail(), gamer.getVerificationToken());
-        return "redirect:/login";
+        return "redirect:/confirmation?email="+gamer.getEmail();
+    }
+
+    @GetMapping("/confirmation")
+    public String confirmationGet(Model model, @RequestParam(value = "email") String email) {
+        model.addAttribute("email", email);
+        return "confirmation";
     }
 
     @GetMapping("/login")

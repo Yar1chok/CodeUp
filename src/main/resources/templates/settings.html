@@ -69,7 +69,10 @@
           </div>
           <div class="right_form">
             <div class="image_form">
-              <div th:if="${gamer.getImage() == null}">
+              <div
+                th:if="${gamer.getImage() == null}"
+                style="width: 200px; height: 200px"
+              >
                 <img
                   th:src="@{/images/4.jpg}"
                   alt="Gamer Image"
