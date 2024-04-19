@@ -18,12 +18,20 @@ public class CompilerController {
     private final SimpMessagingTemplate messagingTemplate;
     private Process executionProcess;
 
+    private final String[] notAllowedLibs = {"java.lang.Runtime", "java.io.", "java.lang.ProcessBuilder", "java.util.Scanner", "java.util.zip", "import javax", "import jakarta", "java.nio.file"};
+
     public CompilerController(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
     @PostMapping("/compile/{username}")
-    public void compileCode(@RequestBody String code, @PathVariable String username) throws IOException, InterruptedException {
+    public void compileCode(@RequestBody String code, @PathVariable String username) throws IOException {
+        for (String lib: notAllowedLibs){
+            if (code.contains(lib)){
+                messagingTemplate.convertAndSend("/topic/compilerOutput/" + username, "Недопустимая библиотека\n");
+                return;
+            }
+        }
         try (FileWriter writer = new FileWriter("Main.java")) {
             writer.write(code);
         } catch (IOException e) {

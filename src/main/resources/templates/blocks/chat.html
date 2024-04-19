@@ -17,6 +17,8 @@
           class="chat-input"
           id="chat-input"
           placeholder="Написать..."
+          th:data-username="${username}"
+          th:onkeypress="'javascript:enterSend(event, this.getAttribute(\'data-username\'))'"
         />
         <button
           class="chat-submit"

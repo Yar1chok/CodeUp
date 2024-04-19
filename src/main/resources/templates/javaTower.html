@@ -21,7 +21,6 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/static/js/profile.js" th:src="@{/js/profile.js}"></script>
-
     <title>CodeUp</title>
   </head>
   <body>
@@ -107,6 +106,8 @@
             autocapitalize="off"
             spellcheck="false"
             placeholder="Напиши код!"
+            oninput="highlightKeywords()"
+            contenteditable="true"
           ></textarea>
         </div>
         <div class="output-block">
@@ -120,6 +121,11 @@
   <input type="hidden" id="username" th:value="${username}">
   </body>
   <script th:inline="javascript">
+    document.getElementById("input_textarea").value = "public class Main {\n" +
+            "    public static void main(String[] args) {\n" +
+            "        \n" +
+            "    }\n" +
+            "}";
     function switchLevel(level) {
       const levels = document.querySelectorAll('[id^="main_frame"]');
       const needLevel = document.getElementById("main_frame" + level);
@@ -163,5 +169,31 @@
         })
       }
     });
+
+    const keywords = [
+      "abstract", "continue", "for", "new", "switch",
+      "assert", "default", "if", "package", "synchronized",
+      "boolean", "do", "goto", "private", "this",
+      "break", "double", "implements", "protected", "throw",
+      "byte", "else", "import", "public", "throws",
+      "case", "enum", "instanceof", "return", "transient",
+      "catch", "extends", "int", "short", "try",
+      "char", "final", "interface", "static", "void",
+      "class", "finally", "long", "strictfp", "volatile",
+      "const", "float", "native", "super", "while",
+      "null", "true", "false"
+    ];
+
+    function highlightKeywords() {
+      const textArea = document.getElementById("input_textarea");
+      const text = textArea.value;
+      const words = text.split(/\s+/);
+      for (let i = 0; i < words.length; i++) {
+        if (keywords.indexOf(words[i]) !== -1) {
+          words[i] = '<span class="keyword">' + words[i] + '</span>';
+        }
+      }
+      textArea.innerHTML = words.join(' ');
+    }
   </script>
 </html>

@@ -52,13 +52,21 @@ const socket = new SockJS("/chat");
 const stompClient = Stomp.over(socket);
 stompClient.connect();
 
+function enterSend(event, username) {
+  if (event.keyCode === 13) {
+    sendMessage(username);
+  }
+}
+
 function sendMessage(senderEmail) {
   const message = {
     senderEmail: senderEmail,
     content: document.getElementById("chat-input").value,
   };
-  stompClient.send("/app/chat/sendMessage/1", {}, JSON.stringify(message));
-  document.getElementById("chat-input").value = "";
+  if (message.content) {
+    stompClient.send("/app/chat/sendMessage/1", {}, JSON.stringify(message));
+    document.getElementById("chat-input").value = "";
+  }
 }
 
 function displayMessage(message) {
