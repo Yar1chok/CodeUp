@@ -18,6 +18,8 @@ https://www.figma.com/file/UQtvEO9Qk6A7IpPOV6JyKo/CodeUp?type=design&node-id=0-1
 
  ![image](https://github.com/Yar1chok/CodeUp/assets/99189121/1065ce03-c22e-446b-8ae9-d22c2b0c4a80)
 
+ ![image](https://github.com/Yar1chok/CodeUp/assets/99189121/f49c728b-fe19-49f7-85de-087a0aef9c5e)
+
  ![image](https://github.com/Yar1chok/CodeUp/assets/99189121/3e40dd52-ede8-41df-bc5d-229f02f381b8)
 
  ![image](https://github.com/Yar1chok/CodeUp/assets/99189121/93ff7a0e-4f2c-4e18-9a3f-5db1adf56acb)
