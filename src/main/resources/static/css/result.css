@@ -100,7 +100,7 @@ h2 {
   margin-top: 20px;
 }
 
-button {
+.tryAgain-btn  {
   width: 170px;
   height: 50px;
   background: #c40094;
@@ -121,8 +121,19 @@ button {
 }
 
 .home-btn {
+  width: 170px;
+  height: 50px;
+  border: 2px solid #c40094;
+  outline: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 20px;
+  cursor: pointer;
+  transition: 0.3s;
   background: transparent;
   color: #c40094;
+
 }
 
 .home-btn:hover {

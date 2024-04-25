@@ -33,7 +33,6 @@
                     <p th:if="${param.verify}" style="color: #00C400; margin-top: 5%">Ваш аккаунт успешно подтверждён</p>
                     <p th:if="${param.error}" style="color: red; margin-top: 5%">Неверный логин или пароль или аккаунт не подтверждён</p>
                     <p th:if="${param.logout}"  style="color: #00C400; margin-top: 5%">Вы успешно вышли из аккаунта</p>
-                    <a id="forg_pass" href="#">Забыли пароль?</a>
                     <input type="hidden" th:value="${publicKey}" id="publicKey">
                     <input type="hidden" name="encodedEmail" id="encodedEmail">
                     <input type="hidden" name="encodedPassword" id="encodedPassword">

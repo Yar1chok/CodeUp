@@ -42,7 +42,7 @@ public class MenuController {
             }
             return "menu";
         } else {
-            return "redirect:/customLogin";
+            return "redirect:/login";
         }
     }
 
@@ -91,7 +91,7 @@ public class MenuController {
             }
             return "level";
         } else {
-            return "redirect:/customLogin";
+            return "redirect:/login";
         }
     }
 
@@ -112,7 +112,7 @@ public class MenuController {
             model.addAttribute("levels", levelsJavaService.findAllByBlock(block));
             return "javaTower";
         } else {
-            return "redirect:/customLogin";
+            return "redirect:/login";
         }
     }
 
@@ -158,6 +158,7 @@ public class MenuController {
             }
             model.addAttribute("questions", javaTowerService.getShuffled(block, level));
             model.addAttribute("username", gamer.getNickname());
+            //model.addAttribute("block", block);
             return "level";
         } else {
             return "redirect:/login";

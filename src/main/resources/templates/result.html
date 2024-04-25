@@ -35,6 +35,10 @@
             <p class="progress-value">0%</p>
           </div>
           <p class="score-text" th:text="${'Вы правильно решили ' + correctAnswersCount + ' из ' + allQues + ' заданий'}"></p>
+          <p class="score-text" th:if="${success == true}">Уровень пройден</p>
+          <p class="score-text" th:if="${success == false}">
+            Уровень не пройден
+          </p>
         </div>
         <input type="hidden" id="percent" th:value="${correctAnswersCount * 100 / allQues}">
         <div class="buttons">
@@ -47,17 +51,5 @@
         </div>
       </div>
     </div>
-    <!-- <main>
-      <div class="information_form result_form">
-        <p
-          th:text="'Ваш результат: ' + ${correctAnswersCount} + '/' + ${allQues}"
-        ></p>
-        <p th:if="${success == true}">Вам открыт следующий уровень</p>
-
-        <p th:if="${success == false}">
-          Перепройдите уровень для открытия следующего
-        </p>
-      </div>
-    </main> -->
   </body>
 </html>
