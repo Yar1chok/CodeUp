@@ -2,13 +2,15 @@ package application.controller;
 
 import application.entity.Gamer;
 import application.service.CipherService;
-import application.service.EmailVerificationService;
+import application.service.EmailService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import application.service.GamerService;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -17,15 +19,18 @@ import java.util.UUID;
 public class InputController {
     private final GamerService gamerService;
     private final CipherService cipherService;
-    private final EmailVerificationService emailVerificationService;
+    private final EmailService emailService;
+    private final PasswordEncoder passwordEncoder;
 
 
     public InputController(CipherService cipherService,
                            GamerService gamerService,
-                           EmailVerificationService emailVerificationService) {
+                           EmailService emailService,
+                           PasswordEncoder passwordEncoder) {
         this.cipherService = cipherService;
         this.gamerService = gamerService;
-        this.emailVerificationService = emailVerificationService;
+        this.emailService = emailService;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -58,13 +63,18 @@ public class InputController {
             model.addAttribute("publicKey", cipherService.getPublicKey());
             return "registration";
         }
-        emailVerificationService.sendVerificationEmail(gamer.getEmail(), gamer.getVerificationToken());
+        emailService.sendVerificationEmail(gamer.getEmail(), gamer.getVerificationToken());
         return "redirect:/confirmation?email="+gamer.getEmail();
     }
 
     @GetMapping("/confirmation")
     public String confirmationGet(Model model, @RequestParam(value = "email") String email) {
         model.addAttribute("email", email);
+        model.addAttribute("description", "Перейдите по ссылке, которая\n" +
+                "            пришла вам в сообщении на почте, чтобы активировать ваш аккаунт.\n" +
+                "            Подтвержденные аккаунты дают доступ к еще большим возможностям\n" +
+                "            CodeUp!");
+        model.addAttribute("title", "Подтверждение электронной почты");
         return "confirmation";
     }
 
@@ -95,5 +105,42 @@ public class InputController {
             }
         }
         return "redirect:/login?error_verify=true";
+    }
+
+    @GetMapping("/forget-password")
+    public String forgetPasswordGet(Model model) {
+        model.addAttribute("publicKey", cipherService.getPublicKey());
+        return "forget-password";
+    }
+
+    @PostMapping("/forget-password")
+    public String forgetPasswordPost(@RequestParam(value = "encryptedEmail") String encryptedEmail, Model model) {
+        String email = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedEmail)));
+        if (this.gamerService.findGamerByEmail(email) != null){
+            this.emailService.sendResetPassword(email);
+            model.addAttribute("email", email);
+            model.addAttribute("description", "Перейдите по ссылке, которая\n" +
+                    "            пришла вам в сообщении на почте, чтобы сменить пароль.");
+            model.addAttribute("title", "Сброс пароля");
+            return "confirmation";
+        }
+        return "redirect:/login?change_password_error=true";
+    }
+
+
+    @GetMapping("/reset-password")
+    public String resetPasswordPost(@RequestParam(value = "email") String email,
+                                     @RequestParam(value = "encryptedPassword") String encryptedPassword) {
+        List<Gamer> gamerList = this.gamerService.findAll();
+        if (gamerList != null){
+            for(Gamer gamer : gamerList){
+                if (this.passwordEncoder.matches(gamer.getEmail(), email)){
+                    gamer.setPassword(cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword))));
+                    this.gamerService.justUpdate(gamer);
+                    return "redirect:/login?change_password=true";
+                }
+            }
+        }
+        return "redirect:/login?change_password_error=true";
     }
 }

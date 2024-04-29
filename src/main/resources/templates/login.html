@@ -29,6 +29,9 @@
                         <p>Password</p>
                         <input class="input_field" name="password" id="password" type="password" placeholder="Введите пароль" maxlength="25" minlength="4" required/>
                     </div>
+                    <p th:if="${param.change_password}" style="color: #00C400; margin-top: 5%">Ваш пароль успешно изменён</p>
+                    <p th:if="${param.change_password_error}" style="color: red; margin-top: 5%">Ошибка смены пароля</p>
+                    <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">Ошибка подтверждения аккаунта</p>
                     <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">Ошибка подтверждения аккаунта</p>
                     <p th:if="${param.verify}" style="color: #00C400; margin-top: 5%">Ваш аккаунт успешно подтверждён</p>
                     <p th:if="${param.error}" style="color: red; margin-top: 5%">Неверный логин или пароль или аккаунт не подтверждён</p>

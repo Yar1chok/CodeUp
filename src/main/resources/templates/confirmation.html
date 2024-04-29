@@ -20,7 +20,7 @@
       href="/static/css/confirmation.css"
       th:href="@{/css/confirmation.css}"
     />
-    <title>Подтверждение электронной почты</title>
+    <title th:text="${title}"></title>
   </head>
   <body>
     <header>
@@ -35,14 +35,11 @@
     <main>
       <div class="window-confirm">
         <div class="window-elements">
-          <h1>Подтверждение электронной почты</h1>
+          <h1 th:text="${title}"></h1>
           <div class="line"></div>
           <p>
             Мы отправили вам письмо на
-            <span th:text="${email}"></span>. Перейдите по ссылке, которая
-            пришла вам в сообщении на почте, чтобы активировать ваш аккаунт.
-            Подтвержденные аккаунты дают доступ к еще большим возможностям
-            CodeUp!
+            <span th:text="${email}"></span>. <span th:text="${description}"></span>
           </p>
         </div>
       </div>

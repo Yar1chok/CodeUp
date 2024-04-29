@@ -35,7 +35,7 @@ public class GamerService {
         return gamerRepository.findGamerByEmail(email);
     }
 
-    public List<Gamer> allGamers() {
+    public List<Gamer> findAll() {
         return gamerRepository.findAll();
     }
 
