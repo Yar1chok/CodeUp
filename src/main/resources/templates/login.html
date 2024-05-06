@@ -1,67 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="rus">
-    <head>
-        <th:block th:replace="~{head :: head}">
-        </th:block>
-        <link type="text/css" rel="stylesheet" href="/static/css/footer.css" th:href="@{/css/footer.css}">
-        <link type="text/css" rel="stylesheet" href="/static/css/login.css" th:href="@{/css/login.css}">
-        <link type="text/css" rel="stylesheet" href="/static/css/duplicate.css" th:href="@{/css/duplicate.css}">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.1.0/jsencrypt.min.js"></script>
-        <title>Авторизация</title>
-    </head>
-    <body>
-        <header>
-            <a id="title" href="/"><span>CodeUp</span></a>
-        </header>
-        <main>
-            <div class="login">
-                <div class="greeting information_form">
-                    <p class="code_block">
-                        Введите свои данные для авторизации
-                    </p>
-                </div>
-                <form method="post" class="input information_form" action="/login" onsubmit="encryptAndSend(event)">
-                    <div class="field">
-                        <p>Email</p>
-                        <input class="input_field" type="email" id="email" name="email" placeholder="Введите свой email" maxlength="25" minlength="4" required/>
-                    </div>
-                    <div class="field">
-                        <p>Password</p>
-                        <input class="input_field" name="password" id="password" type="password" placeholder="Введите пароль" maxlength="25" minlength="4" required/>
-                    </div>
-                    <p th:if="${param.change_password}" style="color: #00C400; margin-top: 5%">Ваш пароль успешно изменён</p>
-                    <p th:if="${param.change_password_error}" style="color: red; margin-top: 5%">Ошибка смены пароля</p>
-                    <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">Ошибка подтверждения аккаунта</p>
-                    <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">Ошибка подтверждения аккаунта</p>
-                    <p th:if="${param.verify}" style="color: #00C400; margin-top: 5%">Ваш аккаунт успешно подтверждён</p>
-                    <p th:if="${param.error}" style="color: red; margin-top: 5%">Неверный логин или пароль или аккаунт не подтверждён</p>
-                    <p th:if="${param.logout}"  style="color: #00C400; margin-top: 5%">Вы успешно вышли из аккаунта</p>
-                    <input type="hidden" th:value="${publicKey}" id="publicKey">
-                    <input type="hidden" name="encodedEmail" id="encodedEmail">
-                    <input type="hidden" name="encodedPassword" id="encodedPassword">
-                    <button class="log_in_acc but" type="submit">Войти</button>
-                </form>
-                <div class="registration information_form">
-                    <p>
-                        До сих пор не аккаунта?
-                    </p>
-                    <a href="/registration">Зарегистрируйтесь</a>
-                </div>
-            </div>
-        </main>
-        <footer th:replace="~{footer :: footer}">
-        </footer>
-    </body>
-    <script src="/static/js/encrypt.js" th:src="@{/js/encrypt.js}"></script>
-    <script>
-        async function encryptAndSend(event) {
-            event.preventDefault();
-            let publicKey = document.getElementById("publicKey").value;
-            let email = document.getElementById("email").value;
-            let password = document.getElementById("password").value;
-            document.getElementById("encodedEmail").value = await encryptText(email, publicKey);
-            document.getElementById("encodedPassword").value = await encryptText(password, publicKey);
-            event.target.submit();
-        }
-    </script>
+  <head>
+    <th:block th:replace="~{head :: head}"> </th:block>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/footer.css"
+      th:href="@{/css/footer.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/login.css"
+      th:href="@{/css/login.css}"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/static/css/duplicate.css"
+      th:href="@{/css/duplicate.css}"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.1.0/jsencrypt.min.js"></script>
+    <title>Авторизация</title>
+  </head>
+  <body>
+    <header>
+      <a id="title" href="/"><span>CodeUp</span></a>
+    </header>
+    <main>
+      <div class="login">
+        <div class="greeting information_form">
+          <p class="code_block">Введите свои данные для авторизации</p>
+        </div>
+        <form
+          method="post"
+          class="input information_form"
+          action="/login"
+          onsubmit="encryptAndSend(event)"
+        >
+          <div class="field">
+            <p>Email</p>
+            <input
+              class="input_field"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Введите свой email"
+              maxlength="25"
+              minlength="4"
+              required
+            />
+          </div>
+          <div class="field">
+            <p>Password</p>
+            <input
+              class="input_field"
+              name="password"
+              id="password"
+              type="password"
+              placeholder="Введите пароль"
+              maxlength="25"
+              minlength="4"
+              required
+            />
+          </div>
+          <p
+            th:if="${param.change_password}"
+            style="color: #00c400; margin-top: 5%"
+          >
+            Ваш пароль успешно изменён
+          </p>
+          <p
+            th:if="${param.change_password_error}"
+            style="color: red; margin-top: 5%"
+          >
+            Ошибка смены пароля
+          </p>
+          <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">
+            Ошибка подтверждения аккаунта
+          </p>
+          <p th:if="${param.error_verify}" style="color: red; margin-top: 5%">
+            Ошибка подтверждения аккаунта
+          </p>
+          <p th:if="${param.verify}" style="color: #00c400; margin-top: 5%">
+            Ваш аккаунт успешно подтверждён
+          </p>
+          <p th:if="${param.error}" style="color: red; margin-top: 5%">
+            Неверный логин или пароль или аккаунт не подтверждён
+          </p>
+          <p th:if="${param.logout}" style="color: #00c400; margin-top: 5%">
+            Вы успешно вышли из аккаунта
+          </p>
+          <a id="forg_pass" href="/forget-password">Забыли пароль?</a>
+          <input type="hidden" th:value="${publicKey}" id="publicKey" />
+          <input type="hidden" name="encodedEmail" id="encodedEmail" />
+          <input type="hidden" name="encodedPassword" id="encodedPassword" />
+          <button class="log_in_acc but" type="submit">Войти</button>
+        </form>
+        <div class="registration information_form">
+          <p>До сих пор не аккаунта?</p>
+          <a href="/registration">Зарегистрируйтесь</a>
+        </div>
+      </div>
+    </main>
+    <footer th:replace="~{footer :: footer}"></footer>
+  </body>
+  <script src="/static/js/encrypt.js" th:src="@{/js/encrypt.js}"></script>
+  <script>
+    async function encryptAndSend(event) {
+      event.preventDefault();
+      let publicKey = document.getElementById("publicKey").value;
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      document.getElementById("encodedEmail").value = await encryptText(
+        email,
+        publicKey
+      );
+      document.getElementById("encodedPassword").value = await encryptText(
+        password,
+        publicKey
+      );
+      event.target.submit();
+    }
+  </script>
 </html>

@@ -110,13 +110,14 @@ public class InputController {
     @GetMapping("/forget-password")
     public String forgetPasswordGet(Model model) {
         model.addAttribute("publicKey", cipherService.getPublicKey());
-        return "forget-password";
+        return "forgetPassword";
     }
 
     @PostMapping("/forget-password")
-    public String forgetPasswordPost(@RequestParam(value = "encryptedEmail") String encryptedEmail, Model model) {
+    public String forgetPasswordPost(@RequestParam(value = "encodedEmail") String encryptedEmail, Model model) {
         String email = cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedEmail)));
-        if (this.gamerService.findGamerByEmail(email) != null){
+        Gamer gamer = this.gamerService.findGamerByEmail(email);
+        if (gamer != null && gamer.isEmailVerified()){
             this.emailService.sendResetPassword(email);
             model.addAttribute("email", email);
             model.addAttribute("description", "Перейдите по ссылке, которая\n" +
@@ -128,7 +129,7 @@ public class InputController {
     }
 
 
-    @GetMapping("/reset-password")
+    @PostMapping("/reset-password")
     public String resetPasswordPost(@RequestParam(value = "email") String email,
                                      @RequestParam(value = "encryptedPassword") String encryptedPassword) {
         List<Gamer> gamerList = this.gamerService.findAll();
@@ -142,5 +143,11 @@ public class InputController {
             }
         }
         return "redirect:/login?change_password_error=true";
+    }
+
+    @GetMapping("/reset-password")
+    public String resetPasswordGet(Model model) {
+        model.addAttribute("publicKey", cipherService.getPublicKey());
+        return "createNewPassword";
     }
 }

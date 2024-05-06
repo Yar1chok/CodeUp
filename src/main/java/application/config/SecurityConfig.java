@@ -47,7 +47,7 @@ public class SecurityConfig  {
                 auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/resources/**","/static/**", "/images/**",
-                                "/css/**", "/login", "/", "/registration", "/verify-email", "/confirmation").permitAll()
+                                "/css/**", "/login", "/", "/registration", "/verify-email", "/confirmation", "/forget-password", "/reset-password").permitAll()
                         .requestMatchers("/CodeUp/**").authenticated()
                         .anyRequest().hasAnyRole("USER", "ADMIN")
                 )
