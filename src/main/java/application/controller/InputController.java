@@ -131,12 +131,12 @@ public class InputController {
 
     @PostMapping("/reset-password")
     public String resetPasswordPost(@RequestParam(value = "email") String email,
-                                     @RequestParam(value = "encryptedPassword") String encryptedPassword) {
+                                     @RequestParam(value = "encodedPassword") String encryptedPassword) {
         List<Gamer> gamerList = this.gamerService.findAll();
         if (gamerList != null){
             for(Gamer gamer : gamerList){
                 if (this.passwordEncoder.matches(gamer.getEmail(), email)){
-                    gamer.setPassword(cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword))));
+                    gamer.setPassword(passwordEncoder.encode(cipherService.decrypt(new String(Base64.getDecoder().decode(encryptedPassword)))));
                     this.gamerService.justUpdate(gamer);
                     return "redirect:/login?change_password=true";
                 }
